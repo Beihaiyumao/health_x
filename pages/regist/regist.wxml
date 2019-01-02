@@ -1,0 +1,22 @@
+<view class='container'>
+  <view class='header'>
+    <text>个人健康管理平台</text>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class='section'>
+      <text>用户名：</text>
+      <input type='text'bindinput="inputName" placeholder='请输入用户名' name="no"  />
+    </view>
+    <view class='section'>
+      <text>密码:</text>
+      <input password='true' bindinput="inputPassword" placeholder='请输入密码' name="pwd" />
+    </view>
+    <view class='button'>
+      <button wx:if="{{!isLogin}}" type='primary' bindtap='register'>注册</button>
+      <button wx:if="{{isLogin}}" type='primary' bindtap='login'>登陆</button>
+    </view>
+  </form>
+  <view class='fpwd' bindtap='findpwd'>
+    <text>注册</text>
+  </view>
+</view>
