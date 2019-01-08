@@ -19,49 +19,11 @@ Page({
   },
   // 注册
   register: function () {
-    var that = this;
-    var isrightful = that.checkInput();
-    if (isrightful) {
-      wx.request({
-        url: 'http://localhost:8080/user/testSave',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        method: "POST",
-        data: {
-          name: inputName,
-          password: inputPassword
-        },
-        success: function (res) {
-          console.log(res)
-          if (res.statusCode != 200) {
-            wx.showToast({ //这里提示失败原因
-              title: res.data.message,
-              icon: 'loading',
-              duration: 1500
-            })
-          } else {
-            wx.showToast({
-              title: '注册成功', //这里成功
-              icon: 'success',
-              duration: 1000
-            });
-            that.setData({
-              isLogin: true,
-            }
-            )
-          }
-        },
-        fail: function (res) {
-          console.log(res)
-          wx.showToast({
-            title: '请求失败',
-            icon: 'none',
-            duration: 1500
-          })
-        }
-      });
-    }
+    wx.redirectTo({
+
+      url: '../regist/regist'
+
+    });
   },
   // 登陆
   login: function () {
@@ -71,7 +33,7 @@ Page({
       wx.request({
         url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/login',
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/json"
         },
         method: "POST",
         data: {
@@ -93,9 +55,9 @@ Page({
               duration: 1000
             });
 
-            wx.navigateTo({
+            wx.redirectTo({
 
-              url: '../regist/regist'
+              url: '../index/index'
 
             });
             that.setData({

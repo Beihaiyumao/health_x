@@ -4,19 +4,32 @@
   </view>
   <form bindsubmit="formSubmit">
     <view class='section'>
+      <text>邮箱：</text>
+      <input type='text' bindinput="email" placeholder='请输入邮箱' />
+    </view>
+    <view class='section'>
       <text>用户名：</text>
-      <input type='text'bindinput="inputName" placeholder='请输入用户名' name="no"  />
+      <input type='text' bindinput="username" placeholder='请输入用户名' />
     </view>
     <view class='section'>
       <text>密码:</text>
-      <input password='true' bindinput="inputPassword" placeholder='请输入密码' name="pwd" />
+      <input password='true' bindinput="password" placeholder='请输入密码' />
+    </view>
+    <view class='section'>
+      <text>确认密码:</text>
+      <input password='true' bindinput="tpassword" placeholder='请输入密码' />
+    </view>
+    <view class='section'>
+      <text>验证码:</text>
+      <input type='text' bindinput="identifying" placeholder='请输入验证码' />
+      <image src='{{img}}' style="width:500rpx; height:200rpx;" bindtap="newPhoto"></image>
     </view>
     <view class='button'>
-      <button wx:if="{{!isLogin}}" type='primary' bindtap='register'>注册</button>
-      <button wx:if="{{isLogin}}" type='primary' bindtap='login'>登陆</button>
+      <button wx:if="{{isLogin}}" type='primary' bindtap='register'>注册</button>
+    </view>
+    <view class='' bindtap='login'>
+      <text>登录</text>
     </view>
   </form>
-  <view class='fpwd' bindtap='findpwd'>
-    <text>注册</text>
-  </view>
+
 </view>

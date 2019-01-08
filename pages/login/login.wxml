@@ -5,7 +5,7 @@
   <form bindsubmit="formSubmit">
     <view class='section'>
       <text>用户名：</text>
-      <input type='text'bindinput="inputName" placeholder='请输入用户名' name="no"  />
+      <input type='text'bindinput="inputName" placeholder='请输入用户名' name="no" id="username" />
     </view>
     <view class='section'>
       <text>密码:</text>
@@ -16,7 +16,7 @@
       <button wx:if="{{isLogin}}" type='primary' bindtap='login'>登陆</button>
     </view>
   </form>
-  <view class='fpwd' bindtap='findpwd'>
+  <view class='' bindtap='register'>
     <text>注册</text>
   </view>
 </view>

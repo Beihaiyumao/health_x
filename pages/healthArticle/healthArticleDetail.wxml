@@ -1,0 +1,73 @@
+<!--pages/healthArticle/healthArticleDetail.wxml-->
+<view>
+  <text>{{articleId}}\n</text>
+  <text>{{title}}\n</text>
+  <text>{{author}}\n</text>
+  <text>{{cteateTime}}\n</text>
+  <image src='http://39.105.56.223/health-0.0.1-SNAPSHOT/{{pic}}'></image>
+  <text>{{content}}</text>
+</view>
+
+<!-- 用户评论信息 -->
+
+<view class='comment'>
+
+  <view class='pinglun'>
+    <text class='collectTitle'>用户评论</text>
+  </view>
+
+  <view class="addcomment">
+
+    <view class="weui-cell weui-cell_input">
+
+      <view class="weui-cell__hd">
+
+        <view class="weui-label">
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        </view>
+
+      </view>
+
+      <view class="weui-cell__bd">
+
+        <input class="weui-input" type="text" name="comcontent" placeholder='点赞都是套路，评论才是真诚' bindinput="comcontentInput" value="{{comcontent}}" />
+
+        <button class="tjcom mini-btn button-hover " bindtap="commentBtnClick">评论</button>
+
+      </view>
+
+    </view>
+
+  </view>
+
+  <view class='display' wx:if='{{comment_show}}'>
+
+    <block wx:for="{{collectinfo}}" wx:for-item='item' wx:key='key'>
+
+      <view class='user-nickname'>
+
+        <image class='user-icon' src='{{item.usericon}}'></image>
+
+        <text class='nickname'>{{item.userId}}</text>
+
+      </view>
+
+      <text class='commentDetail'>{{item.content}}</text>
+
+      <view class='time-heart'>
+
+        <text class='comment-time'>{{item.createTime}}</text>
+
+        <image class='heart-icon' src='../images/heart.png'></image>
+
+      </view>
+
+    </block>
+
+  </view>
+
+  <view class='none' wx:else>
+    <text>该文章还没有评论...</text>
+  </view>
+
+</view>

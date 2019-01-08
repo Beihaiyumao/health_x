@@ -1,25 +1,44 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/login/login",
-    "pages/regist/regist"
+    "pages/regist/regist",
+    "pages/healthArticle/healthArticle",
+    "pages/healthQuestion/healthQuestion",
+    "pages/healthArticle/healthArticleDetail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "iconPath": "images/index/healthTool1.png",
+        "selectedIconPath": "images/index/healthTool2.png",
+        "text": "健康工具"
+      },
+      {
+        "pagePath": "pages/healthArticle/healthArticle",
+        "iconPath": "images/index/healthArticle1.png",
+        "selectedIconPath": "images/index/healthArticle2.png",
+        "text": "健康百科"
+      },
+      {
+        "pagePath": "pages/healthQuestion/healthQuestion",
+        "iconPath": "images/index/question1.png",
+        "selectedIconPath": "images/index/question2.png",
+        "text": "健康问答"
       },
       {
         "pagePath": "pages/login/login",
-        "text": "登录"
+        "iconPath": "images/index/my1.png",
+        "selectedIconPath": "images/index/my2.png",
+        "text": "我的"
       }
     ]
   },
@@ -29,4 +48,3 @@
   },
   "debug": true
 }
-

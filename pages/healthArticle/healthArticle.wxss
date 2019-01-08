@@ -1,0 +1,8 @@
+
+.loading{
+  padding: 10rpx;
+  text-align: center;
+}
+.loading.complete:before{
+  display: none;
+}
