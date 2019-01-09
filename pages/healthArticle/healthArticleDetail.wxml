@@ -69,5 +69,5 @@
   <view class='none' wx:else>
     <text>该文章还没有评论...</text>
   </view>
-
+<text>肖银川test</text>
 </view>
