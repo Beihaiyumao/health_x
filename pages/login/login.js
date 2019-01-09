@@ -6,27 +6,25 @@ Page({
    * 初始化两个输入值
    */
   data: {
-    isLogin: true
+    isLogin: true,
   },
   //获取用户输入的值a
-  inputName: function (e) {
+  inputName: function(e) {
     inputName = e.detail.value;
   },
   //获取用户输入的值b
-  inputPassword: function (e) {
+  inputPassword: function(e) {
     inputPassword = e.detail.value;
     console.log("输入的密码：" + inputPassword);
   },
   // 注册
-  register: function () {
-    wx.redirectTo({
-
+  registerUser: function() {
+    wx.navigateTo({
       url: '../regist/regist'
-
     });
   },
   // 登陆
-  login: function () {
+  login: function() {
     var that = this;
     var isrightful = that.checkInput();
     if (isrightful) {
@@ -40,7 +38,7 @@ Page({
           email: inputName,
           password: inputPassword
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res)
           if (res.data.code == 200) {
             wx.showToast({ //这里提示失败原因
@@ -54,42 +52,44 @@ Page({
               icon: 'success',
               duration: 1000
             });
-
-            wx.redirectTo({
-
+            wx.navigateTo({
               url: '../index/index'
-
             });
             that.setData({
               isLogin: true,
-            }
-            )
+            })
           }
         }
       });
     }
   },
   //检测输入值
-  checkInput: function () {
+  checkInput: function() {
     if (inputName == "" || inputName == null ||
       inputName == undefined) {
+
       this.showErrorToastUtils('请输入用户名');
+      return false;
     } else if (inputPassword == "" || inputPassword == null || inputPassword == undefined) {
       this.showErrorToastUtils('请输入密码');
+      return false;
+
     } else if (inputPassword.length < 6) {
       this.showErrorToastUtils('密码至少要6位');
+      return false;
+
     }
     return true;
   },
 
   // 错误提示
-  showErrorToastUtils: function (e) {
+  showErrorToastUtils: function(e) {
     wx.showModal({
       title: '提示！',
       confirmText: '朕知道了',
       showCancel: false,
       content: e,
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
         }
