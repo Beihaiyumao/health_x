@@ -46,9 +46,9 @@
 
       <view class='user-nickname'>
 
-        <image class='user-icon' src='{{item.usericon}}'></image>
+        <image class='user-icon' src='http://39.105.56.223/health-0.0.1-SNAPSHOT/{{item.headPhoto}}'></image>
 
-        <text class='nickname'>{{item.userId}}</text>
+        <text class='nickname'>{{item.userName}}</text>
 
       </view>
 
