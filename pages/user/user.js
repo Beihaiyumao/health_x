@@ -23,7 +23,7 @@ Page({
    * 退出登录
    */
   loginOut: function() {
-    wx.clearStorageSync();
+    wx.clearStorageSync("");
     wx.switchTab({
       url: '../index/index',
     })

@@ -1,60 +1,74 @@
-var username = "";
-var password = "";
-var email = "";
-var identifying = "";
-var tpassword = "";
 Page({
   /**
    * 页面的初始数据
    * 初始化两个输入值
    */
   data: {
-    isLogin: true,
-    img: "http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify"
+    img: "http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify",
+    username: '',
+    password: '',
+    tpassword: '',
+    email: '',
+    identifying: '',
   },
+  //获取邮箱
   email: function(e) {
-    email = e.detail.value;
+    this.setData({
+      email: e.detail.value
+    })
   },
-  //获取用户输入的值a
+  //获取用户名
   username: function(e) {
-    username = e.detail.value;
+    this.setData({
+      username: e.detail.value
+    })
   },
-  //获取用户输入的值b
+  //获取密码
   password: function(e) {
-    password = e.detail.value;
+    this.setData({
+      password: e.detail.value
+    })
   },
   identifying: function(e) {
-    identifying = e.detail.value;
+    this.setData({
+      identifying: e.detail.value
+    })
   },
   tpassword: function(e) {
-    tpassword = e.detail.value;
+    this.setData({
+      tpassword: e.detail.value
+    })
   },
   // 注册
   register: function() {
+    var that = this;
     var registstate = true;
     var emailTrue = /^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/;
-    if (email == "" || email == null || email == undefined || !emailTrue.test(email)) {
+    if (this.data.email == "" || this.data.email == null || this.data.email == undefined || !emailTrue.test(this.data.email)) {
       this.showErrorToastUtils("请输入正确的邮箱");
       registstate = false;
-    } else if (username == "" || username == null ||
-      username == undefined) {
+    } else if (this.data.username == "" || this.data.username == null ||
+      this.data.username == undefined) {
       this.showErrorToastUtils('请输入用户名');
       registstate = false;
-    } else if (password == "" || password == null || password == undefined) {
+    } else if (this.data.password == "" || this.data.password == null || this.data.password == undefined) {
       this.showErrorToastUtils('请输入密码');
       registstate = false;
-    } else if (password.length < 6) {
+    } else if (this.data.password.length < 6) {
       this.showErrorToastUtils('密码至少要6位');
       registstate = false;
-    } else if (tpassword == "" || tpassword == null) {
+    } else if (this.data.tpassword == "" || this.data.tpassword == null) {
       this.showErrorToastUtils("请再次输入密码");
       registstate = false;
-    } else if (password != tpassword) {
+    } else if (this.data.password != this.data.tpassword) {
       this.showErrorToastUtils("两次密码输入不一致");
+      registstate = false;
+    } else if (this.data.identifying == "" || this.data.identifying == null || this.data.identifying==undefined){
+      this.showErrorToastUtils("请输入验证码");
       registstate = false;
     }
     if (registstate == true) {
-      var that = this;
+     
       wx.request({
         url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/regist',
         header: {
@@ -62,10 +76,10 @@ Page({
         },
         method: "POST",
         data: {
-          email: email,
-          password: password,
-          username: username,
-          identifying: identifying
+          email: this.data.email,
+          password: this.data.password,
+          username: this.data.username,
+          identifying: this.data.identifying
         },
         success: function(res) {
           console.log(res)

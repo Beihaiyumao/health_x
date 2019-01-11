@@ -7,7 +7,10 @@
     "pages/healthArticle/healthArticle",
     "pages/healthQuestion/healthQuestion",
     "pages/healthArticle/healthArticleDetail",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/user/changPassword",
+    "pages/healthQuestion/healthQuestionDetail",
+    "pages/user/userInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
