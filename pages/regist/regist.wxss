@@ -1,31 +1,119 @@
+/*login bg */
+
+.regist_bg {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 
 /* pages/login/login.wxss */
-form{
+
+form {
   width: 310px;
   height: 240px;
   line-height: 40px;
   /* border: 1px solid red;  */
 }
-input{
+
+input {
   border: 1px solid #ccc;
   width: 310px;
   height: 40px;
 }
-.button{
+
+.button {
   margin-top: 20px;
 }
-.header text{
+
+.header text {
   font-size: 25px;
   color: #666;
 }
-form text{
+
+form text {
   font-size: 20px;
   color: #666;
 }
-.fpwd{
+
+.fpwd {
   margin-top: 200px;
 }
-.fpwd text{
+
+.fpwd text {
   color: #ccc;
   font-size: 18px;
+}
+
+.login_form {
+  width: 100%;
+  height: auto;
+}
+
+.form_conner {
+  width: 70%;
+  height: 100%;
+  margin: 10% 10%;
+  padding: 30rpx 5%;
+  border: 1px solid #fff;
+  border-radius: 20rpx;
+  display: block;
+  text-align: center;
+}
+
+.form_conner input {
+  display: block;
+  font-size: 43rpx;
+  border: 1px solid #fff;
+  border-radius: 55rpx;
+  line-height: 55rpx;
+  margin-top: 58rpx;
+  width: 90%;
+  text-align: left;
+  color: #fff;
+  padding: 0rpx 5%;
+}
+
+.email {
+  background: url(/images/login/emil.png);
+  background-position: left;
+  background-size: 100% 100%;
+  z-index: 999;
+}
+
+.password {
+  background-image: url(/images/login/password.png);
+}
+
+.login_logo {
+  width: 206rpx;
+  height: 206rpx;
+  margin-top: 60rpx;
+  text-align: center;
+  display: inline-block;
+}
+
+.login_btn {
+  display: block;
+  font-size: 43rpx;
+  border: 1px solid #fff;
+  border-radius: 55rpx;
+  line-height: 55rpx;
+  margin-top: 82rpx;
+  background-color: #fff;
+  color: #1f6f4a;
+  text-align: center;
+  width: 100%;
+  padding: 10rpx 0px;
+  margin-bottom: 27rpx;
+}
+
+.resgin {
+  background: none;
+  text-align: left;
+  font-weight: 100;
+  color: #fff;
 }

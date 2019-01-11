@@ -17,6 +17,7 @@ Page({
     inputPassword = e.detail.value;
     console.log("输入的密码：" + inputPassword);
   },
+
   // 注册
   registerUser: function() {
     wx.navigateTo({
@@ -50,10 +51,13 @@ Page({
             wx.showToast({
               title: '登陆成功', //这里成功
               icon: 'success',
-              duration: 1000
+              duration: 1000,
+              
             });
-            wx.navigateTo({
-              url: '../index/index'
+            //保存用户登录状态
+            wx.setStorageSync("userId", res.data.object.userId);
+            wx.switchTab({
+              url: '../user/user'
             });
             that.setData({
               isLogin: true,
@@ -65,10 +69,11 @@ Page({
   },
   //检测输入值
   checkInput: function() {
+    var emailTrue = /^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/;
     if (inputName == "" || inputName == null ||
-      inputName == undefined) {
+      inputName == undefined || !emailTrue.test(inputName)) {
 
-      this.showErrorToastUtils('请输入用户名');
+      this.showErrorToastUtils('请输入正确的邮箱');
       return false;
     } else if (inputPassword == "" || inputPassword == null || inputPassword == undefined) {
       this.showErrorToastUtils('请输入密码');
