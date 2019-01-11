@@ -16,6 +16,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(wx.getStorageInfoSync("userId"));
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

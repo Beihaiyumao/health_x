@@ -1,5 +1,4 @@
-var inputName = "";
-var inputPassword = "";
+
 Page({
   /**
    * 页面的初始数据
@@ -7,15 +6,22 @@ Page({
    */
   data: {
     isLogin: true,
+    inputName:'',
+    inputPassword:'',
   },
   //获取用户输入的值a
   inputName: function(e) {
-    inputName = e.detail.value;
+    this.setData({
+      inputName : e.detail.value
+    })
+    
   },
   //获取用户输入的值b
   inputPassword: function(e) {
-    inputPassword = e.detail.value;
-    console.log("输入的密码：" + inputPassword);
+   this.setData({
+     inputPassword : e.detail.value
+   })
+    console.log("输入的密码：" + this.data.inputPassword);
   },
 
   // 注册
@@ -36,8 +42,8 @@ Page({
         },
         method: "POST",
         data: {
-          email: inputName,
-          password: inputPassword
+          email: this.data.inputName,
+          password: this.data.inputPassword
         },
         success: function(res) {
           console.log(res)
@@ -69,17 +75,18 @@ Page({
   },
   //检测输入值
   checkInput: function() {
+    var that = this;
     var emailTrue = /^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/;
-    if (inputName == "" || inputName == null ||
-      inputName == undefined || !emailTrue.test(inputName)) {
-
+    if (this.data.inputName == "" || this.data.inputName == null ||
+      this.data.inputName == undefined || !emailTrue.test(this.data.inputName)) {
+        
       this.showErrorToastUtils('请输入正确的邮箱');
       return false;
-    } else if (inputPassword == "" || inputPassword == null || inputPassword == undefined) {
+    } else if (this.data.inputPassword == "" || this.data.inputPassword == null || this.data.inputPassword == undefined) {
       this.showErrorToastUtils('请输入密码');
       return false;
 
-    } else if (inputPassword.length < 6) {
+    } else if (this.data.inputPassword.length < 6) {
       this.showErrorToastUtils('密码至少要6位');
       return false;
 
