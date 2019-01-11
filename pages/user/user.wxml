@@ -1,0 +1,3 @@
+<!--pages/user/user.wxml-->
+
+<button bindtap='loginOut'>退出登录</button>  

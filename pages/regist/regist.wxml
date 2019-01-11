@@ -1,35 +1,18 @@
-<view class='container'>
-  <view class='header'>
-    <text>个人健康管理平台</text>
-  </view>
-  <form bindsubmit="formSubmit">
-    <view class='section'>
-      <text>邮箱：</text>
-      <input type='text' bindinput="email" placeholder='请输入邮箱' />
-    </view>
-    <view class='section'>
-      <text>用户名：</text>
-      <input type='text' bindinput="username" placeholder='请输入用户名' />
-    </view>
-    <view class='section'>
-      <text>密码:</text>
-      <input password='true' bindinput="password" placeholder='请输入密码' />
-    </view>
-    <view class='section'>
-      <text>确认密码:</text>
-      <input password='true' bindinput="tpassword" placeholder='请输入密码' />
-    </view>
-    <view class='section'>
-      <text>验证码:</text>
-      <input type='text' bindinput="identifying" placeholder='请输入验证码' />
-      <image src='{{img}}' style="width:500rpx; height:200rpx;" bindtap="newPhoto"></image>
-    </view>
-    <view class='button'>
-      <button wx:if="{{isLogin}}" type='primary' bindtap='register'>注册</button>
-    </view>
-    <view class='' bindtap='login'>
-      <text>登录</text>
-    </view>
-  </form>
+<view>
+  <image class='regist_bg' src='/images/login/backgroud.png'></image>
+  <view class='login_form'>
+    <form class='form_conner'>
+      <image class='login_logo' src='/images/login/login.png '></image>
+      <input class='password' bindinput="email" placeholder='邮箱'></input>
+      <input class="email" bindinput='username' placeholder='用户名'></input>
+      <input class='password' password='true' bindinput="password" placeholder='密码'></input>
+      <input class='password' password='true' bindinput="tpassword" placeholder='确认密码'></input>
+      <input type='text' class='password' bindinput="identifying" placeholder='请输入验证码' />
+      <image src='{{img}}' style="width:500rpx; margin-top:58rpx; height:200rpx;" bindtap="newPhoto"></image>
+      <button class='login_btn' bindtap='register'>注册</button>
+      <button class='resgin' bindtap='login'>登录</button>
 
+    </form>
+
+  </view>
 </view>

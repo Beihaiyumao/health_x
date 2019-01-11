@@ -10,7 +10,7 @@ Page({
    */
   data: {
     isLogin: true,
-    img:"http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify"
+    img: "http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify"
   },
   email: function(e) {
     email = e.detail.value;
@@ -32,8 +32,9 @@ Page({
   // 注册
   register: function() {
     var registstate = true;
-    if (email == "" || email == null || email == undefined) {
-      this.showErrorToastUtils("请输入邮箱");
+    var emailTrue = /^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/;
+    if (email == "" || email == null || email == undefined || !emailTrue.test(email)) {
+      this.showErrorToastUtils("请输入正确的邮箱");
       registstate = false;
     } else if (username == "" || username == null ||
       username == undefined) {
@@ -105,10 +106,10 @@ Page({
     });
   },
   //点击切换验证码
-  newPhoto: function(e){
+  newPhoto: function(e) {
     var that = this;
     let num = Math.random();
-    var pic ="http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify?"+num;
+    var pic = "http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify?" + num;
     that.setData({
       img: pic
     })
