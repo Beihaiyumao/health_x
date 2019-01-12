@@ -10,7 +10,11 @@
     "pages/user/user",
     "pages/user/changPassword",
     "pages/healthQuestion/healthQuestionDetail",
-    "pages/user/userInfo"
+    "pages/user/userInfo",
+    "pages/user/healthArticle",
+    "pages/user/healthArticleDetail",
+    "pages/user/healthQuestion",
+    "pages/user/healthQuestionDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
