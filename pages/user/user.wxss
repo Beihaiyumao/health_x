@@ -1,1 +1,61 @@
 /* pages/user/user.wxss */
+.user_top{
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.user_head{
+  position: absolute;
+  z-index: 1;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.user_head image{
+  width: 220rpx;
+  height: 220rpx;
+  margin-top: 100rpx;
+}
+.user_head text{
+  color: #ffffff;
+  text-align: center;
+  margin-top: 30rpx;
+  display: block;
+}
+.mt60{
+  margin-top: 120rpx;
+}
+.user_list{
+  width: 100%;
+  border-top: 1px #cccccc solid;
+}
+.clearfix::after{
+  content: '';
+  display: table;
+  clear: both;
+  zoom: 1;
+}
+
+.user_list text:nth-child(1){
+  float: left;
+  display: block;
+  width: 75%;
+  padding: 30rpx 0rpx 30rpx 15%;
+  
+}
+.user_list text:nth-child(2){
+  float: right;
+  display: block;
+  width: 10%;
+  padding: 30rpx 0rpx ;
+}
+.user_end{
+  background: #43cf7c;
+  color: #ffffff;
+  margin: 0rpx 30% 120rpx;
+  border-radius: 30rpx;
+  padding: 8rpx 0rpx;
+  width: 40%;
+}

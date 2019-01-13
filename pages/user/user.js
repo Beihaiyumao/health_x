@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    headPage: '',
+    userId: wx.getStorageSync('userId'),
+    username:'',
   },
 
   /**
@@ -13,7 +15,7 @@ Page({
    */
   onLoad: function(options) {
     console.log(wx.getStorageSync('userId'));
-    if (wx.getStorageSync('userId') == "") {
+    if ( this.data.userId== "") {
       this.showErrorToastUtils();
 
     }
@@ -40,11 +42,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that=this;
     if (wx.getStorageSync('userId') == "") {
 
       this.showErrorToastUtils();
     }
+    wx.request({
+      url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/selectUserInfo',
+      method: 'GET',
+      data:{
+        userId: this.data.userId,
+      },
+      success:function(e){
+        console.log(e);
+        if(e.data.code==100){
+          that.setData({
+            headPage: e.data.object.pic,
+            username: e.data.object.username,
+          })
 
+        }
+      }
+    })
   },
   // 错误提示
   showErrorToastUtils: function(e) {
@@ -98,5 +117,37 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  /**
+   * 跳转我的收藏
+   */
+  myHealthArticle: function() {
+    wx.navigateTo({
+      url: '../user/healthArticle',
+    })
+  },
+  /**
+   * 跳转我的问题
+   */
+  myHealthQuestion: function() {
+    wx.navigateTo({
+      url: '../user/healthQuestion',
+    })
+  },
+  /**
+   * 跳转修改密码
+   */
+  changePassword: function() {
+    wx.navigateTo({
+      url: '../user/changPassword',
+    })
+  },
+  /**
+   * 跳转个人中心
+   */
+  userInfo: function() {
+    wx.navigateTo({
+      url: '../user/userInfo',
+    })
   }
 })

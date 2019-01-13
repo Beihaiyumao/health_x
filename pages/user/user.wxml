@@ -1,3 +1,22 @@
 <!--pages/user/user.wxml-->
+<view class='user_top'>
+<image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
+<view bindtap='userInfo' class='user_head' style=''>
+<image src='http://39.105.56.223/health-0.0.1-SNAPSHOT/{{headPage}}'></image>
+<text>用户名:{{username}}</text>
+</view>
+<view bindtap="myHealthArticle" class='user_list mt60 clearfix'>
+<text>我的收藏</text>
+<text>></text>
+</view>
+<view bindtap='myHealthQuestion' class='user_list clearfix'>
+<text>我的问题</text>
+<text>></text>
+</view>
+<view bindtap='changePassword' class='user_list clearfix' style='margin-bottom:120rpx; border-bottom:1px #cccccc solid;'>
+<text>修改密码</text>
+<text>></text>
+</view>
 
-<button bindtap='loginOut'>退出登录</button>  
+<button bindtap='loginOut' class="user_end">退出登录</button>
+</view>
