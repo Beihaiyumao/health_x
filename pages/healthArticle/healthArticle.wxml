@@ -1,6 +1,5 @@
 <!--pages/healthArticle/healthArticle.wxml-->
 <!--pages/list/list.wxml-->
-<text>这是文章列表页面</text>
 <!--用name 定义模版-->
 <scroll-view scroll-y="true" bindscrolltolower="searchScrollLower">
   <template name="msgTemp">

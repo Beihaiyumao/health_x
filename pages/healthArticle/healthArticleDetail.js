@@ -1,4 +1,5 @@
 // pages/healthArticle/healthArticleDetail.js
+const urlPath = require('../common/config').url_microService;
 Page({
 
   /**
@@ -40,12 +41,12 @@ Page({
     var that = this;
     //获取文章具体信息
     wx.request({
-        url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/healthyArticle/selectHealthyArticleById?articleId=' + this.data.articleId, //请求地址
+        url: urlPath+'/healthyArticle/selectHealthyArticleById?articleId=' + this.data.articleId, //请求地址
         header: { //请求头
           "Content-Type": "applciation/json"
         },
-
-        method: "POST", //get为默认方法/POST
+        
+        method: "GET", //get为默认方法/POST
         success: function(res) {
           console.log(res);
           if (res.data != "") {
@@ -71,8 +72,8 @@ Page({
     }),
     //获取用户评论
     wx.request({
-      url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/healthyArticle/commentList?articleId=' + this.data.articleId, //请求地址
-      method:'POST',
+      url: urlPath+'/healthyArticle/commentList?articleId=' + this.data.articleId, //请求地址
+      method:'GET',
       success:function(e){
         console.log(e);
         that.setData({
@@ -84,8 +85,8 @@ Page({
     }),
     //获取评论回复
     wx.request({
-      url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
-      method:'POST',
+      url: urlPath+'/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
+      method:'GET',
       success:function(e){
         
       }

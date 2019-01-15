@@ -1,1 +1,52 @@
 /* pages/user/healthQuestion.wxss */
+
+.h_search {
+  height: 70rpx;
+  border: 5px #ccc solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5%;
+  border-radius: 5rpx;
+}
+
+.image {
+  width: 40rpx;
+  height: 40rpx;
+  padding-right: 35rpx;
+}
+
+.mt60 {
+  margin-top: 120rpx;
+}
+
+.user_list {
+  width: 100%;
+  border-bottom: 1px #ccc solid;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+  zoom: 1;
+}
+
+.user_list text:nth-child(1) {
+  float: left;
+  display: block;
+  width: 75%;
+  overflow: hidden;
+  padding: 30rpx 0rpx 30rpx 5%;
+}
+
+.user_list text:nth-child(2) {
+  float: right;
+  display: block;
+  width: 20%;
+  padding: 30rpx 0rpx;
+  font-size: 35rpx;
+  color: #333;
+  line-height: 55rpx;
+}

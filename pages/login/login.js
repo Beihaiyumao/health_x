@@ -1,4 +1,4 @@
-
+const urlPath = require('../common/config').url_microService;
 Page({
   /**
    * 页面的初始数据
@@ -36,7 +36,7 @@ Page({
     var isrightful = that.checkInput();
     if (isrightful) {
       wx.request({
-        url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/login',
+        url: urlPath+'/user/login',
         header: {
           "Content-Type": "application/json"
         },

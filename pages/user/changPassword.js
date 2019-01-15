@@ -1,4 +1,5 @@
 // pages/user/changPassword.js
+const urlPath = require('../common/config').url_microService;
 Page({
 
   /**
@@ -86,7 +87,7 @@ Page({
     if(inputState){
     
       wx.request({
-        url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/updatePassword',
+        url: urlPath+'/user/updatePassword',
         method: "GET",
         data: {
           newPassword: this.data.newPassword,
