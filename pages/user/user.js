@@ -1,4 +1,5 @@
 // pages/user/user.js
+const urlPath = require('../common/config').url_microService;
 Page({
 
   /**
@@ -48,7 +49,7 @@ Page({
       this.showErrorToastUtils();
     }
     wx.request({
-      url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/selectUserInfo',
+      url: urlPath+'/user/selectUserInfo',
       method: 'GET',
       data:{
         userId: this.data.userId,

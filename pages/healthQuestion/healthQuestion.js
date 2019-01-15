@@ -1,4 +1,5 @@
 // pages/healthQuestion/healthQuestion.js
+const urlPath = require('../common/config').url_microService;
 Page({
 
   /**
@@ -33,8 +34,8 @@ Page({
   onShow: function () {
     var that=this;
     wx.request({
-      url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/question/allQuestion',
-      method:'POST',
+      url: urlPath+'/question/allQuestion',
+      method:'GET',
       success:function(e){
         console.log(e);
         that.setData({

@@ -1,2 +1,8 @@
 <!--pages/user/healthArticle.wxml-->
-<text>pages/user/healthArticle.wxml</text>
+<input placeholder='搜索文章' class='h_search'></input>
+<block wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
+  <view class='user_list mt60 clearfix'>
+    <text>{{item.title}}</text>
+    <text>{{item.article}}</text>
+  </view>
+</block>

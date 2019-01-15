@@ -1,1 +1,39 @@
 /* pages/user/healthArticle.wxss */
+
+.h_search {
+  height: 70rpx;
+  border: 5px #ccc solid;
+  text-align: center;
+}
+
+.mt60 {
+  margin-top: 120rpx;
+}
+
+.user_list {
+  width: 100%;
+  border-bottom: 1px #ccc solid;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+  zoom: 1;
+}
+
+.user_list text:nth-child(1) {
+  overflow: hidden;
+  padding: 30rpx 0rpx 30rpx 5%;
+  width: 100%;
+  display: block;
+}
+
+.user_list text:nth-child(2) {
+  font-size: 35rpx;
+  color: #333;
+  padding: 0rpx 0rpx 30rpx 5%;
+  line-height: 55rpx;
+  width: 100%;
+  display: block;
+}

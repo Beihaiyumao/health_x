@@ -1,4 +1,5 @@
 // pages/healthQuestion/healthQuestionDetail.js
+const urlPath = require('../common/config').url_microService;
 Page({
 
   /**

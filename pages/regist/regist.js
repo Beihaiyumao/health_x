@@ -1,10 +1,11 @@
+const urlPath = require('../common/config').url_microService;
 Page({
   /**
    * 页面的初始数据
    * 初始化两个输入值
    */
   data: {
-    img: "http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify",
+    img: urlPath+"/user/getImgVerify",
     username: '',
     password: '',
     tpassword: '',
@@ -70,7 +71,7 @@ Page({
     if (registstate == true) {
      
       wx.request({
-        url: 'http://39.105.56.223/health-0.0.1-SNAPSHOT/user/regist',
+        url: urlPath+'/user/regist',
         header: {
           "Content-Type": "application/json"
         },
@@ -123,7 +124,7 @@ Page({
   newPhoto: function(e) {
     var that = this;
     let num = Math.random();
-    var pic = "http://39.105.56.223/health-0.0.1-SNAPSHOT/user/getImgVerify?" + num;
+    var pic = urlPath+"/user/getImgVerify?" + num;
     that.setData({
       img: pic
     })
