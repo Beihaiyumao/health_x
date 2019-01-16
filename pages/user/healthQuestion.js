@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId: wx.getStorageSync('userId'),
+    userId: '',
     msgList: [{
       title: "标题一", //标题
       createTime: "2017-3-5 23:01:59", //创建时间
@@ -92,7 +92,7 @@ Page({
       url: urlPath+'/user/myQuestion',
       method: 'GET',
       data: {
-        userId: this.data.userId,
+        userId: wx.getStorageSync('userId'),
       },
       success: function(res) {
         console.log(res);
@@ -120,7 +120,7 @@ Page({
         method: 'GET',
         data: {
           title: this.data.search_title,
-          userId:this.data.userId,
+          userId: wx.getStorageSync('userId'),
         },
         success: function(res) {
           console.log(res);

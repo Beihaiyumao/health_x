@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId: wx.getStorageSync('userId'),
+    userId: '',
     msgList: [{
       articleId: 1, //文章id
       title: "标题一", //标题
@@ -89,7 +89,7 @@ Page({
       url: urlPath+'/user/myCollectionArticle',
       method: 'GET',
       data: {
-        userId: this.data.userId,
+        userId: wx.getStorageSync('userId'),
       },
       success: function(res) {
         console.log(res);
@@ -120,6 +120,7 @@ Page({
         method: 'GET',
         data: {
           title: this.data.search_title,
+          userId: wx.getStorageSync('userId'),
         },
         success: function (res) {
           console.log(res);

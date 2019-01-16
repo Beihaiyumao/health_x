@@ -7,7 +7,7 @@ Page({
    */
   data: {
     headPage: '',
-    userId: wx.getStorageSync('userId'),
+    userId: '',
     username:'',
   },
 
@@ -26,7 +26,8 @@ Page({
    * 退出登录
    */
   loginOut: function() {
-    wx.clearStorageSync("");
+    wx.clearStorageSync("userId");
+    wx.clearStorageSync();
     wx.switchTab({
       url: '../index/index',
     })
@@ -43,6 +44,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    console.log(wx.getStorageSync('userId'));
     var that=this;
     if (wx.getStorageSync('userId') == "") {
 
@@ -52,7 +54,7 @@ Page({
       url: urlPath+'/user/selectUserInfo',
       method: 'GET',
       data:{
-        userId: this.data.userId,
+        userId: wx.getStorageSync('userId'),
       },
       success:function(e){
         console.log(e);
