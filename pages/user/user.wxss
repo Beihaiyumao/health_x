@@ -52,10 +52,11 @@
   padding: 30rpx 0rpx ;
 }
 .user_end{
-  background: #43cf7c;
+  background:green;
   color: #ffffff;
   margin: 0rpx 30% 120rpx;
   border-radius: 30rpx;
   padding: 8rpx 0rpx;
-  width: 40%;
+  width: 45%;
+  
 }
