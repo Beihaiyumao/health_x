@@ -70,13 +70,13 @@ color: #ffffff;
 padding: 0rpx 5% ;
 }
 .email{
-  background: url(/images/login/emil.png);
+  /*background: url(/images/login/emil.png);*/
   background-position: left;
   background-size: 100% 100%;
   z-index: 999;
 }
 .password{
-  background-image: url(/images/login/password.png );
+  /*background-image: url(/images/login/password.png );*/
 }
 .login_logo{
   width: 206rpx;

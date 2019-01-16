@@ -9,7 +9,7 @@ Page({
     oldPassword:'',
     newPassword:'',
     tnewPassword:'',
-    userId: wx.getStorageSync('userId'),
+    userId: '',
   },
 
   oldPassword: function(e){
@@ -93,7 +93,7 @@ Page({
           newPassword: this.data.newPassword,
           oldPassword: this.data.oldPassword,
           tnewPassword: this.data.tnewPassword,
-          userId: this.data.userId,
+          userId: wx.getStorageSync('userId'),
 
         },
         success:function(e){

@@ -99,7 +99,10 @@ Page({
             that.setData({
               isLogin: true,
             })
-          }
+          };
+          wx.navigateTo({
+            url: '../login/login',
+          })
         },
         fail: function(res) {
           console.log(res)

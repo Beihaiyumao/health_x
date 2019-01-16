@@ -85,6 +85,7 @@ Page({
     }),
     //获取评论回复
     wx.request({
+      
       url: urlPath+'/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
       method:'GET',
       success:function(e){
