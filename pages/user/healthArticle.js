@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    search_title:'',
     userId: '',
     msgList: [{
       articleId: 1, //文章id
@@ -24,7 +25,12 @@ Page({
     total: '', //总共多少条数据
     pageNum: 1,
   },
-
+  //获取用户输入的值
+  search_title: function (e) {
+    this.setData({
+      search_title: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
