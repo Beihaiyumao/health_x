@@ -48,10 +48,11 @@ Page({
         success: function(res) {
           console.log(res)
           if (res.data.code == 200) {
-            wx.showToast({ //这里提示失败原因
-              title: res.data.msg,
-              icon: 'loading',
-              duration: 1500
+            wx.showModal({ //这里提示失败原因
+              title: '提示！',
+              confirmText: '朕知道了',
+              showCancel: false,
+              content: res.data.msg,
             })
           } else {
             wx.showToast({
