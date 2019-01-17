@@ -1,10 +1,10 @@
 <!--pages/healthQuestion/healthQuestion.wxml-->
 <!--搜索框-->
-<view class='page_row' bindtap="searchMyArticle">
+<view class='page_row' bindtap="searchQuestion">
   <view class="search">
     <view class="df search_arr">
       <icon class="searchcion" size='20' type='search'></icon>
-      <input class="" bindinput='search_title'  placeholder="请输入关键字" />
+      <input class="" bindinput='search_title' placeholder="请输入关键字" />
     </view>
   </view>
   <view class='sousuo' bindtap=''>搜索</view>
@@ -26,8 +26,14 @@
 
     <text class='comment-time'>{{item.createTime}}</text>
 
-    <image class='heart-icon' src='../images/heart.png'></image>
+    <image class='heart-icon' src=''></image>
 
   </view>
 
 </block>
+<!--增加按钮-->
+<view bindtap='addHealthQuestion'>
+
+  <image class="add_icon" src="/images/index/add.png"></image>
+
+</view>

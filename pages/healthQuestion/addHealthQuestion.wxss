@@ -1,0 +1,22 @@
+/* pages/healthQuestion/addHealthQuestion.wxss */
+
+.f{
+  display: flex;
+}
+
+.f-end{
+  justify-content: flex-end;
+}
+
+.text-count-display{
+  padding: 2%;
+}
+
+.textarea-count {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.textarea-count textarea{
+  width: 100%;
+}
