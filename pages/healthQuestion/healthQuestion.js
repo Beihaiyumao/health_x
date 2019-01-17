@@ -6,44 +6,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    questionList:'',
-    total:'',
-    pageNum:'',
+    questionList: '',
+    total: '',
+    pageNum: '',
     isFristPage: true,
-    isLastPage:true,
+    isLastPage: true,
 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    var that=this;
+  onShow: function() {
+    var that = this;
     wx.request({
-      url: urlPath+'/question/allQuestion',
-      method:'GET',
-      success:function(e){
+      url: urlPath + '/question/allQuestion',
+      method: 'GET',
+      success: function(e) {
         console.log(e);
         that.setData({
-          questionList:e.data.list,
-          total:e.data.total,
-          pageNum:e.data.pageNum,
-          isFristPage:e.data.isFristPage,
-          isLastPage:e.data.isLastPage,
+          questionList: e.data.list,
+          total: e.data.total,
+          pageNum: e.data.pageNum,
+          isFristPage: e.data.isFristPage,
+          isLastPage: e.data.isLastPage,
         })
       }
     })
@@ -52,35 +52,55 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
+
+  },
+  /**
+   * 点击新增按钮
+   */
+  addHealthQuestion: function() {
+    if (wx.getStorageSync('userId') != null && wx.getStorageSync('userId') != "" && wx.getStorageSync('userId') != undefined) {
+      wx.navigateTo({
+        url: '../healthQuestion/addHealthQuestion',
+      })
+    } else {
+      wx.showToast({ //这里提示失败原因
+          title: "请先登录",
+          icon: 'loading',
+          duration: 2500
+        }),
+        wx.navigateTo({
+          url: '../login/login',
+        })
+    }
 
   }
 })

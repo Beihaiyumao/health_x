@@ -1,0 +1,7 @@
+<!--pages/healthQuestion/addHealthQuestion.wxml-->
+  <input class="title" type='text' bindinput="question_title" placeholder='问题标题'></input>
+  <view class='textarea-count'>
+    <textarea placeholder='请输入文字' bindinput="getWords" maxlength='{{maxTextLen}}'></textarea>
+    <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
+  </view>
+  <button bindtap='addHealthQuestion'>发布</button>

@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     console.log(wx.getStorageSync('userId'));
-    if ( this.data.userId== "") {
+    if (wx.getStorageSync('userId')== "") {
       this.showErrorToastUtils();
 
     }
