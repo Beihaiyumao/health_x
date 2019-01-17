@@ -92,15 +92,26 @@ Page({
         url: '../healthQuestion/addHealthQuestion',
       })
     } else {
-      wx.showToast({ //这里提示失败原因
-          title: "请先登录",
-          icon: 'loading',
-          duration: 2500
-        }),
-        wx.navigateTo({
-          url: '../login/login',
-        })
+      this.showErrorToastUtils();
     }
 
-  }
+  },
+  // 未登录提示
+  showErrorToastUtils: function (e) {
+    wx.showModal({
+      title: '您未登录！',
+      content: '确定去登录吗?',
+      success: function (res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '../login/login'
+          });
+        } else if (res.cancel) {
+          wx.switchTab({
+            url: '../healthQuestion/healthQuestion',
+          })
+        }
+      }
+    })
+  },
 })

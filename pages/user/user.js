@@ -68,7 +68,7 @@ Page({
       }
     })
   },
-  // 错误提示
+  // 未登录提示
   showErrorToastUtils: function(e) {
     wx.showModal({
       title: '您未登录！',

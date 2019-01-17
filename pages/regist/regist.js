@@ -69,7 +69,7 @@ Page({
       registstate = false;
     }
     if (registstate == true) {
-     
+     console.log(this.data)
       wx.request({
         url: urlPath+'/user/regist',
         header: {
@@ -85,24 +85,28 @@ Page({
         success: function(res) {
           console.log(res)
           if (res.data.code == 200) {
-            wx.showToast({ //这里提示失败原因
-              title: res.data.msg,
-              icon: 'loading',
-              duration: 1500
+            wx.showModal({ //这里提示失败原因
+              title: '提示！',
+              confirmText: '朕知道了',
+              showCancel: false,
+              content: res.data.msg,
             })
           } else {
             wx.showToast({
               title: '注册成功', //这里成功
               icon: 'success',
-              duration: 1000
+              duration: 1000,
+              success:function(){
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              }
             });
             that.setData({
               isLogin: true,
             })
           };
-          wx.navigateTo({
-            url: '../login/login',
-          })
+        
         },
         fail: function(res) {
           console.log(res)
