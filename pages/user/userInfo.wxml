@@ -1,2 +1,14 @@
 <!--pages/user/userInfo.wxml-->
-<text>pages/user/userInfo.wxml</text>
+<view class='user_top'>
+<image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
+<view class='user_head' style=''>
+<image src='/images/login/head.png'></image>
+</view>
+<view class='userinfo_user' style='margin-top:60rpx;'><text>用户名</text><input placeholder='请输入用户名'></input></view>
+<view class='userinfo_user'><text>性别</text><input placeholder='请输入用户名'></input></view>
+<view class='userinfo_user'><text>电话号码</text><input placeholder='请输入电话号码'></input></view>
+<view class='userinfo_user' style='border-bottom:1px #ccc solid;'><text>家庭住址</text><input placeholder='请输入家庭住址'></input></view>
+<view class='update'>从相册中选择图片</view>
+
+<button class="user_end mt60">保存修改</button>
+</view>

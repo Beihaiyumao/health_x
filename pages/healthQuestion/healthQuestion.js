@@ -9,16 +9,24 @@ Page({
     questionList: '',
     total: '',
     pageNum: '',
-    isFristPage: true,
+    isFirstPage: true,
     isLastPage: true,
-
+    search_title: '',
+    isLast: false,
   },
-
+  /**
+   * 获取用户输入的题目
+   */
+  search_title: function(e) {
+    this.setData({
+      search_title: e.detail.value,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getAllHealthQuestion();
   },
 
   /**
@@ -32,21 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that = this;
-    wx.request({
-      url: urlPath + '/question/allQuestion',
-      method: 'GET',
-      success: function(e) {
-        console.log(e);
-        that.setData({
-          questionList: e.data.list,
-          total: e.data.total,
-          pageNum: e.data.pageNum,
-          isFristPage: e.data.isFristPage,
-          isLastPage: e.data.isLastPage,
-        })
-      }
-    })
+    this.getAllHealthQuestion();
   },
 
   /**
@@ -97,11 +91,11 @@ Page({
 
   },
   // 未登录提示
-  showErrorToastUtils: function (e) {
+  showErrorToastUtils: function(e) {
     wx.showModal({
       title: '您未登录！',
       content: '确定去登录吗?',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           wx.navigateTo({
             url: '../login/login'
@@ -114,4 +108,110 @@ Page({
       }
     })
   },
+  /**
+   * 获取所有问题
+   */
+  getAllHealthQuestion: function() {
+    var that = this;
+    wx.request({
+      url: urlPath + '/question/allQuestion',
+      method: 'GET',
+      data: {
+        currentPage: this.data.pageNum,
+      },
+      success: function(e) {
+        console.log(e);
+        that.setData({
+          questionList: e.data.list,
+          total: e.data.total,
+          pageNum: e.data.pageNum,
+          isFirstPage: e.data.isFirstPage,
+          isLastPage: e.data.isLastPage,
+        })
+      }
+    })
+  },
+  /**
+   * 模糊查询问题
+   */
+  searchQuestion: function() {
+    var that = this;
+    wx.request({
+      url: urlPath + '/question/selectQuestionByTitle',
+      method: 'GET',
+      data: {
+        currentPage: this.data.pageNum,
+        title: this.data.search_title,
+      },
+      success: function(e) {
+        console.log(e);
+        if (e.data.list.length == 0) {
+          wx.showToast({
+            title: '没有该内容哦',
+            icon: "success",
+            duration: 1500,
+          })
+        }
+        that.setData({
+          questionList: e.data.list,
+          total: e.data.total,
+          pageNum: e.data.pageNum,
+          isFirstPage: e.data.isFirstPage,
+          isLastPage: e.data.isLastPage,
+        })
+      }
+    })
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    let that = this;
+    that.setData({
+      pageNum: this.data.pageNum - 1,
+      isLast: false,
+    })
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    //模拟加载
+    setTimeout(function() {
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+      if (this.data.search_title != null || this.data.search_title != '') {
+        that.searchQuestion();
+      } else {
+        that.getAllHealthQuestion();
+      }
+
+    }, 1500);
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    var that = this;
+    that.setData({
+        pageNum: this.data.pageNum + 1,
+      }),
+      wx.showToast({
+        title: '正在加载', //这里成功
+        icon: 'loading',
+        duration: 1500,
+      }),
+      setTimeout(function() {
+        if (that.data.isLastPage == true) {
+          that.setData({
+            isLast: true,
+          });
+          if (that.data.search_title != null || that.data.search_title != '') {
+            that.searchQuestion();
+          } else {
+            that.getAllHealthQuestion();
+          }
+
+        }
+      }, 1500)
+
+
+  },
+
 })

@@ -37,6 +37,8 @@
   display: flex;
   flex-direction: row;
   margin-top: 5%;
+  
+
 }
 
 .searchcion {
@@ -57,4 +59,7 @@
   height: 42px;
   bottom: 30px;
   right: 20px;
+}
+.last{
+  text-align: center;
 }
