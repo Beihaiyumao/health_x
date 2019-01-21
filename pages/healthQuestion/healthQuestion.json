@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "健康问答",
-  "usingComponents": {}
+  "usingComponents": {},
+  "enablePullDownRefresh": true
 }

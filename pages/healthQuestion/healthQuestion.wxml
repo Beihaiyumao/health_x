@@ -4,36 +4,25 @@
   <view class="search">
     <view class="df search_arr">
       <icon class="searchcion" size='20' type='search'></icon>
-      <input class="" bindinput='search_title' placeholder="请输入关键字" />
+      <input class="" bindinput='search_title' placeholder="请输入关键字" maxlength='15' bindconfirm="searchQuestion" confirm-type='search' />
     </view>
   </view>
   <view class='sousuo' bindtap=''>搜索</view>
 </view>
 <block wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
-
   <view class='user-nickname'>
     <text class='nickname'>{{item.questionId}}\n</text>
-
     <text class='nickname'>{{item.userId}}\n</text>
-
   </view>
-
   <text class='commentDetail'>{{item.title}}\n</text>
   <text class='commentDetail'>{{item.detail}}\n</text>
-
-
   <view class='time-heart'>
-
     <text class='comment-time'>{{item.createTime}}</text>
-
     <image class='heart-icon' src=''></image>
-
   </view>
-
 </block>
+<text class="last" style="position:fixed; bottom:0;width: 750rpx;" wx:if="{{isLast}}">我也是有底线的</text>
 <!--增加按钮-->
 <view bindtap='addHealthQuestion'>
-
   <image class="add_icon" src="/images/index/add.png"></image>
-
 </view>

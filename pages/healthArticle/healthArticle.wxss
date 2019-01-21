@@ -1,8 +1,4 @@
 
-.loading{
-  padding: 10rpx;
+.last{
   text-align: center;
-}
-.loading.complete:before{
-  display: none;
 }

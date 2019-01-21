@@ -124,6 +124,13 @@ Page({
         },
         success: function(res) {
           console.log(res);
+          if (res.data.list.length == 0) {
+            wx.showToast({
+              title: '没有该内容哦',
+              icon: "success",
+              duration: 1500,
+            })
+          }
           that.setData({
             msgList: res.data.list,
             isFirstPage: res.data.isFirstPage,
