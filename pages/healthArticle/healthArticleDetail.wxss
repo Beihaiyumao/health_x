@@ -188,3 +188,6 @@ font-size: 24rpx;
 padding: 20rpx 0;
  
 }
+.text-count-display{
+  padding: 2%;
+}

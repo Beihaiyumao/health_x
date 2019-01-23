@@ -1,6 +1,6 @@
 <!--pages/healthArticle/healthArticle.wxml-->
 <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
-  <view>
+  <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
     <view>
       <image src="http://39.105.56.223/health-0.0.1-SNAPSHOT/{{item.pic}}" mode="scaleToFill"></image>
     </view>
