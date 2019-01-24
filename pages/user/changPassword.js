@@ -82,6 +82,9 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   * 修改密码
+   */
   changePassword: function(){
     var inputState=this.chackInput();
     if(inputState){
@@ -115,6 +118,9 @@ Page({
       })
     }
   },
+  /**
+   * 校验输入内容合法性
+   */
   chackInput: function(){
     if(this.data.oldPassword==""||this.data.oldPassword==undefined||this.data.oldPassword==null){
       this.showErrorToastUtils("请输入旧密码");

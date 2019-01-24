@@ -88,7 +88,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+/**
+ * 新增问题
+ */
   addHealthQuestion:function(){
     wx.request({
       url: urlPath+'/question/insertQuestion',
