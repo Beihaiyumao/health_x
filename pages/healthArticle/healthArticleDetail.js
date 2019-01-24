@@ -35,7 +35,7 @@ Page({
     page.setData({
       maxTextLen: maxTextLen,
       textLen: textLen,
-      comment: e.detail.value,
+      comment: e.detail.value.replace(/\s+/g, ''),
     });
   },
   /**
@@ -58,61 +58,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log(this.data.articleId)
-    var that = this;
-    //获取文章具体信息
-    wx.request({
-        url: urlPath+'/healthyArticle/selectHealthyArticleById?articleId=' + this.data.articleId, //请求地址
-        header: { //请求头
-          "Content-Type": "applciation/json"
-        },
-        
-        method: "GET", //get为默认方法/POST
-        success: function(res) {
-          console.log(res);
-          if (res.data != "") {
-            that.setData({
-              article: res.data.article,
-              author: res.data.author,
-              content: res.data.content,
-              createTime: res.data.createTime,
-              pic: res.data.pic,
-              title: res.data.title
-            })
-          }
-          else{
-            wx.showToast({ //这里提示失败原因
-              title: '未知错误',
-              icon: 'loading',
-              duration: 1500
-            })
-          }
-        }
-
-     
-    }),
-    //获取用户评论
-    wx.request({
-      url: urlPath+'/healthyArticle/commentList?articleId=' + this.data.articleId, //请求地址
-      method:'GET',
-      success:function(e){
-        console.log(e);
-        that.setData({
-          "comment_show": true,
-
-          "collectinfo": e.data.list
-        })
-      }
-    }),
-    //获取评论回复
-    wx.request({
-      
-      url: urlPath+'/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
-      method:'GET',
-      success:function(e){
-        
-      }
-    })
+    this.getHealthArticleDetail();
+    this.getUserCommentInfo();
 },
 
 /**
@@ -150,6 +97,71 @@ onShareAppMessage: function() {
 
 },
 /**
+ *获取文章详情
+ */
+getHealthArticleDetail:function(){
+  var that = this;
+  //获取文章具体信息
+  wx.request({
+    url: urlPath + '/healthyArticle/selectHealthyArticleById?articleId=' + this.data.articleId, //请求地址
+    header: { //请求头
+      "Content-Type": "applciation/json"
+    },
+
+    method: "GET", //get为默认方法/POST
+    success: function (res) {
+      console.log(res);
+      if (res.data != "") {
+        that.setData({
+          article: res.data.article,
+          author: res.data.author,
+          content: res.data.content,
+          createTime: res.data.createTime,
+          pic: res.data.pic,
+          title: res.data.title
+        })
+      }
+      else {
+        wx.showToast({ //这里提示失败原因
+          title: '未知错误',
+          icon: 'loading',
+          duration: 1500
+        })
+      }
+    }
+  })
+},
+/**
+ * 获取用户评论信息
+ */
+getUserCommentInfo:function(){
+  var that=this;
+  wx.request({
+    url: urlPath + '/healthyArticle/commentList?articleId=' + this.data.articleId, //请求地址
+    method: 'GET',
+    success: function (e) {
+      console.log(e);
+      that.setData({
+        "comment_show": true,
+
+        "collectinfo": e.data.list
+      })
+    }
+  })
+},
+/**
+ * 获取用户评论回复内容
+ */
+getUserCommentReplyInfo:function(){
+  wx.request({
+    url: urlPath + '/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
+    method: 'GET',
+    success: function (e) {
+
+    }
+  })
+},
+/**
  * 点击评论
  */
   commentBtnClick: function(){
@@ -182,6 +194,10 @@ onShareAppMessage: function() {
               icon: 'success',
               duration: 1000,
             });
+            that.setData({
+              inputComment: false,
+            });
+            that.getUserCommentInfo();
           }
           else {
             wx.showLoading({
@@ -197,8 +213,7 @@ onShareAppMessage: function() {
   },
   checkInput:function(){
     console.log(this.data.comment+"kog")
-    var commentIsK =/^(?!(\.s+$))/;
-    if(this.data.comment==null || this.data.comment==""|| this.data.comment==undefined || commentIsK.test(this.data.comment)){
+    if(this.data.comment==null || this.data.comment==""|| this.data.comment==undefined || this.data.comment.length<=0){
       wx.showLoading({
         title: '请输入正确内容',
         duration:1500,

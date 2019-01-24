@@ -8,7 +8,7 @@ Page({
   data: {
     headPage: '',
     userId: '',
-    username:'',
+    username: '',
   },
 
   /**
@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     console.log(wx.getStorageSync('userId'));
-    if (wx.getStorageSync('userId')== "") {
+    if (wx.getStorageSync('userId') == "") {
       this.showErrorToastUtils();
 
     }
@@ -44,26 +44,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.getUserInfo();
+  },
+  /**
+   * 获取用户信息
+   */
+  getUserInfo: function() {
     console.log(wx.getStorageSync('userId'));
-    var that=this;
+    var that = this;
     if (wx.getStorageSync('userId') == "") {
 
       this.showErrorToastUtils();
     }
     wx.request({
-      url: urlPath+'/user/selectUserInfo',
+      url: urlPath + '/user/selectUserInfo',
       method: 'GET',
-      data:{
+      data: {
         userId: wx.getStorageSync('userId'),
       },
-      success:function(e){
+      success: function(e) {
         console.log(e);
-        if(e.data.code==100){
+        if (e.data.code == 100) {
           that.setData({
             headPage: e.data.object.pic,
             username: e.data.object.username,
           })
-
         }
       }
     })
