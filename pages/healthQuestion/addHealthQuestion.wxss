@@ -13,10 +13,23 @@
 }
 
 .textarea-count {
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 25rpx;
 }
 
 .textarea-count textarea{
-  width: 100%;
+  width: 99%;
+}
+input {
+  border: 1px solid #ccc;
+  height: 40px;
+  border-radius: 5px;
+  margin-top: 10rpx;
+}
+button {
+  color: white;
+  background: green;
+  margin-top: 400rpx;
+  border-radius: 5px;
 }

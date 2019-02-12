@@ -1,4 +1,19 @@
 <!--pages/healthArticle/healthArticle.wxml-->
+<view>
+     <view>
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" bindinput='search_title'maxlength='15'bindconfirm="searchQuestion" class="weui-search-bar__input" placeholder="请输入文章标题"/>
+                </view>
+            </view>
+            <!-- 搜索按钮,调用搜索查询方法 -->
+            <view class="weui-search-bar__cancel-btn" bindtap='searchQuestion'>搜索</view>
+        </view>
+    </view>
+</view>
 <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
   <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
     <view>

@@ -89,10 +89,11 @@ Page({
   getMyHealthQuestion: function() {
     var that = this;
     wx.request({
-      url: urlPath+'/user/myQuestion',
+      url: urlPath + '/user/myQuestion',
       method: 'GET',
       data: {
         userId: wx.getStorageSync('userId'),
+        currentPage: this.data.pageNum,
       },
       success: function(res) {
         console.log(res);
@@ -116,11 +117,12 @@ Page({
     var that = this;
     if (this.data.search_title != null) {
       wx.request({
-        url: urlPath+'/user/selectMyQuestion',
+        url: urlPath + '/user/selectMyQuestion',
         method: 'GET',
         data: {
           title: this.data.search_title,
           userId: wx.getStorageSync('userId'),
+          currentPage: this.data.pageNum,
         },
         success: function(res) {
           console.log(res);
@@ -144,5 +146,95 @@ Page({
         }
       })
     }
-  }
+  },
+  /**
+   * 删除我的问题
+   */
+  deleteQuestion: function(e) {
+    var that = this;
+    console.log(e);
+    wx.showModal({
+      title: '  提示',
+      content: '确定删除此问题吗?',
+      success: function(res) {
+        if (res.confirm) {
+          wx.request({
+            url: urlPath + '/question/deleteQuestion',
+            method: 'GET',
+            data: {
+              questionId: e.currentTarget.id
+            },
+            success: function(e) {
+              console.log(e);
+              if (e.data.code == 100) {
+                wx.showToast({
+                  title: e.data.msg,
+                  icon: 'success',
+                  success: function() {
+                    setTimeout(function() {
+                      //要延时执行的代码
+                      that.getMyHealthQuestion();
+                    }, 1500) //延迟时间
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    var that = this;
+    that.setData({
+      pageNum: this.data.pageNum + 1,
+    }),
+    wx.showToast({
+        title: '正在加载', //这里成功
+        icon: 'loading',
+        duration: 1500,
+      }),
+      setTimeout(function () {
+          if (that.data.search_title != null || that.data.search_title != '') {
+            that.searchMyQuestion();
+          } else {
+            that.getMyHealthQuestion();          }
+        if (that.data.isLastPage == true) {
+          that.setData({
+            isLast: true,
+          });
+        }
+      }, 1500)
+  },
+  /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+  onPullDownRefresh: function () {
+    let that = this;
+    that.setData({
+      pageNum: this.data.pageNum - 1,
+      isLast: false,
+    })
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    //模拟加载
+    setTimeout(function () {
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+      if (that.data.search_title != null || that.data.search_title != '') {
+        that.searchMyQuestion();
+      } else {
+        that.getMyHealthQuestion();
+      }
+      if (that.data.isLastPage == true) {
+        that.setData({
+          isLast: true,
+        });
+      }
+    }, 1500);
+  },
 })
