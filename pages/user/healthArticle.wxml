@@ -1,12 +1,18 @@
 <!--pages/user/healthArticle.wxml-->
-<view class='page_row' bindtap="searchMyArticle">
-  <view class="search">
-    <view class="df search_arr">
-      <icon class="searchcion" size='20' type='search'></icon>
-      <input class="" bindinput='search_title'  placeholder="请输入关键字" />
+<view>
+     <view>
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" bindinput='search_title'maxlength='15'class="weui-search-bar__input" placeholder="请输入文章名称"/>
+                </view>
+            </view>
+            <!-- 搜索按钮,调用搜索查询方法 -->
+            <view class="weui-search-bar__cancel-btn" bindtap='searchMyArticle'>搜索</view>
+        </view>
     </view>
-  </view>
-  <view class='sousuo' bindtap=''>搜索</view>
 </view>
 <block wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
   <view class='user_list mt60 clearfix'>

@@ -92,6 +92,9 @@ Page({
  * 新增问题
  */
   addHealthQuestion:function(){
+    var that=this;
+    var userInputState = that.checkUserInput();
+    if(userInputState){
     wx.request({
       url: urlPath+'/question/insertQuestion',
       method:'POST',
@@ -125,6 +128,34 @@ Page({
         }
       }
     });
+    }
+  },
+  /**
+   * 检查用户输入内容
+   */
+  checkUserInput:function() {
+    var that = this;
+    if(this.data.question_title==""|| this.data.question_title==null || this.data.question_title==undefined){
+      wx.showToast({
+        title: '请输入标题',
+        icon: 'none',
+      })
+      return false;
+    }
+    else if(this.data.question_detail==""|| this.data.question_detail==null || this.data.question_detail==undefined){
+      wx.showToast({
+        title: '请输入问题详情',
+        icon: 'none',
+      })
+      return false;
+    }
+    else if(this.data.question_detail.length<20){
+      wx.showToast({
+        title: '问题详情不少于20个字符',
+        icon: 'none',
+      })
+      return false;
+    }
+    return true;
   }
-
 })

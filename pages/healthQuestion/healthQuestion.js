@@ -176,7 +176,7 @@ Page({
     setTimeout(function() {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
-      if (this.data.search_title != null || this.data.search_title != '') {
+      if (that.data.search_title != null || that.data.search_title != '') {
         that.searchQuestion();
       } else {
         that.getAllHealthQuestion();
@@ -198,20 +198,17 @@ Page({
         duration: 1500,
       }),
       setTimeout(function() {
-        if (that.data.isLastPage == true) {
-          that.setData({
-            isLast: true,
-          });
           if (that.data.search_title != null || that.data.search_title != '') {
             that.searchQuestion();
           } else {
             that.getAllHealthQuestion();
           }
-
+      if (that.data.isLastPage == true) {
+        that.setData({
+          isLast: true,
+        });
         }
       }, 1500)
-
-
   },
 
 })

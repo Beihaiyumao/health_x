@@ -54,9 +54,7 @@
 .user_end{
   background:green;
   color: #ffffff;
-  margin: 0rpx 30% 120rpx;
   border-radius: 30rpx;
   padding: 8rpx 0rpx;
-  width: 45%;
-  
+  width: 80%;
 }
