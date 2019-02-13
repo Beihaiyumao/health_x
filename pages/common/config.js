@@ -1,4 +1,4 @@
-var host = "http://39.105.56.223/health-0.0.1-SNAPSHOT"
+var host = "https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT"
 //var host ="http://localhost:8002"
 
 var config = {

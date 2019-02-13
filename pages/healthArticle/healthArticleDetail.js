@@ -166,9 +166,18 @@ getUserCommentReplyInfo:function(){
  */
   commentBtnClick: function(){
     var that =this;
-    that.setData({
-      inputComment:true,
-    })
+    if (wx.getStorageSync('userId') != "" && wx.getStorageSync('userId')!=null){
+      that.setData({
+        inputComment: true,
+      })
+    }
+    else{
+      wx.showToast({
+        title: '请先登录!', //这里成功
+        icon: 'none',
+        duration: 1000,
+      });
+    }
   },
 /**
  * 发布评论
@@ -208,14 +217,13 @@ getUserCommentReplyInfo:function(){
         }
       })
     }
-    
-    
   },
+  /**检测用户输入是否规范 */
   checkInput:function(){
-    console.log(this.data.comment+"kog")
     if(this.data.comment==null || this.data.comment==""|| this.data.comment==undefined || this.data.comment.length<=0){
-      wx.showLoading({
+      wx.showToast({
         title: '请输入正确内容',
+        icon:'none',
         duration:1500,
       })
       return false;
