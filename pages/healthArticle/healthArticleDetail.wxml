@@ -4,7 +4,7 @@
   <text>{{title}}\n</text>
   <text>{{author}}\n</text>
   <text>{{cteateTime}}\n</text>
-  <image src='http://39.105.56.223/health-0.0.1-SNAPSHOT/{{pic}}'></image>
+  <image src="https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{pic}}"></image>
   <text>{{content}}</text>
 </view>
 

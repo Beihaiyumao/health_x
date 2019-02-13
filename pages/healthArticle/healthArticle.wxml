@@ -1,12 +1,12 @@
 <!--pages/healthArticle/healthArticle.wxml-->
 <view>
-     <view>
+     <view style="position:fixed; top:0;width: 750rpx;">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" bindinput='search_title'maxlength='15'bindconfirm="searchQuestion" class="weui-search-bar__input" placeholder="请输入文章标题"/>
+                    <input type="text" bindinput='search_title'maxlength='15' class="weui-search-bar__input" placeholder="请输入文章标题"/>
                 </view>
             </view>
             <!-- 搜索按钮,调用搜索查询方法 -->
@@ -14,10 +14,14 @@
         </view>
     </view>
 </view>
+<view class='questionList'>
+<text>\n</text>
+<text>\n</text>
+</view>
 <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
   <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
     <view>
-      <image src="http://39.105.56.223/health-0.0.1-SNAPSHOT/{{item.pic}}" mode="scaleToFill"></image>
+      <image src="https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{item.pic}}" mode="scaleToFill"></image>
     </view>
     <text>标题:{{item.title}}\n</text>
     <text>导语:{{item.article}}\n</text>

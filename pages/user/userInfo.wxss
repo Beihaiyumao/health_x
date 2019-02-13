@@ -78,3 +78,9 @@
   text-align: center;
   margin-top: 120rpx;
 }
+.pageHead{
+   position: fixed;
+   width:100%;
+   background-color:#fff;
+	 z-index: 10;
+}

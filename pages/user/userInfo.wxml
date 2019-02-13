@@ -1,14 +1,15 @@
 <!--pages/user/userInfo.wxml-->
+
+<view class="pageHead">
 <view class='user_top'>
 <image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
-<view class='user_head' style=''>
-<image src='http://39.105.56.223/health-0.0.1-SNAPSHOT/{{headPhoto}}'></image>
+<view class='user_head' style=''bindtap='changeUserPic'>
+<image src='https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{headPhoto}}'></image>
 </view>
 <view class='userinfo_user' style='margin-top:60rpx;'><text>用户名</text><input placeholder='{{username}}'></input></view>
 <view class='userinfo_user'><text>性别</text><input placeholder='{{sex}}'></input></view>
 <view class='userinfo_user'><text>电话号码</text><input placeholder='{{phone}}'></input></view>
 <view class='userinfo_user' style='border-bottom:1px #ccc solid;'><text>家庭住址</text><input placeholder='{{address}}'></input></view>
-<view class='update'>从相册中选择图片</view>
-
 <button class="user_end mt60" bindtap='saveChangeUserInfo'>保存修改</button>
+</view>
 </view>

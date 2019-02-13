@@ -2,7 +2,7 @@
 <view class='user_top'>
 <image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
 <view bindtap='userInfo' class='user_head' style=''>
-<image src='http://39.105.56.223/health-0.0.1-SNAPSHOT/{{headPage}}'></image>
+<image src='https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{headPage}}'></image>
 <text>用户名:{{username}}</text>
 </view>
 <view bindtap="myHealthArticle" class='user_list mt60 clearfix'>

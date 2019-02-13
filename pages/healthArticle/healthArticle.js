@@ -21,8 +21,14 @@ Page({
     total: '', //总共多少条数据
     pageNum: 1,
     isLast: false, //判断是否是最后一页
+    search_title:'',
   },
-
+  //获取用户输入的值
+  search_title: function (e) {
+    this.setData({
+      search_title: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -141,5 +147,38 @@ Page({
       url: '/pages/healthArticle/healthArticleDetail?articleId=' + e.currentTarget.id,
     })
 
-  }
+  },
+  /**模糊搜索文章 */
+  searchQuestion: function(){
+    var that = this;
+    if (this.data.search_title != null) {
+      wx.request({
+        url: urlPath + '/healthyArticle/selectHealthyArticleByTitle',
+        method: 'GET',
+        data: {
+          title: this.data.search_title,
+        },
+        success: function (res) {
+          console.log(res);
+          if (res.data.list.length == 0) {
+            wx.showToast({
+              title: '没有该内容哦',
+              icon: "success",
+              duration: 1500,
+            })
+          }
+          that.setData({
+            msgList: res.data.list,
+            isFirstPage: res.data.isFirstPage,
+            isLastPage: res.data.isLastPage,
+            pages: res.data.pages,
+            total: res.data.total,
+            isFromSearch: true, //第一次加载，设置true
+            searchLoading: true, //把"上拉加载"的变量设为true，显示
+            pageNum: res.data.pageNum,
+          })
+        }
+      })
+    }
+  },
 })
