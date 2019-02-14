@@ -15,7 +15,8 @@
     "pages/user/healthArticleDetail",
     "pages/user/healthQuestion",
     "pages/user/healthQuestionDetail",
-    "pages/healthQuestion/addHealthQuestion"
+    "pages/healthQuestion/addHealthQuestion",
+    "pages/index/BMI/bmi"
   ],
   "window": {
     "backgroundTextStyle": "light",
