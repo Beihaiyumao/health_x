@@ -1,0 +1,20 @@
+<!--pages/index/den.wxml-->
+<view>
+  <view>
+    <input type='digit' bindinput='height' placeholder='请输入您的身高'></input>
+  </view>
+  <view>
+    <input type='digit' bindinput='weight' placeholder='请输入您的体重'></input>
+  </view>
+  <view>
+    <input type='number' bindinput='age' placeholder='请输入您的年龄'></input>
+  </view>
+  <view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{sexs}}" wx:for-item='item' wx:key='key'>
+        <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <button bindtap='calDEN'>开始计算</button>
+</view>

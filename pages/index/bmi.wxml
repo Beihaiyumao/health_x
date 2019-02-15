@@ -1,0 +1,10 @@
+<!--pages/index/bmi.wxml-->
+<view>
+  <view>
+    <input type='digit' bindinput='height' placeholder='请输入您的身高'></input>
+  </view>
+  <view>
+    <input type='digit' bindinput='weight' placeholder='请输入您的体重'></input>  
+  </view>
+  <button bindtap='calBMI'>开始计算</button>
+</view>

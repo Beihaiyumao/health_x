@@ -8,3 +8,27 @@
   </view>
 
 </view>
+<view bindtap='turnWHR'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+  </view>
+  <view>
+    <text type=''>腰臀比计算器</text>
+  </view>
+</view>
+<view bindtap='turnDEN'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+  </view>
+  <view>
+    <text type=''>每日能量需求计算器</text>
+  </view>
+</view>
+<view bindtap='turnCDBW'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+  </view>
+  <view>
+    <text type=''>理想体重计算器</text>
+  </view>
+</view>

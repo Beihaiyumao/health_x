@@ -16,7 +16,10 @@
     "pages/user/healthQuestion",
     "pages/user/healthQuestionDetail",
     "pages/healthQuestion/addHealthQuestion",
-    "pages/index/BMI/bmi"
+    "pages/index/bmi",
+    "pages/index/whr",
+    "pages/index/den",
+    "pages/index/cdbw"
   ],
   "window": {
     "backgroundTextStyle": "light",
