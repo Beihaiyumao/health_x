@@ -1,0 +1,17 @@
+<!--pages/index/whr.wxml-->
+<view>
+  <view>
+    <input type='digit' bindinput='waist' placeholder='请输入您的腰围'></input>
+  </view>
+  <view>
+    <input type='digit' bindinput='hip' placeholder='请输入您的臀围'></input>
+  </view>
+  <view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{sexs}}" wx:for-item='item' wx:key='key'>
+        <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </label >
+    </radio-group>
+  </view>
+  <button bindtap='calWHR'>开始计算</button>
+</view>

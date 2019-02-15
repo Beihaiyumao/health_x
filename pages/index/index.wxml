@@ -1,16 +1,34 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view bindtap='turnBMI'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view>
+    <text type=''>BMI计算器</text>
   </view>
-  <view class='usermotto'>
-  <input type="text">  用户名</input>
+
+</view>
+<view bindtap='turnWHR'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+  </view>
+  <view>
+    <text type=''>腰臀比计算器</text>
+  </view>
+</view>
+<view bindtap='turnDEN'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+  </view>
+  <view>
+    <text type=''>每日能量需求计算器</text>
+  </view>
+</view>
+<view bindtap='turnCDBW'>
+  <view class="">
+    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+  </view>
+  <view>
+    <text type=''>理想体重计算器</text>
   </view>
 </view>
