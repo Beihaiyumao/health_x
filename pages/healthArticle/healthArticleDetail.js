@@ -15,7 +15,7 @@ Page({
     createTime: '',
     "comment_show": true,
 
-    "collectinfo": '',
+    collectinfo: '',
     inputComment:false,//是否显示评论框
     comment:'',//评论内容
     // 最大字符数
@@ -44,22 +44,25 @@ Page({
   onLoad: function(options) {
     this.setData({
       articleId: options.articleId
-    })
+    });
+    this.getHealthArticleDetail();
+    this.getUserCommentInfo();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    // this.getHealthArticleDetail();
+    // this.getUserCommentInfo();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getHealthArticleDetail();
-    this.getUserCommentInfo();
+     this.getHealthArticleDetail();
+     this.getUserCommentInfo();
 },
 
 /**
@@ -138,13 +141,14 @@ getUserCommentInfo:function(){
   var that=this;
   wx.request({
     url: urlPath + '/healthyArticle/commentList?articleId=' + this.data.articleId, //请求地址
+//    url: 'http://localhost:8002/healthyArticle/commentList?articleId=3a35eaaeaa0b',
     method: 'GET',
     success: function (e) {
       console.log(e);
       that.setData({
         "comment_show": true,
 
-        "collectinfo": e.data.list
+        collectinfo: e.data.list,
       })
     }
   })
@@ -152,15 +156,17 @@ getUserCommentInfo:function(){
 /**
  * 获取用户评论回复内容
  */
-getUserCommentReplyInfo:function(){
-  wx.request({
-    url: urlPath + '/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
-    method: 'GET',
-    success: function (e) {
+// getUserCommentReplyInfo:function(){
+//   var articleCommentId = this.data.collectinfo;
+//   console.log(this.data.collectinfo[0].commentId+'肖银川');
+//   wx.request({
+//     url: urlPath + '/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
+//     method: 'GET',
+//     success: function (e) {
 
-    }
-  })
-},
+//     }
+//   })
+// },
 /**
  * 点击评论
  */

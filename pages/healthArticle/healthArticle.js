@@ -21,10 +21,10 @@ Page({
     total: '', //总共多少条数据
     pageNum: 1,
     isLast: false, //判断是否是最后一页
-    search_title:'',
+    search_title: '',
   },
   //获取用户输入的值
-  search_title: function (e) {
+  search_title: function(e) {
     this.setData({
       search_title: e.detail.value
     })
@@ -33,7 +33,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var that = this;
+      that.getHealthArticle();
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -46,7 +48,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getHealthArticle();
+    var that=this;
+      that.getHealthArticle();
+    
   },
 
   /**
@@ -67,7 +71,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    let that = this;
+    var that = this;
     that.setData({
       pageNum: this.data.pageNum - 1,
       isLast: false,
@@ -77,7 +81,12 @@ Page({
     setTimeout(function() {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
-      that.getHealthArticle();
+      if (that.data.search_title != null || that.data.search_title != '') {
+        that.searchQuestion();
+      } else {
+        that.getHealthArticle();
+      }
+
     }, 1500);
   },
   /**
@@ -94,7 +103,11 @@ Page({
         duration: 1500,
       }),
       setTimeout(function() {
-        that.getHealthArticle();
+      if (that.data.search_title != null || that.data.search_title != '') {
+          that.searchQuestion(); 
+        } else {
+          that.getHealthArticle();
+        }
 
         if (that.data.isLastPage == true) {
           that.setData({
@@ -115,6 +128,7 @@ Page({
    */
   getHealthArticle: function() { //定义函数名称
     var that = this;
+    console.log(this.data.pageNum+"不是搜索");
     wx.request({
       url: urlPath + '/healthyArticle/healthyArticle', //请求地址
       header: { //请求头
@@ -149,8 +163,10 @@ Page({
 
   },
   /**模糊搜索文章 */
-  searchQuestion: function(){
+  searchQuestion: function() {
     var that = this;
+    console.log(this.data.pageNum + "是搜索");
+
     if (this.data.search_title != null) {
       wx.request({
         url: urlPath + '/healthyArticle/selectHealthyArticleByTitle',
@@ -158,7 +174,7 @@ Page({
         data: {
           title: this.data.search_title,
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res);
           if (res.data.list.length == 0) {
             wx.showToast({
