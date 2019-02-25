@@ -4,7 +4,7 @@
 <view class='user_top'>
 <image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
 <view class='user_head' style=''bindtap='changeUserPic'>
-<image src='https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{headPhoto}}'></image>
+<image src='https://xiaoyc.com.cn/health/{{headPhoto}}'></image>
 </view>
 <view class='userinfo_user' style='margin-top:60rpx;'><text>用户名</text><input placeholder='{{username}}'></input></view>
 <view class='userinfo_user'><text>性别</text><input placeholder='{{sex}}'></input></view>
