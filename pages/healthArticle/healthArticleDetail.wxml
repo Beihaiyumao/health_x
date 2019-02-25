@@ -4,7 +4,7 @@
   <text>{{title}}\n</text>
   <text>{{author}}\n</text>
   <text>{{cteateTime}}\n</text>
-  <image src="https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{pic}}"></image>
+  <image src="https://xiaoyc.com.cn/health/{{pic}}"></image>
   <text>{{content}}</text>
 </view>
 
@@ -51,7 +51,7 @@
 
       <view class='user-nickname'>
 
-        <image class='user-icon' src='https://xiaoyc.com.cn/health-0.0.1-SNAPSHOT/{{item.headPhoto}}'></image>
+        <image class='user-icon' src='https://xiaoyc.com.cn/health/{{item.headPhoto}}'></image>
 
         <text class='nickname'>{{item.userName}}</text>
 
