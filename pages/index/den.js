@@ -19,6 +19,8 @@ Page({
     height: '',
     weight: '',
     age: '',
+    resultState: false,
+    result: '',
   },
   /**
    * 获取身高m
@@ -39,15 +41,15 @@ Page({
   /**
    * 获取年龄
    */
-  age:function(e){
+  age: function(e) {
     this.setData({
-      age:e.detail.value
+      age: e.detail.value
     })
   },
   /**
    * 获取性别
    */
-  radioChange: function (e) {
+  radioChange: function(e) {
     this.setData({
       sex: e.detail.value,
     })
@@ -110,7 +112,7 @@ Page({
   /**
    * 检查用户输入
    */
-  checkInput:function(){
+  checkInput: function() {
     var sz = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
     var zs = /^([0-9]{1,})$/;
     if (!(sz.test(this.data.height)) || this.data.height <= 0.00 || this.data.height > 2.50) {
@@ -125,15 +127,13 @@ Page({
         icon: 'none',
       })
       return false
-    }
-    else if(!zs.test(this.data.age)||this.data.age<=0||this.data.age>=120){
+    } else if (!zs.test(this.data.age) || this.data.age <= 0 || this.data.age >= 120) {
       wx.showToast({
         title: '请输入正确的年龄',
-        icon:'none',
+        icon: 'none',
       })
       return false;
-    }
-    else if (this.data.sex == null || this.data.sex == "" || this.data.sex == undefined) {
+    } else if (this.data.sex == null || this.data.sex == "" || this.data.sex == undefined) {
       wx.showToast({
         title: '请选择性别',
         icon: 'none',
@@ -145,27 +145,31 @@ Page({
   /**
    * 每日能量需求
    */
-  calDEN: function(){
-    var that=this;
-    var userInputState=that.checkInput();
-    if(userInputState){
+  calDEN: function() {
+    var that = this;
+    var userInputState = that.checkInput();
+    if (userInputState) {
       wx.request({
-        url: urlPath +'/healthyTool/den',
-        method:"GET",
-        data:{
-          height:this.data.height,
-          weight:this.data.weight,
-          age:this.data.age,
-          sex:this.data.sex,
+        url: urlPath + '/healthyTool/den',
+        method: "GET",
+        data: {
+          height: this.data.height,
+          weight: this.data.weight,
+          age: this.data.age,
+          sex: this.data.sex,
         },
-        success: function(e){
-          if(e.data.code==200){
+        success: function(e) {
+          if (e.data.code == 200) {
             wx.showToast({
               title: e.data.msg,
-              icon:'none',
+              icon: 'none',
             })
-          }else{
+          } else {
             console.log(e);
+            that.setData({
+              resultState: true,
+              result: e.data.msg,
+            })
           }
         }
       })

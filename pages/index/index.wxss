@@ -23,3 +23,23 @@
 .words{
 display: flex; justify-content:space-around;margin-top: 50rpx;
 }
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.column {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login_logo{
+  width: 206rpx;
+  height: 206rpx;
+  margin-top: 60rpx;
+  text-align: center;
+  display: inline-block;
+}

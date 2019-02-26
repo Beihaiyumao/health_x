@@ -1,34 +1,47 @@
 <!--index.wxml-->
-<view bindtap='turnBMI'>
-  <view class="">
-    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
-  </view>
-  <view>
-    <text type=''>BMI计算器</text>
-  </view>
-
-</view>
-<view bindtap='turnWHR'>
-  <view class="">
-    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
-  </view>
-  <view>
-    <text type=''>腰臀比计算器</text>
-  </view>
-</view>
-<view bindtap='turnDEN'>
-  <view class="">
-    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
-  </view>
-  <view>
-    <text type=''>每日能量需求计算器</text>
-  </view>
-</view>
-<view bindtap='turnCDBW'>
-  <view class="">
-    <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
-  </view>
-  <view>
-    <text type=''>理想体重计算器</text>
-  </view>
-</view>
+<div class="box">
+  <div class="column">
+    <span class="item">
+      <view bindtap='turnBMI'>
+        <view class="">
+          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        </view>
+        <view>
+          <text type=''>BMI计算器</text>
+        </view>
+      </view>
+    </span>
+    <span class="item">
+      <view bindtap='turnWHR'>
+        <view class="">
+          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        </view>
+        <view>
+          <text type=''>腰臀比计算器</text>
+        </view>
+      </view>
+    </span>
+  </div>
+  <div class="column">
+    <span class="item">
+      <view bindtap='turnDEN'>
+        <view class="">
+          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        </view>
+        <view>
+          <text type=''>每日能量需求计算器</text>
+        </view>
+      </view>
+    </span>
+    <span class="item">
+      <view bindtap='turnCDBW'>
+        <view class="">
+          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        </view>
+        <view>
+          <text type=''>理想体重计算器</text>
+        </view>
+      </view>
+    </span>
+  </div>
+</div>
