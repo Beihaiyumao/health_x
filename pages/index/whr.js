@@ -19,6 +19,8 @@ Page({
     sex: '',
     waist: '',
     hip: '',
+    resultState: false,
+    result: '',
   },
   /**
    * 获取性别
@@ -148,6 +150,10 @@ Page({
             })
           } else {
             console.log(e);
+            that.setData({
+              resultState: true,
+              result: e.data.msg,
+            })
           }
         }
       })

@@ -8,6 +8,8 @@ Page({
   data: {
     height: '',
     weight: '',
+    resultState: false,
+    result: '',
   },
   /**
    * 获取身高m
@@ -123,6 +125,10 @@ Page({
             })
           } else {
             console.log(e);
+            that.setData({
+              resultState: true,
+              result: e.data.msg,
+            })
           }
         }
       })

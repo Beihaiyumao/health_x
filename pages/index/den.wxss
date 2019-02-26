@@ -1,1 +1,41 @@
 /* pages/index/den.wxss */
+
+input {
+  border: 1px solid #ccc;
+  height: 50px;
+  border-radius: 100px;
+  margin-top: 10rpx;
+  width: 350px; /*input长度*/
+  text-align: center; /*文字居中*/
+  margin: 0 auto; /*input居中*/
+}
+
+button {
+  color: white;
+  background: green;
+  margin-top: 150rpx;
+  border-radius: 5px;
+  width: 350px;
+}
+
+.weight {
+  margin-top: 100rpx;
+}
+
+.height {
+  margin-top: 100rpx;
+}
+
+.age {
+  margin-top: 100rpx;
+}
+
+.sex {
+  margin-top: 100rpx;
+  text-align: center;
+}
+
+.result {
+  margin-top: 150rpx;
+  text-align: center;
+}
