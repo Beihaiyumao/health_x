@@ -3,20 +3,20 @@
   <div class="column">
     <span class="item">
       <view bindtap='turnBMI'>
-        <view class="">
-          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        <view class="item">
+          <image class='bmip' mode='widthFix ' src='/images/healthTool/BMI.jpg ' mode='widthFix'></image>
         </view>
-        <view>
-          <text type=''>BMI计算器</text>
+        <view class='bmif'>
+          <text type='' >BMI计算器</text>
         </view>
       </view>
     </span>
     <span class="item">
       <view bindtap='turnWHR'>
-        <view class="">
-          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        <view class="item">
+          <image class='whrp' mode='widthFix ' src='/images/healthTool/WHR.jpg ' mode='widthFix'></image>
         </view>
-        <view>
+        <view class='whrf'>
           <text type=''>腰臀比计算器</text>
         </view>
       </view>
@@ -25,20 +25,20 @@
   <div class="column">
     <span class="item">
       <view bindtap='turnDEN'>
-        <view class="">
-          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        <view class="item">
+          <image class='denp' mode='widthFix ' src='/images/healthTool/DEN.jpg ' mode='widthFix'></image>
         </view>
-        <view>
+        <view class='denf'>
           <text type=''>每日能量需求计算器</text>
         </view>
       </view>
     </span>
     <span class="item">
       <view bindtap='turnCDBW'>
-        <view class="">
-          <image class='login_logo' mode='widthFix ' src='/images/healthTool/BMI.png '></image>
+        <view class="item">
+          <image class='cdbwp' mode='widthFix ' src='/images/healthTool/CDBW.jpg ' mode='widthFix'></image>
         </view>
-        <view>
+        <view class='cdbwf'>
           <text type=''>理想体重计算器</text>
         </view>
       </view>
