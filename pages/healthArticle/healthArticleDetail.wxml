@@ -1,11 +1,15 @@
 <!--pages/healthArticle/healthArticleDetail.wxml-->
 <view>
-  <text>{{articleId}}\n</text>
-  <text>{{title}}\n</text>
-  <text>{{author}}\n</text>
-  <text>{{cteateTime}}\n</text>
-  <image src="https://xiaoyc.com.cn/health/{{pic}}"></image>
-  <text>{{content}}</text>
+  <text class='title'>{{title}}\n</text>
+  <text class='author'>{{author}}\n</text>
+  <text class='createTime'>{{createTime}}\n</text>
+  <view class='photo'>
+    <image src="https://xiaoyc.com.cn/health/{{pic}}" mode='widthFix'></image>
+  </view>
+  <text class='content'>{{content}}</text>
+  <view bindtap='userCollect'>
+    <image class='collect' src='{{collectionPhoto}}' mode='widthFix'> </image>
+  </view>
 </view>
 
 <!-- 用户评论信息 -->
@@ -34,11 +38,11 @@
 
         <button class="tjcom mini-btn button-hover " bindtap="commentBtnClick">评论</button>
         <view wx:if="{{inputComment}}">
-         <textarea bindinput='comment' placeholder='请输入.....'maxlength='{{maxTextLen}}'></textarea>
-         <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
-         <button bindtap='releaseComment'>发布</button>
+          <textarea bindinput='comment' placeholder='请输入.....' maxlength='{{maxTextLen}}'></textarea>
+          <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
+          <button bindtap='releaseComment'>发布</button>
         </view>
-       
+
       </view>
 
     </view>
@@ -65,8 +69,8 @@
 
       </view>
       <block wx:for='{{item.commentReply}}' wx:for-item='item' wx:key='key'>
-      <text>{{item.userName}}</text>
-      <text>{{item.content}}</text>
+        <text>{{item.userName}}</text>
+        <text>{{item.content}}</text>
       </block>
     </block>
 
