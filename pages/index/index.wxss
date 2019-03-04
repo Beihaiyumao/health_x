@@ -1,45 +1,49 @@
 /**index.wxss**/
-
-.userinfo {
+.item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-.words{
-display: flex; justify-content:space-around;margin-top: 50rpx;
-}
-
-.box {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-}
-
-.column {
-  flex-basis: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.login_logo{
-  width: 206rpx;
-  height: 206rpx;
+.bmip {
   margin-top: 60rpx;
-  text-align: center;
-  display: inline-block;
+}
+
+.bmif {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 30rpx;
+}
+
+.whrp {
+  margin-top: 60rpx;
+}
+
+.whrf {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 30rpx;
+}
+
+.denp {
+  margin-top: 60rpx;
+}
+
+.denf {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 30rpx;
+}
+
+.cdbwp {
+  margin-top: 60rpx;
+}
+
+.cdbwf {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 30rpx;
 }
