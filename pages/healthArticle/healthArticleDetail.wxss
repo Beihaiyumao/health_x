@@ -1,193 +1,137 @@
 /* pages/healthArticle/healthArticleDetail.wxss */
- 
- 
-.comment{
- 
-width: 100%;
- 
-background-color: #fff;
- 
+
+.comment {
+  width: 100%;
+  background-color: #fff;
 }
- 
- 
- 
-.collectTitle{
- 
-border-left: solid 10rpx red;
- 
-margin-left: 30rpx;
- 
-padding-left: 10rpx;
- 
-font-size: 30rpx;
- 
+
+.collectTitle {
+  border-left: solid 10rpx red;
+  margin-left: 30rpx;
+  padding-left: 10rpx;
+  font-size: 30rpx;
 }
- 
- 
- 
-.pinglun{
- 
-width: 100%;
- 
-height: 80rpx;
- 
-border-bottom: solid 1rpx #F9F9F9;
- 
-line-height: 80rpx
- 
+
+.pinglun {
+  width: 100%;
+  height: 80rpx;
+  border-bottom: solid 1rpx #f9f9f9;
+  line-height: 80rpx;
 }
- 
- 
- 
-.display{
- 
-width: 100%;
- 
-background-color: #fff;
- 
+
+.display {
+  width: 100%;
+  background-color: #fff;
 }
- 
- 
- 
-.none{
- 
-text-align: center;
- 
-padding: 20rpx 0;
- 
-font-size: 24rpx;
- 
-color: #999
- 
+
+.none {
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  color: #999;
 }
- 
- 
- 
-.user-nickname{
- 
-padding: 20rpx 30rpx 0 30rpx;
- 
+
+.user-nickname {
+  padding: 20rpx 30rpx 0 30rpx;
 }
- 
- 
- 
-.user-icon{
- 
-width: 50rpx;
- 
-height: 50rpx;
- 
-border-radius: 50rpx;
- 
-vertical-align: top;
- 
+
+.user-icon {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  vertical-align: top;
 }
- 
- 
- 
-.nickname{
- 
-font-size: 24rpx;
- 
-color: #999;
- 
-margin-left: 20rpx
- 
+
+.nickname {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 20rpx;
 }
- 
- 
- 
-.commentDetail{
- 
-font-size: 26rpx;
- 
-margin-left: 100rpx
- 
+
+.commentDetail {
+  font-size: 26rpx;
+  margin-left: 100rpx;
 }
- 
- 
- 
-.time-heart{
- 
-padding: 0rpx 30rpx 0 30rpx;
- 
-height: 50rpx;
- 
-position: relative
- 
+
+.time-heart {
+  padding: 0rpx 30rpx 0 30rpx;
+  height: 50rpx;
+  position: relative;
 }
- 
- 
- 
-.comment-time{
- 
-font-size: 20rpx;
- 
-color: #999;
- 
-margin-left: 70rpx
- 
+
+.comment-time {
+  font-size: 20rpx;
+  color: #999;
+  margin-left: 70rpx;
 }
- 
- 
- 
-.heart-btn{
- 
-width: 20rpx;
- 
-height: 20rpx;
- 
+
+.heart-btn {
+  width: 20rpx;
+  height: 20rpx;
 }
- 
- 
- 
-.heart-icon{
- 
-width: 20rpx;
- 
-height: 20rpx;
- 
-position: absolute;
- 
-right: 160rpx;
- 
-top: 20rpx
- 
+
+.heart-icon {
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  right: 160rpx;
+  top: 20rpx;
 }
- 
- 
- 
-.dianzan{
- 
-font-size: 20rpx;
- 
-display: inline-block;
- 
-color: #999;
- 
-position: absolute;
- 
-right: 60rpx;
- 
-top: 14rpx
- 
+
+.dianzan {
+  font-size: 20rpx;
+  display: inline-block;
+  color: #999;
+  position: absolute;
+  right: 60rpx;
+  top: 14rpx;
 }
- 
- 
- 
-.comment-count{
- 
-border-top: solid 1rpx #F9F9F9;
- 
-text-align: center;
- 
-color: #999;
- 
-font-size: 24rpx;
- 
-padding: 20rpx 0;
- 
+
+.comment-count {
+  border-top: solid 1rpx #f9f9f9;
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+  padding: 20rpx 0;
 }
-.text-count-display{
+
+.text-count-display {
   padding: 2%;
+}
+
+.title {
+  margin-top: 60rpx;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.author {
+  margin-top: 30rpx;
+  font-size: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.createTime {
+  margin-top: 30rpx;
+  font-size: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content {
+  font-size: 18px;
+  margin-top: 60rpx;
+}
+
+.photo {
+  margin-top: 30rpx;
+}
+
+.collect {
+  height: 50rpx;
+  width: 50rpx;
+  display: flex;
+  justify-content: flex-end;
 }
