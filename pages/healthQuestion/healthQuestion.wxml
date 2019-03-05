@@ -20,16 +20,17 @@
 <text>\n</text>
 </view>
 <block wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
-  <view class='user-nickname'>
+  <view class='question'  bindtap='gotoQuetionDetail' id="{{item.questionId}}">
     <!--<text class='nickname'>{{item.questionId}}\n</text>-->
     <!--<text class='nickname'>{{item.userId}}\n</text>-->
-  </view>
+ 
   <text class='questionTitle'>{{item.title}}\n</text>
   <text class='questionDetail'>{{item.detail}}\n</text>
   <!--<view class='time-heart'>
     <text class='comment-time'>{{item.createTime}}</text>
     <image class='heart-icon' src=''></image>
   </view>-->
+   </view>
 </block>
 
 <text class="last" style="position:fixed; bottom:0;width: 750rpx;" wx:if="{{isLast}}">我也是有底线的</text>

@@ -1,1 +1,20 @@
 /* pages/healthQuestion/healthQuestionDetail.wxss */
+
+.title {
+  margin-top: 60rpx;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.createTime {
+  margin-top: 30rpx;
+  font-size: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content {
+  font-size: 18px;
+  margin-top: 60rpx;
+}

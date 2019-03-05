@@ -1,2 +1,23 @@
 <!--pages/healthQuestion/healthQuestionDetail.wxml-->
-<text>pages/healthQuestion/healthQuestionDetail.wxml</text>
+<view>
+  <text class='title'>{{title}}\n</text>
+  <text class='createTime'>{{createTime}}\n</text>
+  <text class='content'>{{detail}}</text>
+</view>
+<block wx:for="{{answerList}}" wx:for-item='item' wx:key='key'>
+  <view class='user-nickname'>
+
+    <image class='user-icon' src='https://xiaoyc.com.cn/health/{{item.doctorHeadPhoto}}'></image>
+
+    <text class='nickname'>{{item.doctorName}}</text>
+
+  </view>
+
+  <text class='commentDetail'>{{item.answerDetail}}</text>
+
+  <view class='time-heart'>
+
+    <text class='comment-time'>{{item.createTime}}</text>
+
+  </view>
+</block>

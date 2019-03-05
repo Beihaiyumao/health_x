@@ -1,17 +1,5 @@
 /* pages/healthArticle/healthArticleDetail.wxss */
 
-.comment {
-  width: 100%;
-  background-color: #fff;
-}
-
-.collectTitle {
-  border-left: solid 10rpx red;
-  margin-left: 30rpx;
-  padding-left: 10rpx;
-  font-size: 30rpx;
-}
-
 .pinglun {
   width: 100%;
   height: 80rpx;
@@ -127,11 +115,33 @@
 
 .photo {
   margin-top: 30rpx;
+    display: flex;
+  justify-content: center;
 }
 
 .collect {
-  height: 50rpx;
-  width: 50rpx;
+  margin-top: 30rpx;
   display: flex;
   justify-content: flex-end;
+}
+.collect image{
+  height: 50rpx;
+  width: 50rpx;
+}
+.fabu {
+  background: green;
+  color: #fff;
+}
+
+.tishi {
+  font-size: 15px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30rpx;
+}
+
+.comment {
+  margin-top: 30rpx;
+  color: #fff;
+  background: green;
 }
