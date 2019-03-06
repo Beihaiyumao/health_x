@@ -19,7 +19,8 @@
     "pages/index/bmi",
     "pages/index/whr",
     "pages/index/den",
-    "pages/index/cdbw"
+    "pages/index/cdbw",
+    "pages/healthArticle/replyComment"
   ],
   "window": {
     "backgroundTextStyle": "light",

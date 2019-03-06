@@ -6,25 +6,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    articleId: '',
+    articleId: '', //文章id
     article: '', //导语
-    author: '',
+    author: '', //作者
     content: '', //内容
-    pic: '',
-    title: '',
-    createTime: '',
-    "comment_show": true,
-
+    pic: '', //文章图片
+    title: '', //标题
+    createTime: '', //发布时间 
     collectinfo: '',
-    inputComment: false, //是否显示评论框
     comment: '', //评论内容
+    commentTotal: '', //评论总条数
+    notComment: false,
     // 最大字符数
     maxTextLen: 50,
     // 默认长度
     textLen: 0,
-    userId: "",
-    collectionPhoto: '/images/healthArticle/notCo.png',
+    userId: "", //用户id
+    collectionPhoto: '/images/healthArticle/notCo.png', //未收藏图片
+    commentId: '', //回答id
+    toUserId: '', //回复评论者id
+    replyComment: '', //回复内容
+    username: '',
   },
+
   //获取用户输入内容
   comment(e) {
     let page = this;
@@ -39,12 +43,17 @@ Page({
       comment: e.detail.value.replace(/\s+/g, ''),
     });
   },
+  replyComment: function(e) {
+    this.setData({
+      replyComment: e.detail.value,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     this.setData({
-      articleId: options.articleId
+      articleId: options.articleId,
     });
     this.getHealthArticleDetail();
     this.getUserCommentInfo();
@@ -183,48 +192,20 @@ Page({
     var that = this;
     wx.request({
       url: urlPath + '/healthyArticle/commentList?articleId=' + this.data.articleId, //请求地址
-      //    url: 'http://localhost:8002/healthyArticle/commentList?articleId=3a35eaaeaa0b',
       method: 'GET',
       success: function(e) {
         console.log(e);
         that.setData({
-          "comment_show": true,
-
           collectinfo: e.data.list,
-        })
+          commentTotal: e.data.total,
+        });
+        if (e.data.total == 0) {
+          that.setData({
+            notComment: true,
+          })
+        }
       }
     })
-  },
-  /**
-   * 获取用户评论回复内容
-   */
-  // getUserCommentReplyInfo:function(){
-  //   var articleCommentId = this.data.collectinfo;
-  //   console.log(this.data.collectinfo[0].commentId+'肖银川');
-  //   wx.request({
-  //     url: urlPath + '/healthyArticle/commentReply?articleCommentId=' + this.data.collectinfo[0],
-  //     method: 'GET',
-  //     success: function (e) {
-
-  //     }
-  //   })
-  // },
-  /**
-   * 点击评论
-   */
-  commentBtnClick: function() {
-    var that = this;
-    if (wx.getStorageSync('userId') != "" && wx.getStorageSync('userId') != null) {
-      that.setData({
-        inputComment: true,
-      })
-    } else {
-      wx.showToast({
-        title: '请先登录!', //这里成功
-        icon: 'none',
-        duration: 1000,
-      });
-    }
   },
   /**
    * 发布评论
@@ -233,6 +214,12 @@ Page({
     var that = this;
     var isrightful = that.checkInput();
     console.log(isrightful)
+    if (wx.getStorageSync('userId') == "") {
+      wx.showToast({
+        title: '您还未登陆,请先去登陆',
+        icon: 'none',
+      })
+    }
     if (isrightful) {
       wx.request({
         url: urlPath + '/healthyArticle/insertArticleComment',
@@ -277,5 +264,25 @@ Page({
       return true;
     }
 
-  }
+  },
+
+
+  /**
+   * 点击回复评论
+   */
+  bindReply: function(e) {
+    var that = this;
+    if (wx.getStorageSync('userId') != "" && wx.getStorageSync('userId') != null) {
+      wx.navigateTo({
+        url: '/pages/healthArticle/replyComment?id=' + e.currentTarget.id,
+      })
+    } else {
+      wx.showToast({
+        title: '请先登录!',
+        icon: 'none',
+        duration: 1000,
+      });
+    }
+  },
+
 })

@@ -1,53 +1,73 @@
 <!--pages/healthArticle/healthArticleDetail.wxml-->
 <view>
-  <text class='title'>{{title}}\n</text>
-  <text class='author'>{{author}}\n</text>
-  <text class='createTime'>{{createTime}}\n</text>
-  <view class='photo'>
-    <image src="https://xiaoyc.com.cn/health/{{pic}}" mode='widthFix'></image>
-  </view>
-  <text class='content'>{{content}}</text>
-  <view class='collect' bindtap='userCollect'>
-    <image src='{{collectionPhoto}}' mode='widthFix'></image>
-  </view>
+  <scroll-view class='aaa' scroll-y='true'>
+    <view class='articleDetail'>
+      <text class='title'>{{title}}\n</text>
+      <text class='author'>{{author}}\n</text>
+      <text class='createTime'>{{createTime}}\n</text>
+      <view class='photo'>
+        <image src="https://xiaoyc.com.cn/health/{{pic}}" mode='widthFix'></image>
+      </view>
+      <text class='content'>{{content}}</text>
+    </view>
+
+
+    <!-- 用户评论信息 -->
+
+    <view class='commentW'>
+      <view class='allComment'>
+        <text class='allCommentText'>全部评论({{commentTotal}})条</text>
+      </view>
+
+      <view class='display'>
+        <block wx:for="{{collectinfo}}" wx:for-item='item' wx:key='key'>
+          <view class='blockBian'>
+            <view class='user-nickname'>
+
+              <image class='user-icon' src='https://xiaoyc.com.cn/health/{{item.headPhoto}}'></image>
+
+              <text class='nickname'>{{item.userName}}</text>
+
+            </view>
+
+            <text class='commentDetail'>{{item.content}}</text>
+
+            <view class='time-heart'>
+              <text class='comment-time'>{{item.createTime}}</text>
+            </view>
+            <view class='replyList'>
+              <block wx:for='{{item.commentReply}}' wx:for-item='item' wx:key='key'>
+                <view>
+                  <view class=''>
+                    <text class='replyName'>{{item.userName}}:</text>
+                  </view>
+                  <text class='replyContent'>{{item.content}}</text>
+                </view>
+              </block>
+
+            </view>
+            <view class="commentIcon">
+              <image bindtap="bindReply" id="{{item.commentId}},{{item.userId}},{{item.userName}}" src="/images/healthArticle/reply.png" />
+            </view>
+
+          </view>
+
+        </block>
+      </view>
+    </view>
+
+    <view class='none' wx:if="{{notComment}}">
+      <text>该文章还没有评论...</text>
+    </view>
+
+  </scroll-view>
 </view>
-
-<!-- 用户评论信息 -->
-
-<view>
-  <button class="comment " bindtap="commentBtnClick">评论</button>
-  <text class='tishi'>评论一下又不要钱 </text>
-  <view wx:if="{{inputComment}}">
-    <textarea bindinput='comment' placeholder='请输入.....' maxlength='{{maxTextLen}}'></textarea>
-    <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
-    <button bindtap='releaseComment' class='fabu'>发布</button>
+<!--底部评论--->
+<view class="comment_release">
+  <view class="left">
+    <textarea class="text" bindinput='comment' placeholder-class="weui-input" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="我也说两句..." />
+    <view class="line" />
   </view>
-  <view class='display' wx:if='{{comment_show}}'>
-    <block wx:for="{{collectinfo}}" wx:for-item='item' wx:key='key'>
-      <view class='user-nickname'>
-
-        <image class='user-icon' src='https://xiaoyc.com.cn/health/{{item.headPhoto}}'></image>
-
-        <text class='nickname'>{{item.userName}}</text>
-
-      </view>
-
-      <text class='commentDetail'>{{item.content}}</text>
-
-      <view class='time-heart'>
-
-        <text class='comment-time'>{{item.createTime}}</text>
-
-      </view>
-      <block wx:for='{{item.commentReply}}' wx:for-item='item' wx:key='key'>
-        <text>{{item.userName}}</text>
-        <text>{{item.content}}</text>
-      </block>
-    </block>
-
-  </view>
-
-  <view class='none' wx:else>
-    <text>该文章还没有评论...</text>
-  </view>
+  <image bindtap='userCollect' class="emoji" src="{{collectionPhoto}}" />
+  <button form-type="submit" bindtap='releaseComment' class="submit">发送</button>
 </view>

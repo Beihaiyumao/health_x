@@ -1,0 +1,16 @@
+/* pages/healthArticle/replyComment.wxss */
+
+.wai textarea {
+  width: 100%;
+  border-top: 1px #ccc solid;
+}
+
+.outhor {
+  height: 900rpx;
+  background-color: #ccc;
+}
+
+.outhor button {
+  margin-top: 60rpx;
+  color: green;
+}
