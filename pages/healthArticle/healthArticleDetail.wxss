@@ -10,6 +10,12 @@
 .display {
   width: 100%;
   background-color: #fff;
+  margin-top: 30rpx;
+  border: 1px solid #ccc;
+}
+
+.blockBian {
+  border: 1px solid #ccc;
 }
 
 .none {
@@ -115,7 +121,7 @@
 
 .photo {
   margin-top: 30rpx;
-    display: flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -124,10 +130,12 @@
   display: flex;
   justify-content: flex-end;
 }
-.collect image{
+
+.collect image {
   height: 50rpx;
   width: 50rpx;
 }
+
 .fabu {
   background: green;
   color: #fff;
@@ -140,8 +148,134 @@
   margin-top: 30rpx;
 }
 
-.comment {
-  margin-top: 30rpx;
-  color: #fff;
-  background: green;
+.input_null {
+  color: #c9c9c9;
 }
+
+
+.aaa {
+  height: 1150rpx;
+}
+
+/*整体样式，就是黑色的容器*/
+
+.comment_release {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 0 8px 13px;
+  background-color: #fff;
+  font-size: 12px;
+  z-index: 999;
+}
+
+/**第一个红色的容器
+ *大概想法就是给flex-direction赋一个colomn的值，并列放置
+ */
+
+.comment_release.left {
+  display: flex;
+  flex-direction: column;
+}
+
+/*输入框*/
+
+.comment_release .text {
+  width: 222px;
+  min-height: 17px;
+  max-height: 51px; /*最多显示三行*/
+  line-height: 17px;
+  font-size: 12px;
+  margin-bottom: 4px;
+  margin-left: 10px;
+}
+
+/*线*/
+
+.comment_release .line {
+  margin-bottom: 0;
+  width: 222px;
+  height: 1rpx;
+  background-color: #4b5cd7;
+}
+
+/*表情图标*/
+
+.comment_release .emoji {
+  width: 24px;
+  height: 24px;
+  line-height: 27px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+/*发送按钮*/
+
+.comment_release .submit {
+  width: 60px;
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+  margin-right: 10px;
+  background-color: #4b5cd7;
+  color: #fff;
+  font-size: 12px;
+}
+
+/**隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.allComment {
+  background-color: #ccc;
+  height: 80rpx;
+  margin-top: 60rpx;
+}
+
+.allComment text {
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+.replyList {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: rgba(247, 245, 245, 0.925);
+}
+
+.replyName {
+  font-size: 24rpx;
+  color: blue;
+  margin-left: 20rpx;
+}
+
+.replyContent {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 20rpx;
+}
+
+.commentIcon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.commentIcon image {
+  height: 70rpx;
+  width: 70rpx;
+}
+
+.articleDetail {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+

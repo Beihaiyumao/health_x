@@ -8,12 +8,12 @@ Page({
   data: {
     msgList: [{
       articleId: 1, //文章id
-      title: "标题一", //标题
-      createTime: "2017-3-5 23:01:59", //创建时间
+      title: "", //标题
+      createTime: "", //创建时间
       article: '', //导语
       author: '', //作者
       content: '', //内容
-      pic: "../../images/wechatHL.png", //图片
+      pic: "", //图片
     }, ],
     isFirstPage: '', //是否是第一页
     isLastPage: '', //是否是最后一页
@@ -33,9 +33,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this;
-      that.getHealthArticle();
-    
+    this.getHealthArticle();
+    wx.showToast({
+      title: '加载中',
+      icon:'loading',
+      duration:2500,
+    })
+  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -48,9 +52,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that=this;
-      that.getHealthArticle();
-    
+
+    this.getHealthArticle();
   },
 
   /**

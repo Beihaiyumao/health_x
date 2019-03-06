@@ -1,0 +1,10 @@
+<!--pages/healthArticle/replyComment.wxml-->
+<view>
+  <view class='wai'>
+    <textarea bindinput='comment' placeholder='回复:{{username}}' maxlength='{{maxTextLen}}'></textarea>
+    <view class='testLength'>{{textLen}}/{{maxTextLen}}</view>
+  </view>
+  <view class='outhor'>
+    <button bindtap='replyCommentAction'>回复</button>
+  </view>
+</view>
