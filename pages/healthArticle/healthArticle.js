@@ -37,7 +37,7 @@ Page({
     wx.showToast({
       title: '加载中',
       icon:'loading',
-      duration:2500,
+      duration:1500,
     })
   
   },
