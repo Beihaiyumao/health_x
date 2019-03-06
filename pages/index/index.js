@@ -39,5 +39,12 @@ Page({
     wx.navigateTo({
       url: '../index/cdbw',
     })
+  },
+  onShareAppMessage:function(){
+    return {
+      title: '转发',
+      path: '/pages/index/index',
+      success: function (res) { }
+    }
   }
 })

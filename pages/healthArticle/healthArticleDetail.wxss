@@ -213,7 +213,12 @@
   margin-right: 5px;
   margin-left: 5px;
 }
-
+.comment_release .share {
+  width: 24px;
+  height: 24px;
+  margin-top: 20px;
+  margin-left: -15px;
+}
 /*发送按钮*/
 
 .comment_release .submit {
@@ -277,5 +282,16 @@
 .articleDetail {
   margin-left: 20rpx;
   margin-right: 20rpx;
+}
+.shareButton{
+  background-color: white;
+  height: 80rpx;
+  width: 80rpx;
+  line-height: 27px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+.shareButton::after{
+border: none;
 }
 

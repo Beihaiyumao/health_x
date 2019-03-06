@@ -69,5 +69,8 @@
     <view class="line" />
   </view>
   <image bindtap='userCollect' class="emoji" src="{{collectionPhoto}}" />
+  <button open-type="share" class='shareButton'>
+  <image class='share' src='/images/healthArticle/share.png'></image>
+  </button>
   <button form-type="submit" bindtap='releaseComment' class="submit">发送</button>
 </view>

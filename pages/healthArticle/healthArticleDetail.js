@@ -54,9 +54,11 @@ Page({
   onLoad: function(options) {
     this.setData({
       articleId: options.articleId,
+
     });
     this.getHealthArticleDetail();
     this.getUserCommentInfo();
+    this.getUserIsCollection();
   },
 
   /**
@@ -73,6 +75,7 @@ Page({
   onShow: function() {
     this.getHealthArticleDetail();
     this.getUserCommentInfo();
+    this.getUserIsCollection();
   },
 
   /**
@@ -106,7 +109,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    var that = this;
+    var shareId = that.data.articleId;
+    var title = that.data.title;
+    if (res.from === 'button')
+      return {
+        title: title,
+        path: '/pages/healthArticle/healthArticleDetail?articleId=' + shareId,
+        success: function(res) {}
+      }
 
   },
   /**
@@ -129,7 +141,7 @@ Page({
         },
         success: function(e) {
           console.log(e);
-
+          //100证明未收藏
           if (e.data.code == 100) {
             that.setData({
               collectionPhoto: '/images/healthArticle/isCo.png'
@@ -140,11 +152,33 @@ Page({
               duration: 1000,
             });
           } else {
-            wx.showToast({
-              title: e.data.msg,
-              icon: 'loading',
-              duration: 1000,
-            });
+            //取消收藏
+            wx.request({
+              url: urlPath + '/healthyArticle/deleteCollectionAritcle',
+              method: 'GET',
+              data: {
+                articleId: that.data.articleId,
+              },
+              success: function(e) {
+                console.log(e);
+                if (e.data.code == 100) {
+                  that.setData({
+                    collectionPhoto: '/images/healthArticle/notCo.png',
+                  })
+                  wx.showToast({
+                    title: e.data.msg,
+                    icon: 'success',
+                    duration: 1000,
+                  });
+                } else {
+                  wx.showToast({
+                    title: e.data.msg,
+                    icon: 'loading',
+                    duration: 1000,
+                  });
+                }
+              }
+            })
           }
         }
       })
@@ -284,5 +318,26 @@ Page({
       });
     }
   },
-
+  /**
+   * 判断用户是否已经收藏过此文章
+   */
+  getUserIsCollection: function() {
+    var that = this;
+    wx.request({
+      url: urlPath + '/healthyArticle/selectCollectionAritlceById',
+      method: 'GET',
+      data: {
+        userId: wx.getStorageSync('userId'),
+        articleId: this.data.articleId,
+      },
+      success: function(e) {
+        console.log(e);
+        if (e.data.code == 100) {
+          that.setData({
+            collectionPhoto: '/images/healthArticle/isCo.png',
+          })
+        }
+      }
+    })
+  }
 })
