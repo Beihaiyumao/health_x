@@ -1,5 +1,9 @@
 .last {
-  text-align: center;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 60px;
 }
 
 /**搜索框*/
@@ -73,10 +77,13 @@
 }
 
 .article {
-  font-size: 18px;
   margin-top: 30rpx;
+  font-size: 15px;
+  font-weight: 200;
+  font-family:YouYuan;
 }
-.list{
+
+.list {
   width: 100%;
-  border-top: 1px #cccccc solid;
+  border-top: 1px #ccc solid;
 }

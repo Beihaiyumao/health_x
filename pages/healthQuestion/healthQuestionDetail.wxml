@@ -1,23 +1,33 @@
 <!--pages/healthQuestion/healthQuestionDetail.wxml-->
 <view>
-  <text class='title'>{{title}}\n</text>
-  <text class='createTime'>{{createTime}}\n</text>
-  <text class='content'>{{detail}}</text>
+  <scroll-view scroll-y='true'>
+    <view class='questionDetail'>
+      <text class='title'>{{title}}\n</text>
+      <text class='createTime'>{{createTime}}\n</text>
+      <text class='content'>{{detail}}</text>
+    </view>
+    <view>
+      <view class='allComment'>
+        <text class='allCommentText'>全部医生回复({{commentTotal}})条</text>
+      </view>
+      <view class='commentList'>
+        <block wx:for="{{answerList}}" wx:for-item='item' wx:key='key'>
+          <view class='user-nickname'>
+            <text class='nickname'>{{item.doctorName}}</text>
+          </view>
+          <view class='commentDetail'>
+            <text>{{item.answerDetail}}</text>
+          </view>
+          <view class='time-heart'>
+
+            <text class='comment-time'>{{item.createTime}}</text>
+
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='notComment' wx:if="{{notComment}}">
+      <text>该问题还没有医生回复敬请等待...</text>
+    </view>
+  </scroll-view>
 </view>
-<block wx:for="{{answerList}}" wx:for-item='item' wx:key='key'>
-  <view class='user-nickname'>
-
-    <image class='user-icon' src='https://xiaoyc.com.cn/health/{{item.doctorHeadPhoto}}'></image>
-
-    <text class='nickname'>{{item.doctorName}}</text>
-
-  </view>
-
-  <text class='commentDetail'>{{item.answerDetail}}</text>
-
-  <view class='time-heart'>
-
-    <text class='comment-time'>{{item.createTime}}</text>
-
-  </view>
-</block>

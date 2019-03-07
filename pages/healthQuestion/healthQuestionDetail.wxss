@@ -17,4 +17,60 @@
 .content {
   font-size: 18px;
   margin-top: 60rpx;
+  font-weight: 200;
+  font-family:YouYuan;
+}
+
+.allComment {
+  background-color: #ccc;
+  height: 80rpx;
+  margin-top: 60rpx;
+}
+
+.allComment text {
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+.commentList {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 30rpx;
+  border: 1px solid #ccc;
+}
+
+.nickname {
+  font-size: 15px;
+  margin-left: 20rpx;
+}
+
+.commentDetail {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-left: 20rpx;
+}
+
+.comment-time {
+  font-size: 15px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.questionDetail {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+/**隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.notComment{
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  color: #999;
 }

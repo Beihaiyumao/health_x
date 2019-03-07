@@ -10,7 +10,9 @@ Page({
     title: '',
     detail: '',
     createTime: '',
-    answerList: '',
+    answerList: '', //医生回复列表
+    commentTotal: '', //所有医生的回复
+    notComment: false, //是否没有回复
   },
 
   /**
@@ -77,7 +79,6 @@ Page({
    * 获取问题详情
    */
   getQuestionDetail: function() {
-    console.log(this.data.questionId);
     var that = this;
     wx.request({
       url: urlPath + '/question/selectQuestionDetailById?questionId=' + this.data.questionId,
@@ -121,7 +122,13 @@ Page({
         console.log(e);
         that.setData({
           answerList: e.data.list,
-        })
+          commentTotal: e.data.total,
+        });
+        if(e.data.total==0){
+          that.setData({
+            notComment:true,
+          })
+        }
       }
     })
   },
