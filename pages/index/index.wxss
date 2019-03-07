@@ -13,6 +13,8 @@
   justify-content: center;
   font-size: 15px;
   margin-top: 30rpx;
+  font-weight: 200;
+  font-family:YouYuan;
 }
 
 .whrp {
@@ -24,6 +26,8 @@
   justify-content: center;
   font-size: 15px;
   margin-top: 30rpx;
+  font-weight: 200;
+  font-family:YouYuan;
 }
 
 .denp {
@@ -35,6 +39,8 @@
   justify-content: center;
   font-size: 15px;
   margin-top: 30rpx;
+  font-weight: 200;
+  font-family:YouYuan;
 }
 
 .cdbwp {
@@ -46,4 +52,6 @@
   justify-content: center;
   font-size: 15px;
   margin-top: 30rpx;
+  font-weight: 200;
+  font-family:YouYuan;
 }

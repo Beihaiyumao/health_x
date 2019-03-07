@@ -22,6 +22,7 @@ Page({
     pageNum: 1,
     isLast: false, //判断是否是最后一页
     search_title: '',
+    pageSize: 10,
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -33,13 +34,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getHealthArticle();
+    this.searchQuestion();
     wx.showToast({
       title: '加载中',
-      icon:'loading',
-      duration:1500,
+      icon: 'loading',
+      duration: 1500,
     })
-  
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -53,7 +54,7 @@ Page({
    */
   onShow: function() {
 
-    this.getHealthArticle();
+    this.searchQuestion();
   },
 
   /**
@@ -76,7 +77,7 @@ Page({
   onPullDownRefresh: function() {
     var that = this;
     that.setData({
-      pageNum: this.data.pageNum - 1,
+      pageSize: this.data.pageSize - 10,
       isLast: false,
     })
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -98,7 +99,7 @@ Page({
   onReachBottom: function() {
     var that = this;
     that.setData({
-        pageNum: this.data.pageNum + 1,
+        pageSize: this.data.pageSize + 10,
       }),
       wx.showToast({
         title: '正在加载', //这里成功
@@ -106,8 +107,8 @@ Page({
         duration: 1500,
       }),
       setTimeout(function() {
-      if (that.data.search_title != null || that.data.search_title != '') {
-          that.searchQuestion(); 
+        if (that.data.search_title != null || that.data.search_title != '') {
+          that.searchQuestion();
         } else {
           that.getHealthArticle();
         }
@@ -131,14 +132,13 @@ Page({
    */
   getHealthArticle: function() { //定义函数名称
     var that = this;
-    console.log(this.data.pageNum+"不是搜索");
     wx.request({
       url: urlPath + '/healthyArticle/healthyArticle', //请求地址
       header: { //请求头
         "Content-Type": "applciation/x-www-form-urlencoded"
       },
       data: {
-        currentPage: this.data.pageNum,
+        pageSize: this.data.pageSize,
       },
       method: "GET", //get为默认方法/POST
       success: function(res) {
@@ -168,14 +168,13 @@ Page({
   /**模糊搜索文章 */
   searchQuestion: function() {
     var that = this;
-    console.log(this.data.pageNum + "是搜索");
-
-    if (this.data.search_title != null) {
+    if (this.data.search_title != null || that.data.search_title != '') {
       wx.request({
         url: urlPath + '/healthyArticle/selectHealthyArticleByTitle',
         method: 'GET',
         data: {
           title: this.data.search_title,
+          pageSize: this.data.pageSize,
         },
         success: function(res) {
           console.log(res);

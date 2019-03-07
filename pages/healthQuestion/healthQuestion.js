@@ -13,6 +13,7 @@ Page({
     isLastPage: true,
     search_title: '',
     isLast: false,
+    pageSize: 10,
   },
   /**
    * 获取用户输入的题目
@@ -26,7 +27,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getAllHealthQuestion();
+    this.searchQuestion();
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1500,
+    })
   },
 
   /**
@@ -40,7 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getAllHealthQuestion();
+    this.searchQuestion();
   },
 
   /**
@@ -112,12 +118,13 @@ Page({
    * 获取所有问题
    */
   getAllHealthQuestion: function() {
+    console.log(this.data.pageSize)
     var that = this;
     wx.request({
       url: urlPath + '/question/allQuestion',
       method: 'GET',
       data: {
-        currentPage: this.data.pageNum,
+        pageSize: this.data.pageSize,
       },
       success: function(e) {
         console.log(e);
@@ -140,7 +147,7 @@ Page({
       url: urlPath + '/question/selectQuestionByTitle',
       method: 'GET',
       data: {
-        currentPage: this.data.pageNum,
+        pageSize: this.data.pageSize,
         title: this.data.search_title,
       },
       success: function(e) {
@@ -168,7 +175,7 @@ Page({
   onPullDownRefresh: function() {
     let that = this;
     that.setData({
-      pageNum: this.data.pageNum - 1,
+      pageSize: this.data.pageSize - 10,
       isLast: false,
     })
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -190,7 +197,8 @@ Page({
   onReachBottom: function() {
     var that = this;
     that.setData({
-        pageNum: this.data.pageNum + 1,
+        // pageNum: this.data.pageNum + 1,
+        pageSize: this.data.pageSize + 10,
       }),
       wx.showToast({
         title: '正在加载', //这里成功
@@ -198,22 +206,22 @@ Page({
         duration: 1500,
       }),
       setTimeout(function() {
-          if (that.data.search_title != null || that.data.search_title != '') {
-            that.searchQuestion();
-          } else {
-            that.getAllHealthQuestion();
-          }
-      if (that.data.isLastPage == true) {
-        that.setData({
-          isLast: true,
-        });
+        if (that.data.search_title != null || that.data.search_title != '') {
+          that.searchQuestion();
+        } else {
+          that.getAllHealthQuestion();
+        }
+        if (that.data.isLastPage == true) {
+          that.setData({
+            isLast: true,
+          });
         }
       }, 1500)
   },
   /**
    * 问题详情
    */
-  gotoQuetionDetail: function (e) {
+  gotoQuetionDetail: function(e) {
     console.log(e)
     wx.navigateTo({
       url: '/pages/healthQuestion/healthQuestionDetail?questionId=' + e.currentTarget.id,
