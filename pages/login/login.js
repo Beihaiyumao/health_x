@@ -8,6 +8,7 @@ Page({
     isLogin: true,
     inputName:'',
     inputPassword:'',
+    userId:'',
   },
   //获取用户输入的值a
   inputName: function(e) {
@@ -47,28 +48,30 @@ Page({
         },
         success: function(res) {
           console.log(res)
-          if (res.data.code == 200) {
+          if (res.data.code == 100) {
+            that.setData({
+              isLogin: true,
+              userId: res.data.object.userId,
+            });
+            wx.showToast({
+              title: '登陆成功', //这里成功
+              icon: 'success',
+              duration: 1000,
+
+            });
+            //保存用户登录状态
+            wx.setStorageSync("userId", that.data.userId);
+            wx.switchTab({
+              url: '../user/user'
+            });
+          } else {
             wx.showModal({ //这里提示失败原因
               title: '提示！',
               confirmText: '朕知道了',
               showCancel: false,
               content: res.data.msg,
             })
-          } else {
-            wx.showToast({
-              title: '登陆成功', //这里成功
-              icon: 'success',
-              duration: 1000,
-              
-            });
-            //保存用户登录状态
-            wx.setStorageSync("userId", res.data.object.userId);
-            wx.switchTab({
-              url: '../user/user'
-            });
-            that.setData({
-              isLogin: true,
-            })
+
           }
         }
       });

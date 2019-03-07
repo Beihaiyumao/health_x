@@ -1,22 +1,29 @@
 <!--pages/user/user.wxml-->
 <view class='user_top'>
-<image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
-<view bindtap='userInfo' class='user_head' style=''>
-<image src='https://xiaoyc.com.cn/health/{{headPage}}'></image>
-<text>用户名:{{username}}</text>
-</view>
-<view bindtap="myHealthArticle" class='user_list mt60 clearfix'>
-<text>我的收藏</text>
-<text>></text>
-</view>
-<view bindtap='myHealthQuestion' class='user_list clearfix'>
-<text>我的问题</text>
-<text>></text>
-</view>
-<view bindtap='changePassword' class='user_list clearfix' style='margin-bottom:120rpx; border-bottom:1px #cccccc solid;'>
-<text>修改密码</text>
-<text>></text>
-</view>
-
-<button bindtap='loginOut' class="user_end">退出登录</button>
+  <image class='user_image' src='/images/user/user_background.jpg' style='width:100%;'></image>
+  <view bindtap='userInfo' class='user_head' style=''>
+    <image src='https://xiaoyc.com.cn/health/{{headPage}}'></image>
+    <text>{{username}}</text>
+  </view>
+  <view bindtap='myHealthQuestion' class='user_list clearfix'>
+    <image src='/images/user/my_question.png'></image>
+    <text>我的问题</text>
+  </view>
+  <view bindtap="myHealthArticle" class='user_list mt60 clearfix'>
+    <image src='/images/user/my_collection.png'></image>
+    <text>我的收藏</text>
+  </view>
+  <view bindtap='changePassword' class='user_list clearfix'>
+    <image src='/images/user/change_password.png'></image>
+    <text>修改密码</text>
+  </view>
+  <view bindtap='' class='user_list clearfix'>
+    <image src='/images/user/feedback.png'></image>
+    <text>产品反馈</text>
+  </view>
+  <view bindtap='' class='user_list clearfix' style='margin-bottom:50rpx; border-bottom:1px #cccccc solid;'>
+    <image src='/images/user/about_us.png'></image>
+    <text>关于我们</text>
+  </view>
+  <button bindtap='loginOut' class="user_end">退出登录</button>
 </view>
