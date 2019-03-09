@@ -156,5 +156,21 @@ Page({
     wx.navigateTo({
       url: '../user/userInfo',
     })
+  },
+  /**
+   * 跳转用户反馈
+   */
+  turnFeedBack:function(){
+    wx.navigateTo({
+      url: '../user/feedback',
+    })
+  },
+  /**
+   * 跳转关于我们
+   */
+  turnAboutUs:function(){
+    wx.navigateTo({
+      url: '../user/aboutUs',
+    })
   }
 })

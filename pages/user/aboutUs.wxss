@@ -1,0 +1,25 @@
+/* pages/user/aboutUs.wxss */
+
+.about_us_background image {
+  margin-left: 40px;
+  margin-top: 60px;
+}
+
+.banben {
+  font-size: 15px;
+  font-weight: 200;
+  font-family: YouYuan;
+  margin: 100px 150px;
+}
+
+.shengming {
+  font-size: 15px;
+  font-weight: 200;
+  font-family: YouYuan;
+  margin: 30px 38px;
+  margin-top: 20px;
+}
+
+.last {
+  margin-top: 250px;
+}
