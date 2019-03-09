@@ -20,7 +20,9 @@
     "pages/index/whr",
     "pages/index/den",
     "pages/index/cdbw",
-    "pages/healthArticle/replyComment"
+    "pages/healthArticle/replyComment",
+    "pages/user/feedback",
+    "pages/user/aboutUs"
   ],
   "window": {
     "backgroundTextStyle": "light",

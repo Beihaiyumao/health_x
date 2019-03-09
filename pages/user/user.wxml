@@ -17,11 +17,11 @@
     <image src='/images/user/change_password.png'></image>
     <text>修改密码</text>
   </view>
-  <view bindtap='' class='user_list clearfix'>
+  <view bindtap='turnFeedBack' class='user_list clearfix'>
     <image src='/images/user/feedback.png'></image>
     <text>产品反馈</text>
   </view>
-  <view bindtap='' class='user_list clearfix' style='margin-bottom:50rpx; border-bottom:1px #cccccc solid;'>
+  <view bindtap='turnAboutUs' class='user_list clearfix' style='margin-bottom:50rpx; border-bottom:1px #cccccc solid;'>
     <image src='/images/user/about_us.png'></image>
     <text>关于我们</text>
   </view>

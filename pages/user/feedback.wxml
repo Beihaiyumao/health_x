@@ -1,0 +1,18 @@
+<!--pages/user/feedback.wxml-->
+<view class='allbackgroung'>
+  <view class='feedback'>
+    <text>反馈内容</text>
+  </view>
+  <view class='textarea-count'>
+    <textarea placeholder-class='feedbackPh' placeholder='请填写问题描述以便我们提供更好的帮助。' bindinput="getFeedback" maxlength='{{maxTextLen}}'></textarea>
+  </view>
+  <view>
+    <view class='wechat'>
+      <text>联系方式</text>
+    </view>
+    <view class="title">
+      <input bindinput="wechat" maxlength='15' placeholder-class='wechatPh' placeholder='手机号/微信号'></input> 
+    </view>
+  </view>
+  <button bindtap='addFeedback'>提交</button>
+</view>
