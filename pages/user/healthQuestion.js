@@ -239,4 +239,14 @@ Page({
       }
     }, 1500);
   },
+  /**
+   * 问题详情
+   */
+  gotoQuetionDetail: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/healthQuestion/healthQuestionDetail?questionId=' + e.currentTarget.id,
+    })
+
+  },
 })
