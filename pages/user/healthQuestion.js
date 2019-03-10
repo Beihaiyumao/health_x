@@ -21,6 +21,8 @@ Page({
     total: '', //总共多少条数据
     pageNum: 1,
     search_title: '', //模糊查询
+    pageSize:10,
+    isLast:false,
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -93,7 +95,7 @@ Page({
       method: 'GET',
       data: {
         userId: wx.getStorageSync('userId'),
-        currentPage: this.data.pageNum,
+        pageSize: this.data.pageSize,
       },
       success: function(res) {
         console.log(res);
@@ -122,7 +124,7 @@ Page({
         data: {
           title: this.data.search_title,
           userId: wx.getStorageSync('userId'),
-          currentPage: this.data.pageNum,
+          pageSize: this.data.pageSize,
         },
         success: function(res) {
           console.log(res);
@@ -192,7 +194,7 @@ Page({
   onReachBottom: function () {
     var that = this;
     that.setData({
-      pageNum: this.data.pageNum + 1,
+      pageSize: this.data.pageSize + 10,
     }),
     wx.showToast({
         title: '正在加载', //这里成功
@@ -217,7 +219,7 @@ Page({
   onPullDownRefresh: function () {
     let that = this;
     that.setData({
-      pageNum: this.data.pageNum - 1,
+      pageSize: this.data.pageSize - 10,
       isLast: false,
     })
     wx.showNavigationBarLoading() //在标题栏中显示加载
