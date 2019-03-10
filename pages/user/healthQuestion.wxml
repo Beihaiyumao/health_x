@@ -1,26 +1,31 @@
 <!--pages/user/healthQuestion.wxml-->
 <view>
-     <view style="position:fixed; top:0;width: 750rpx;">
-        <view class="weui-search-bar">
-            <view class="weui-search-bar__form">
-            <!-- 搜索框 -->
-                <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" bindinput='search_title'maxlength='15'class="weui-search-bar__input" placeholder="请输入问题名称"/>
-                </view>
-            </view>
-            <!-- 搜索按钮,调用搜索查询方法 -->
-            <view class="weui-search-bar__cancel-btn" bindtap='searchMyQuestion'>搜索</view>
+  <view style="position:fixed; top:0;width: 750rpx;">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <!-- 搜索框 -->
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" bindinput='search_title' maxlength='15' class="weui-search-bar__input" placeholder="请输入问题名称" />
         </view>
+      </view>
+      <!-- 搜索按钮,调用搜索查询方法 -->
+      <view class="weui-search-bar__cancel-btn" bindtap='searchMyQuestion'>搜索</view>
     </view>
+  </view>
 </view>
 <view class='questionList'>
-<text>\n</text>
-<text>\n</text>
+  <text>\n</text>
+  <text>\n</text>
 </view>
-<block wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
-  <view class='user_list mt60 clearfix'>
-    <text>{{item.title}}</text>
-    <text bindtap='deleteQuestion' id="{{item.questionId}}">删除</text>
+<view>
+  <block wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
+    <view class='user_list mt60 clearfix'>
+      <text>{{item.title}}</text>
+      <text class='delete' bindtap='deleteQuestion' id="{{item.questionId}}">删除</text>
+    </view>
+  </block>
+  <view>
+    <text class="last" wx:if="{{isLast}}">真的没有了哦!</text>
   </view>
-</block>
+</view>

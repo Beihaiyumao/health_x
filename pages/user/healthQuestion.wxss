@@ -1,51 +1,54 @@
 /* pages/user/healthQuestion.wxss */
 
-    .search{  
-      width: 80%;  
-    }  
-    .search_arr {  
-      border: 1px solid #d0d0d0;  
-      border-radius: 10rpx;  
-      margin-left: 20rpx;  
-    }  
-    .search_arr input{  
-      margin-left: 60rpx;  
-      height: 60rpx;  
-      border-radius: 5px;  
-    }  
-    .bc_text {  
-      line-height: 68rpx;  
-      height: 68rpx;  
-      margin-top: 34rpx;  
-    }  
-      
-    .sousuo {  
-      margin-left: 15rpx;  
-      width: 15%;  
-      line-height: 150%;  
-      text-align: center;  
-      border: 1px solid #d0d0d0;  
-      border-radius: 10rpx;  
-    }  
-    .page_row{  
-      display: flex;  
-      flex-direction: row;
-        margin-top: 5%;
-    }  
-    .searchcion {  
-      margin: 10rpx 10rpx 10rpx 10rpx;  
-      position: absolute;  
-      left:25rpx;  
-      z-index: 2;  
-      width: 20px;  
-      height: 20px;  
-      text-align: center;  
-    }  
- 
+.search {
+  width: 80%;
+}
 
+.search_arr {
+  border: 1px solid #d0d0d0;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+}
+
+.search_arr input {
+  margin-left: 60rpx;
+  height: 60rpx;
+  border-radius: 5px;
+}
+
+.bc_text {
+  line-height: 68rpx;
+  height: 68rpx;
+  margin-top: 34rpx;
+}
+
+.sousuo {
+  margin-left: 15rpx;
+  width: 15%;
+  line-height: 150%;
+  text-align: center;
+  border: 1px solid #d0d0d0;
+  border-radius: 10rpx;
+}
+
+.page_row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+
+.searchcion {
+  margin: 10rpx 10rpx 10rpx 10rpx;
+  position: absolute;
+  left: 25rpx;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
 
 .mt60 {
-  margin-top: 120rpx;
+  margin-top: 10rpx;
 }
 
 .user_list {
@@ -77,7 +80,9 @@
   color: #333;
   line-height: 55rpx;
 }
+
 /**搜索框*/
+
 .weui-search-bar {
   position: relative;
   padding: 8px 10px;
@@ -85,24 +90,27 @@
   display: -webkit-flex;
   display: flex;
   box-sizing: border-box;
-  background-color: #EFEFF4;
-  border-top: 1rpx solid #D7D6DC;
-  border-bottom: 1rpx solid #D7D6DC;
+  background-color: #efeff4;
+  border-top: 1rpx solid #d7d6dc;
+  border-bottom: 1rpx solid #d7d6dc;
 }
+
 .weui-icon-search_in-box {
   position: absolute;
   left: 10px;
   top: 7px;
 }
+
 .weui-search-bar__form {
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: auto;
-          flex: auto;
+  flex: auto;
   border-radius: 5px;
-  background: #FFFFFF;
-  border: 1rpx solid #E6E6EA;
+  background: #fff;
+  border: 1rpx solid #e6e6ea;
 }
+
 .weui-search-bar__box {
   position: relative;
   padding-left: 30px;
@@ -111,15 +119,32 @@
   box-sizing: border-box;
   z-index: 1;
 }
+
 .weui-search-bar__input {
   height: 28px;
   line-height: 28px;
   font-size: 14px;
 }
+
 .weui-search-bar__cancel-btn {
   margin-left: 10px;
   line-height: 28px;
-  color: #09BB07;
+  color: #09bb07;
   white-space: nowrap;
 }
 
+.last {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 60px;
+  font-weight: 200;
+  font-family: YouYuan;
+}
+
+.delete {
+  font-size: 15px;
+  font-weight: 200;
+  font-family: YouYuan;
+}
