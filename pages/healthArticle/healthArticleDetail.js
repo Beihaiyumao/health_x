@@ -27,6 +27,7 @@ Page({
     toUserId: '', //回复评论者id
     replyComment: '', //回复内容
     username: '',
+    collectionArticleId:'',//收藏id
   },
 
   //获取用户输入内容
@@ -132,6 +133,7 @@ Page({
         icon: 'none',
       })
     } else {
+      that.getUserIsCollection();
       wx.request({
         url: urlPath + '/healthyArticle/collectionArticles',
         method: 'POST',
@@ -157,7 +159,7 @@ Page({
               url: urlPath + '/healthyArticle/deleteCollectionAritcle',
               method: 'GET',
               data: {
-                articleId: that.data.articleId,
+                collectionArticleId: that.data.collectionArticleId,
               },
               success: function(e) {
                 console.log(e);
@@ -335,6 +337,7 @@ Page({
         if (e.data.code == 100) {
           that.setData({
             collectionPhoto: '/images/healthArticle/isCo.png',
+            collectionArticleId:e.data.object,
           })
         }
       }

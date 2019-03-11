@@ -1,26 +1,33 @@
-<!--pages/user/healthArticle.wxml-->
-<view>
-     <view style="position:fixed; top:0;width: 750rpx;">
-        <view class="weui-search-bar">
-            <view class="weui-search-bar__form">
-            <!-- 搜索框 -->
-                <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" bindinput='search_title'maxlength='15'class="weui-search-bar__input" placeholder="请输入文章名称"/>
-                </view>
-            </view>
-            <!-- 搜索按钮,调用搜索查询方法 -->
-            <view class="weui-search-bar__cancel-btn" bindtap='searchMyArticle'>搜索</view>
-        </view>
-    </view>
-</view>
-<view class='questionList'>
-<text>\n</text>
-<text>\n</text>
-</view>
-<view wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
-  <view class='user_list mt60 clearfix'>
-    <text>{{item.title}}</text>
-    <text>{{item.article}}</text>
+<view class="movie-container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <block wx:for="{{navbarTitle}}" wx:key="index">
+      <view class="navbar-item {{navbarActiveIndex === index ? 'navbar-item-active' : ''}}" data-navbar-index="{{index}}" catchtap="onNavBarTap">
+        <text>{{item}}</text>
+      </view>
+    </block>
   </view>
+</view>
+<view class="movie-content-wrapper">
+  <swiper current="{{navbarActiveIndex}}" bindanimationfinish="onBindAnimationFinish">
+    <swiper-item>
+      <scroll-view scroll-y="true">
+        <view wx:if="{{articleOrQuestion}}">
+          <block wx:for="{{msgList}}" wx:for-item='item' wx:key='key' class='list'>
+            <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
+              <text class='title'>{{item.title}}\n</text>
+              <text class='author'>{{item.author}}</text>
+              <view class='photo'>
+                <image src="https://xiaoyc.com.cn/health/{{item.pic}}" mode="widthFix"></image>
+              </view>
+              <text class='article'>{{item.article}}\n</text>
+            </view>
+
+          </block>
+
+          <text class="last" wx:if="{{isLast}}">我也是有底线的</text>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
 </view>

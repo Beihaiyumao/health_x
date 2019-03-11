@@ -10,12 +10,12 @@ Page({
     userId: '',
     msgList: [{
       articleId: 1, //文章id
-      title: "标题一", //标题
-      createTime: "2017-3-5 23:01:59", //创建时间
+      title: "", //标题
+      createTime: "", //创建时间
       article: '', //导语
       author: '', //作者
       content: '', //内容
-      pic: "../../images/wechatHL.png", //图片
+      pic: "", //图片
     }, ],
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏
     searchLoadingComplete: false, //“没有数据”的变量，默认false，隐藏
@@ -24,6 +24,46 @@ Page({
     pages: '', //一共多少页
     total: '', //总共多少条数据
     pageNum: 1,
+    navbarActiveIndex: 0,
+    navbarTitle: [
+      "健康百科",
+      "健康问答"
+    ],
+    articleOrQuestion:true,
+  },
+  /**
+  * 点击导航栏
+  */
+  onNavBarTap: function (event) {
+    // 获取点击的navbar的index
+    let navbarTapIndex = event.currentTarget.dataset.navbarIndex
+    // 设置data属性中的navbarActiveIndex为当前点击的navbar
+    this.setData({
+      navbarActiveIndex: navbarTapIndex
+    })
+  },
+
+  /**
+   * 
+   */
+  onBindAnimationFinish: function ({ detail }) {
+    // 设置data属性中的navbarActiveIndex为当前点击的navbar
+    console.log(detail.current)
+    if (detail.current==1){
+      this.setData({
+        articleOrQuestion:false,
+      })
+      
+    }else{
+      this.setData({
+        articleOrQuestion:true,
+      })
+      this.getMyHealthArticle();
+    }
+   
+    this.setData({
+      navbarActiveIndex: detail.current
+    })
   },
   //获取用户输入的值
   search_title: function (e) {

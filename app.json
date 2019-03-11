@@ -14,7 +14,6 @@
     "pages/user/healthArticle",
     "pages/user/healthArticleDetail",
     "pages/user/healthQuestion",
-    "pages/user/healthQuestionDetail",
     "pages/healthQuestion/addHealthQuestion",
     "pages/index/bmi",
     "pages/index/whr",

@@ -77,9 +77,15 @@ Page({
   onPullDownRefresh: function() {
     var that = this;
     that.setData({
-      pageSize: this.data.pageSize - 10,
+      pageSize: this.data.pageSize -10,
       isLast: false,
     })
+    if(this.data.pageSize<=0){
+      that.setData({
+        pageSize: 10,
+        isLast: false,
+      })
+    }
     wx.showNavigationBarLoading() //在标题栏中显示加载
     //模拟加载
     setTimeout(function() {
