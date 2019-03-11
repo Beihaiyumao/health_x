@@ -18,7 +18,7 @@
   font-size: 18px;
   margin-top: 60rpx;
   font-weight: 200;
-  font-family:YouYuan;
+  font-family: YouYuan;
 }
 
 .allComment {
@@ -61,6 +61,7 @@
   margin-left: 20rpx;
   margin-right: 20rpx;
 }
+
 /**隐藏滚动条*/
 
 ::-webkit-scrollbar {
@@ -68,9 +69,19 @@
   height: 0;
   color: transparent;
 }
-.notComment{
+
+.notComment {
   text-align: center;
   padding: 20rpx 0;
   font-size: 24rpx;
   color: #999;
+}
+
+.emoji image{
+  width: 24px;
+  height: 24px;
+}
+.emoji{
+  margin-left: 360px;
+  margin-top: 20px;
 }

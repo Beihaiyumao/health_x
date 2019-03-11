@@ -5,6 +5,9 @@
       <text class='title'>{{title}}\n</text>
       <text class='createTime'>{{createTime}}\n</text>
       <text class='content'>{{detail}}</text>
+      <view class='emoji'>
+        <image  src='{{collectionPhoto}}' bindtap='collectionQuestion'></image>
+      </view>
     </view>
     <view>
       <view class='allComment'>

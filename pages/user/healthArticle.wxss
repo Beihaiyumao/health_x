@@ -1,121 +1,52 @@
 /* pages/user/healthArticle.wxss */
 
-    .search{  
-      width: 80%;  
-    }  
-    .search_arr {  
-      border: 1px solid #d0d0d0;  
-      border-radius: 10rpx;  
-      margin-left: 20rpx;  
-    }  
-    .search_arr input{  
-      margin-left: 60rpx;  
-      height: 60rpx;  
-      border-radius: 5px;  
-    }  
-    .bc_text {  
-      line-height: 68rpx;  
-      height: 68rpx;  
-      margin-top: 34rpx;  
-    }  
-      
-    .sousuo {  
-      margin-left: 15rpx;  
-      width: 15%;  
-      line-height: 150%;  
-      text-align: center;  
-      border: 1px solid #d0d0d0;  
-      border-radius: 10rpx;  
-    }  
-    .page_row{  
-      display: flex;  
-      flex-direction: row;
-        margin-top: 5%;
-    }  
-    .searchcion {  
-      margin: 10rpx 10rpx 10rpx 10rpx;  
-      position: absolute;  
-      left:25rpx;  
-      z-index: 2;  
-      width: 20px;  
-      height: 20px;  
-      text-align: center;  
-    } 
-
-
-.mt60 {
-  margin-top: 120rpx;
-}
-
-.user_list {
+.navBar {
+  border: 1px solid #ccc;
+  height: 50px;
   width: 100%;
-  border-bottom: 1px #ccc solid;
 }
 
-.clearfix::after {
-  content: '';
-  display: table;
-  clear: both;
-  zoom: 1;
+.healthArticle {
+  margin-left: 70px;
 }
 
-.user_list text:nth-child(1) {
-  overflow: hidden;
-  padding: 30rpx 0rpx 30rpx 5%;
-  width: 100%;
-  display: block;
+.healthQuestion {
+  margin-left: 110px;
+}
+.svmsg{
+  margin-top: 50px;
 }
 
-.user_list text:nth-child(2) {
-  font-size: 35rpx;
-  color: #333;
-  padding: 0rpx 0rpx 30rpx 5%;
-  line-height: 55rpx;
-  width: 100%;
-  display: block;
-}
-/**搜索框*/
-.weui-search-bar {
-  position: relative;
-  padding: 8px 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
+.movie-container{
   display: flex;
-  box-sizing: border-box;
-  background-color: #EFEFF4;
-  border-top: 1rpx solid #D7D6DC;
-  border-bottom: 1rpx solid #D7D6DC;
+  flex-direction: column;
 }
-.weui-icon-search_in-box {
+.navbar{
+  display: flex;
   position: absolute;
-  left: 10px;
-  top: 7px;
-}
-.weui-search-bar__form {
-  position: relative;
-  -webkit-box-flex: 1;
-  -webkit-flex: auto;
-          flex: auto;
-  border-radius: 5px;
-  background: #FFFFFF;
-  border: 1rpx solid #E6E6EA;
-}
-.weui-search-bar__box {
-  position: relative;
-  padding-left: 30px;
-  padding-right: 30px;
+  left: 0;
+  top: 0;
+  z-index: 500;
   width: 100%;
+  height: 50px;
+  flex-direction: row;
+  text-align: center;
+  color: #A8A8A8;
+  font-size: 15px;
   box-sizing: border-box;
-  z-index: 1;
+  background-color: #FFF;
+  border-bottom: 1rpx solid #DFDFDF;
 }
-.weui-search-bar__input {
-  height: 28px;
-  line-height: 28px;
-  font-size: 14px;
+.navbar-item{
+  flex: 1;
+  padding: 26rpx 0px;
 }
-.weui-search-bar__cancel-btn {
-  margin-left: 10px;
-  line-height: 28px;
-  color: #09BB07;
-  white-space: nowrap;
+.navbar-item-active{
+  transition: all 0.3s;
+  border-bottom: 10rpx solid #494949;
+  color: #494949;
+}
+
+.movie-content-wrapper{
+  padding-top: 50px;
 }
