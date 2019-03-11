@@ -56,21 +56,6 @@ Page({
   onUnload: function() {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
@@ -162,7 +147,7 @@ Page({
             }),
             wx.showToast({
               title: '收藏成功!',
-              icon: 'none',
+              icon: 'success',
             })
         } else {
           //取消收藏
@@ -178,8 +163,13 @@ Page({
                   }),
                   wx.showToast({
                     title: '取消收藏成功!',
-                    icon: 'none',
+                    icon: 'success',
                   })
+              }else{
+                wx.showToast({
+                  title: e.data.msg,
+                  icon:'loading',
+                })
               }
             }
           })
