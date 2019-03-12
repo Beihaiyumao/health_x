@@ -1,15 +1,32 @@
 <!--pages/user/userInfo.wxml-->
 
 <view class="pageHead">
-<view class='user_top'>
-<image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
-<view class='user_head' style=''bindtap='changeUserPic'>
-<image src='https://xiaoyc.com.cn/health/{{headPhoto}}'></image>
-</view>
-<view class='userinfo_user' style='margin-top:60rpx;'><text>用户名</text><input placeholder='{{username}}'></input></view>
-<view class='userinfo_user'><text>性别</text><input placeholder='{{sex}}'></input></view>
-<view class='userinfo_user'><text>电话号码</text><input placeholder='{{phone}}'></input></view>
-<view class='userinfo_user' style='border-bottom:1px #ccc solid;'><text>家庭住址</text><input placeholder='{{address}}'></input></view>
-<button class="user_end mt60" bindtap='saveChangeUserInfo'>保存修改</button>
-</view>
+  <view class='user_top'>
+    <image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
+    <view class='user_head' style='' bindtap='changeUserPic'>
+      <image src='https://xiaoyc.com.cn/health/{{headPhoto}}'></image>
+    </view>
+    <view class='userinfo_user' style='margin-top:60rpx;'>
+      <text>用户名</text>
+      <input placeholder='{{username}}'></input>
+    </view>
+    <view class='userinfo_user'>
+      <text>性别</text>
+      <input placeholder='{{sex}}'></input>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{sexs}}" wx:for-item='item' wx:key='key'>
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
+    </view>
+    <view class='userinfo_user'>
+      <text>电话号码</text>
+      <input placeholder='{{phone}}'></input>
+    </view>
+    <view class='userinfo_user' style='border-bottom:1px #ccc solid;'>
+      <text>家庭住址</text>
+      <input placeholder='{{address}}'></input>
+    </view>
+    <button class="user_end mt60" bindtap='saveChangeUserInfo'>保存修改</button>
+  </view>
 </view>

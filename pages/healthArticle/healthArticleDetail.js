@@ -28,6 +28,7 @@ Page({
     replyComment: '', //回复内容
     username: '',
     collectionArticleId:'',//收藏id
+    likeArticle:'/images/healthArticle/notLike.png',//未点赞
   },
 
   //获取用户输入内容
