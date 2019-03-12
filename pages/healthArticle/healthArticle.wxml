@@ -18,7 +18,7 @@
   <text>\n</text>
   <text>\n</text>
 </view>
-<view >
+<view class='articleList'>
   <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key' class='list'>
     <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
       <text class='title'>{{item.title}}\n</text>

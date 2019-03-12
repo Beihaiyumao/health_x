@@ -19,7 +19,7 @@
 <text>\n</text>
 <text>\n</text>
 </view>
-<view>
+<view class='healthQuestionList'>
 <block wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
   <view class='question'  bindtap='gotoQuetionDetail' id="{{item.questionId}}">
     <!--<text class='nickname'>{{item.questionId}}\n</text>-->

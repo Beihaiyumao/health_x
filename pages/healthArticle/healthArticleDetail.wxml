@@ -69,7 +69,7 @@
     <view class="line" />
   </view>
   <image bindtap='userCollect' class="emoji" src="{{collectionPhoto}}" />
-  <image class='likeArticle' src='{{likeArticle}}'></image>
+  <image class='likeArticle' bindtap='userClickLike' src='{{likeArticle}}'></image>
   <button open-type="share" class='shareButton'>
     <image class='share' src='/images/healthArticle/share.png'></image>
   </button>
