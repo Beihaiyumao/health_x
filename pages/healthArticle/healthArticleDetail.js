@@ -29,7 +29,7 @@ Page({
     username: '',
     collectionArticleId: '', //收藏id
     likeArticle: '/images/healthArticle/notLike.png', //未点赞
-    likeArticleId:'',//点赞id
+    likeArticleId: '', //点赞id
   },
 
   //获取用户输入内容
@@ -256,37 +256,39 @@ Page({
         title: '您还未登陆,请先去登陆',
         icon: 'none',
       })
-    }
-    if (isrightful) {
-      wx.request({
-        url: urlPath + '/healthyArticle/insertArticleComment',
-        method: 'POST',
-        data: ({
-          articleId: this.data.articleId,
-          content: this.data.comment,
-          userId: wx.getStorageSync('userId'),
-        }),
-        success: function(e) {
-          console.log(e);
-          if (e.data.code == 100) {
-            wx.showToast({
-              title: '评论成功', //这里成功
-              icon: 'success',
-              duration: 1000,
-            });
-            that.setData({
-              inputComment: false,
-            });
-            that.getUserCommentInfo();
-          } else {
-            wx.showLoading({
-              title: '发布失败',
-              duration: 1500,
-            })
+    } else {
+      if (isrightful) {
+        wx.request({
+          url: urlPath + '/healthyArticle/insertArticleComment',
+          method: 'POST',
+          data: ({
+            articleId: this.data.articleId,
+            content: this.data.comment,
+            userId: wx.getStorageSync('userId'),
+          }),
+          success: function(e) {
+            console.log(e);
+            if (e.data.code == 100) {
+              wx.showToast({
+                title: '评论成功', //这里成功
+                icon: 'success',
+                duration: 1000,
+              });
+              that.setData({
+                inputComment: false,
+              });
+              that.getUserCommentInfo();
+            } else {
+              wx.showLoading({
+                title: '发布失败',
+                duration: 1500,
+              })
+            }
           }
-        }
-      })
+        })
+      }
     }
+
   },
   /**检测用户输入是否规范 */
   checkInput: function() {
@@ -360,7 +362,7 @@ Page({
         if (e.data.code == 200) {
           that.setData({
             likeArticle: '/images/healthArticle/like.png',
-            likeArticleId:e.data.object,
+            likeArticleId: e.data.object,
           })
         }
       }
@@ -369,65 +371,66 @@ Page({
   /**
    * 用户点击点赞
    */
-  userClickLike:function(){
-    var that=this;
+  userClickLike: function() {
+    var that = this;
     if (wx.getStorageSync('userId') == "") {
       wx.showToast({
         title: '您还未登陆,请先去登陆',
         icon: 'none',
       })
-    }    
-    that.userIsNotLike();
-    if(this.data.likeArticleId==''){
-      wx.request({
-        url: urlPath + '/healthyArticle/insertLikeArticle',
-        method: 'POST',
-        data: {
-          userId: wx.getStorageSync('userId'),
-          articleId: this.data.articleId,
-        },
-        success: function (e) {
-          console.log(e)
-          if (e.data.code == 100) {
-            that.setData({
-              likeArticle: '/images/healthArticle/like.png',
-            });
-            wx.showToast({
-              title: '已点赞',
-              icon: 'success',
-            })
-          } else {
-            wx.showToast({
-              title: e.data.msg,
-              icon:'loading',
-            })
+    } else {
+      that.userIsNotLike();
+      if (this.data.likeArticleId == '') {
+        wx.request({
+          url: urlPath + '/healthyArticle/insertLikeArticle',
+          method: 'POST',
+          data: {
+            userId: wx.getStorageSync('userId'),
+            articleId: this.data.articleId,
+          },
+          success: function(e) {
+            console.log(e)
+            if (e.data.code == 100) {
+              that.setData({
+                likeArticle: '/images/healthArticle/like.png',
+              });
+              wx.showToast({
+                title: '已点赞',
+                icon: 'success',
+              })
+            } else {
+              wx.showToast({
+                title: e.data.msg,
+                icon: 'loading',
+              })
+            }
           }
-        }
-      })
-    }else{
-      wx.request({
-        url: urlPath +'/healthyArticle/deleteLikeArticle',
-        method:'GET',
-        data:{
-          likeArticleId:this.data.likeArticleId,
-        },
-        success:function(e){
-          if(e.data.code==100){
-            that.setData({
-              likeArticle: '/images/healthArticle/notLike.png',
-            });
-            wx.showToast({
-              title: '已取消点赞',
-              icon:'success',
-            })
-          }else{
-            wx.showToast({
-              title: e.data.msg,
-              icon:'loading',
-            })
+        })
+      } else {
+        wx.request({
+          url: urlPath + '/healthyArticle/deleteLikeArticle',
+          method: 'GET',
+          data: {
+            likeArticleId: this.data.likeArticleId,
+          },
+          success: function(e) {
+            if (e.data.code == 100) {
+              that.setData({
+                likeArticle: '/images/healthArticle/notLike.png',
+              });
+              wx.showToast({
+                title: '已取消点赞',
+                icon: 'success',
+              })
+            } else {
+              wx.showToast({
+                title: e.data.msg,
+                icon: 'loading',
+              })
+            }
           }
-        }
-      })
+        })
+      }
     }
   },
 })
