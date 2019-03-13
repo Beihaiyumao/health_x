@@ -18,8 +18,13 @@ Page({
    wx.setStorageSync("userId", '00854e05ccec');
     if (wx.getStorageSync('userId') == "") {
       this.showErrorToastUtils();
+    }else{
+      wx.showToast({
+        title: '正在加载中',
+        icon:'loading',
+      })
     }
-
+    
   },
   /**
    * 退出登录

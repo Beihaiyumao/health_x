@@ -75,7 +75,6 @@ Page({
         questionId: this.data.questionId,
       },
       success: function(e) {
-        console.log(e);
         if (e.data.code == 100) {
           wx.showToast({
               title: e.data.msg,
@@ -107,7 +106,6 @@ Page({
         questionId: this.data.questionId,
       },
       success: function(e) {
-        console.log(e);
         that.setData({
           answerList: e.data.list,
           commentTotal: e.data.total,
@@ -140,7 +138,6 @@ Page({
         questionId: this.data.questionId,
       },
       success: function(e) {
-        console.log(e);
         if (e.data.code == 100) {
           that.setData({
               collectionPhoto: '/images/healthArticle/isCo.png'
@@ -156,7 +153,6 @@ Page({
             method: 'GET',
             success: function(e) {
               console.log(that.data.collectionQuestionId);
-              console.log(e);
               if (e.data.code == 100) {
                 that.setData({
                     collectionPhoto: '/images/healthArticle/notCo.png',
@@ -165,10 +161,10 @@ Page({
                     title: '取消收藏成功!',
                     icon: 'success',
                   })
-              }else{
+              } else {
                 wx.showToast({
                   title: e.data.msg,
-                  icon:'loading',
+                  icon: 'none',
                 })
               }
             }
@@ -194,7 +190,7 @@ Page({
         if (e.data.code == 100) {
           that.setData({
             collectionPhoto: '/images/healthArticle/isCo.png',
-            collectionQuestionId:e.data.object,
+            collectionQuestionId: e.data.object,
           })
         }
       }

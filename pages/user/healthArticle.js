@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    search_title:'',
+    search_title: '',
     userId: '',
     msgList: [{
       articleId: 1, //文章id
@@ -19,8 +19,6 @@ Page({
     }, ],
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏
     searchLoadingComplete: false, //“没有数据”的变量，默认false，隐藏
-    isFirstPage: '', //是否是第一页
-    isLastPage: '', //是否是最后一页
     pages: '', //一共多少页
     total: '', //总共多少条数据
     pageNum: 1,
@@ -29,12 +27,14 @@ Page({
       "健康百科",
       "健康问答"
     ],
-    articleOrQuestion:true,
+    questionList: '', //收藏问题列表
+    isLast: false, //是否是最后一页
+    pageSize: 10, //每页显示多少数据
   },
   /**
-  * 点击导航栏
-  */
-  onNavBarTap: function (event) {
+   * 点击导航栏
+   */
+  onNavBarTap: function(event) {
     // 获取点击的navbar的index
     let navbarTapIndex = event.currentTarget.dataset.navbarIndex
     // 设置data属性中的navbarActiveIndex为当前点击的navbar
@@ -46,27 +46,16 @@ Page({
   /**
    * 
    */
-  onBindAnimationFinish: function ({ detail }) {
+  onBindAnimationFinish: function({
+    detail
+  }) {
     // 设置data属性中的navbarActiveIndex为当前点击的navbar
-    console.log(detail.current)
-    if (detail.current==1){
-      this.setData({
-        articleOrQuestion:false,
-      })
-      
-    }else{
-      this.setData({
-        articleOrQuestion:true,
-      })
-      this.getMyHealthArticle();
-    }
-   
     this.setData({
       navbarActiveIndex: detail.current
     })
   },
   //获取用户输入的值
-  search_title: function (e) {
+  search_title: function(e) {
     this.setData({
       search_title: e.detail.value
     })
@@ -90,6 +79,7 @@ Page({
    */
   onShow: function() {
     this.getMyHealthArticle();
+    this.getMyHealthQuestion();
   },
 
   /**
@@ -117,7 +107,20 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    var that = this;
+    that.setData({
+        pageSize: this.data.pageSize + 10,
+      }),
+      wx.showToast({
+        title: '正在加载', //这里成功
+        icon: 'loading',
+        duration: 1500,
+      })
+    if (this.data.navbarActiveIndex == '0') {
+      this.getMyHealthArticle();
+    } else {
+      this.getMyHealthQuestion();
+    }
   },
 
   /**
@@ -132,10 +135,11 @@ Page({
   getMyHealthArticle: function() {
     var that = this;
     wx.request({
-      url: urlPath+'/user/myCollectionArticle',
+      url: urlPath + '/user/myCollectionArticle',
       method: 'GET',
       data: {
         userId: wx.getStorageSync('userId'),
+        pageSize: this.data.pageSize,
       },
       success: function(res) {
         console.log(res);
@@ -144,37 +148,37 @@ Page({
           msgList: res.data.list,
           total: res.data.total,
           isFirstPage: res.data.isFirstPage,
-          isLastPage: res.data.isLastPage,
           pages: res.data.pages,
           total: res.data.total,
           isFromSearch: true, //第一次加载，设置true
           searchLoading: true, //把"上拉加载"的变量设为true，显示
           pageNum: res.data.pageNum,
+          isLast: res.data.isLastPage,
         })
 
       }
     })
   },
   /**
-  * 模糊查询
-  */
-  searchMyArticle: function () {
+   * 模糊查询
+   */
+  searchMyArticle: function() {
     var that = this;
     if (this.data.search_title != null) {
       wx.request({
-        url: urlPath+'/user/selectMyHealthArticle',
+        url: urlPath + '/user/selectMyHealthArticle',
         method: 'GET',
         data: {
           title: this.data.search_title,
           userId: wx.getStorageSync('userId'),
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res);
-          if(res.data.list.length==0){
+          if (res.data.list.length == 0) {
             wx.showToast({
               title: '没有该内容哦',
-              icon:"success",
-              duration:1500,
+              icon: "success",
+              duration: 1500,
             })
           }
           that.setData({
@@ -190,5 +194,46 @@ Page({
         }
       })
     }
-  }
+  },
+  /**
+   * 获取我收藏的问题
+   */
+  getMyHealthQuestion: function() {
+    var that = this;
+    wx.request({
+      url: urlPath + '/question/selectMyCollectionQuestion',
+      method: 'GET',
+      data: {
+        userId: wx.getStorageSync('userId'),
+        pageSize: this.data.pageSize,
+      },
+      success: function(e) {
+        console.log(e);
+        that.setData({
+          questionList: e.data.list,
+          isLast: e.data.isLastPage,
+        })
+      }
+    })
+  },
+  /**
+ * 文章详情
+ */
+  gotoProjectDetail: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/healthArticle/healthArticleDetail?articleId=' + e.currentTarget.id,
+    })
+
+  },
+  /**
+ * 问题详情
+ */
+  gotoQuetionDetail: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/healthQuestion/healthQuestionDetail?questionId=' + e.currentTarget.id,
+    })
+
+  },
 })
