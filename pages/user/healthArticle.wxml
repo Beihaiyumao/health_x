@@ -1,6 +1,6 @@
 <view class="movie-container">
   <!-- 导航栏 -->
-  <view class="navbar">
+  <view class="navbar" style="position:fixed;top:0;">
     <block wx:for="{{navbarTitle}}" wx:key="index">
       <view class="navbar-item {{navbarActiveIndex === index ? 'navbar-item-active' : ''}}" data-navbar-index="{{index}}" catchtap="onNavBarTap">
         <text>{{item}}</text>
@@ -10,24 +10,39 @@
 </view>
 <view class="movie-content-wrapper">
   <swiper current="{{navbarActiveIndex}}" bindanimationfinish="onBindAnimationFinish">
-    <swiper-item>
-      <scroll-view scroll-y="true">
-        <view wx:if="{{articleOrQuestion}}">
-          <block wx:for="{{msgList}}" wx:for-item='item' wx:key='key' class='list'>
-            <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
-              <text class='title'>{{item.title}}\n</text>
-              <text class='author'>{{item.author}}</text>
-              <view class='photo'>
-                <image src="https://xiaoyc.com.cn/health/{{item.pic}}" mode="widthFix"></image>
+    <view class='www'>
+      <swiper-item>
+        <scroll-view scroll-y='true'>
+          <view class='beautifule'>
+            <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key' class='list'>
+              <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
+                <text class='title'>{{item.title}}\n</text>
+                <text class='author'>{{item.author}}</text>
+                <view class='photo'>
+                  <image src="https://xiaoyc.com.cn/health/{{item.pic}}" mode="widthFix"></image>
+                </view>
+                <text class='article'>{{item.article}}\n</text>
               </view>
-              <text class='article'>{{item.article}}\n</text>
             </view>
-
-          </block>
-
-          <text class="last" wx:if="{{isLast}}">我也是有底线的</text>
-        </view>
-      </scroll-view>
-    </swiper-item>
+            <text class="last" wx:if="{{isLast}}">我也是有底线的</text>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y='true'>
+          <view class='beautifule'>
+            <view wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
+              <view class='question' bindtap='gotoQuetionDetail' id="{{item.questionId}}">
+                <text class='questionTitle'>{{item.title}}\n</text>
+                <view class='questionDetail'>
+                  <text>{{item.detail}}\n</text>
+                </view>
+              </view>
+            </view>
+            <text class="last" wx:if="{{isLast}}">我也是有底线的</text>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </view>
   </swiper>
 </view>

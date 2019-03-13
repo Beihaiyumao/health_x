@@ -146,7 +146,6 @@ Page({
           articleId: this.data.articleId,
         },
         success: function(e) {
-          console.log(e);
           //100证明未收藏
           if (e.data.code == 100) {
             that.setData({
@@ -166,7 +165,6 @@ Page({
                 collectionArticleId: that.data.collectionArticleId,
               },
               success: function(e) {
-                console.log(e);
                 if (e.data.code == 100) {
                   that.setData({
                     collectionPhoto: '/images/healthArticle/notCo.png',
@@ -205,7 +203,6 @@ Page({
 
       method: "GET", //get为默认方法/POST
       success: function(res) {
-        console.log(res);
         if (res.data != "") {
           that.setData({
             article: res.data.article,
