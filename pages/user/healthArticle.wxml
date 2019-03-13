@@ -24,7 +24,7 @@
                 <text class='article'>{{item.article}}\n</text>
               </view>
             </view>
-            <text class="last" wx:if="{{isLast}}">我也是有底线的</text>
+            <text class="last" wx:if="{{isLastArticle}}">我也是有底线的</text>
           </view>
         </scroll-view>
       </swiper-item>
@@ -39,7 +39,7 @@
                 </view>
               </view>
             </view>
-            <text class="last" wx:if="{{isLast}}">我也是有底线的</text>
+            <text class="last" wx:if="{{isLastQuestion}}">我也是有底线的</text>
           </view>
         </scroll-view>
       </swiper-item>

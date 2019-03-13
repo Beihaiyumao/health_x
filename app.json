@@ -12,7 +12,6 @@
     "pages/healthQuestion/healthQuestionDetail",
     "pages/user/userInfo",
     "pages/user/healthArticle",
-    "pages/user/healthArticleDetail",
     "pages/user/healthQuestion",
     "pages/healthQuestion/addHealthQuestion",
     "pages/index/bmi",

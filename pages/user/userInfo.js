@@ -13,13 +13,15 @@ Page({
     phone: '', //电话
     sex: '', //性别
     fileName: '',
+    sexCheckM: false, //男
+    sexCheckW: false, //女
   },
   username: function(e) {
     this.setData({
       username: e.detail.value,
     })
   },
-  sex: function(e) {
+  radioChange: function(e) {
     this.setData({
       sex: e.detail.value,
     })
@@ -40,7 +42,7 @@ Page({
   onLoad: function(options) {
     wx.showToast({
       title: '正在加载中',
-      icon:'loading',
+      icon: 'loading',
     })
     this.getUserInfo();
   },
@@ -115,6 +117,15 @@ Page({
             sex: e.data.object.sex,
             phone: e.data.object.phone,
           })
+          if (e.data.object.sex == '0') {
+            that.setData({
+              sexCheckM: true,
+            })
+          } else {
+            that.setData({
+              sexCheckW: true,
+            })
+          }
         }
       }
     })
@@ -123,35 +134,41 @@ Page({
    * 保存修改信息
    */
   saveChangeUserInfo: function() {
-    console.log(this.data.fileName);
+    var that = this;
+    var userinputTrue = that.checkInput();
+    console.log(this.data.sex);
     console.log(this.data.username + "user")
-    this.changeUserPhoto();
-    wx.request({
-      url: urlPath + '/user/updateUserInfo',
-      method: 'POST',
-      data: {
-        userId: wx.getStorageSync('userId'),
-        username: this.data.username,
-        sex: this.data.sex,
-        phone: this.data.phone,
-        address: this.data.address,
-      },
-      success: function(e) {
-        console.log(e);
-        if (e.data.code == 100) {
-          wx.showToast({
-            title: e.data.msg,
-            icon: 'success',
-          })
-        } else {
-          wx.showToast({
-            title: e.data.msg,
-            icon: 'loading',
-          })
+    if (userinputTrue) {
+      this.changeUserPhoto();
+      wx.request({
+        url: urlPath + '/user/updateUserInfo',
+        method: 'POST',
+        data: {
+          userId: wx.getStorageSync('userId'),
+          username: this.data.username,
+          sex: this.data.sex,
+          phone: this.data.phone,
+          address: this.data.address,
+        },
+        success: function(e) {
+          console.log(e);
+          if (e.data.code == 100) {
+            wx.showToast({
+              title: e.data.msg,
+              icon: 'success',
+            });
+            wx.switchTab({
+              url: '../user/user'
+            });
+          } else {
+            wx.showToast({
+              title: e.data.msg,
+              icon: 'loading',
+            })
+          }
         }
-      }
-    });
-
+      });
+    }
   },
   /**
    * 更新头像
@@ -176,7 +193,26 @@ Page({
    * 校验用户输入合法性
    */
   checkInput: function() {
-
+    if (this.data.username.length >= 16) {
+      wx.showToast({
+        title: '用户名请保持在16个字符内',
+        icon: 'none',
+      })
+      return false;
+    } else if (this.data.phone.length != 11) {
+      wx.showToast({
+        title: '请输入正确的手机号',
+        icon: 'none',
+      })
+      return false;
+    } else if (this.data.address.length >= 50) {
+      wx.showToast({
+        title: '住址请保持50个字符内',
+        icon: 'none',
+      })
+      return false;
+    }
+    return true;
   },
   /**
    * 上传头像

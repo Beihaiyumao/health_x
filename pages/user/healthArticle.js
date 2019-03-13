@@ -8,15 +8,7 @@ Page({
   data: {
     search_title: '',
     userId: '',
-    msgList: [{
-      articleId: 1, //文章id
-      title: "", //标题
-      createTime: "", //创建时间
-      article: '', //导语
-      author: '', //作者
-      content: '', //内容
-      pic: "", //图片
-    }, ],
+    msgList:'',
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏
     searchLoadingComplete: false, //“没有数据”的变量，默认false，隐藏
     pages: '', //一共多少页
@@ -28,7 +20,8 @@ Page({
       "健康问答"
     ],
     questionList: '', //收藏问题列表
-    isLast: false, //是否是最后一页
+    isLastArticle:false,//
+    isLastQuestion:false,//
     pageSize: 10, //每页显示多少数据
   },
   /**
@@ -41,6 +34,11 @@ Page({
     this.setData({
       navbarActiveIndex: navbarTapIndex
     })
+    if (this.data.navbarActiveIndex == '0') {
+      this.getMyHealthArticle();
+    } else {
+      this.getMyHealthQuestion();
+    }
   },
 
   /**
@@ -53,12 +51,11 @@ Page({
     this.setData({
       navbarActiveIndex: detail.current
     })
-  },
-  //获取用户输入的值
-  search_title: function(e) {
-    this.setData({
-      search_title: e.detail.value
-    })
+    if (this.data.navbarActiveIndex == '0') {
+      this.getMyHealthArticle();
+    } else {
+      this.getMyHealthQuestion();
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -79,7 +76,7 @@ Page({
    */
   onShow: function() {
     this.getMyHealthArticle();
-    this.getMyHealthQuestion();
+    // this.getMyHealthQuestion();
   },
 
   /**
@@ -133,6 +130,10 @@ Page({
    * 获取我收藏的文章列表
    */
   getMyHealthArticle: function() {
+    wx.showToast({
+      title: '正在加载中',
+      icon: 'loading',
+    })
     var that = this;
     wx.request({
       url: urlPath + '/user/myCollectionArticle',
@@ -143,62 +144,35 @@ Page({
       },
       success: function(res) {
         console.log(res);
-
-        that.setData({
-          msgList: res.data.list,
-          total: res.data.total,
-          isFirstPage: res.data.isFirstPage,
-          pages: res.data.pages,
-          total: res.data.total,
-          isFromSearch: true, //第一次加载，设置true
-          searchLoading: true, //把"上拉加载"的变量设为true，显示
-          pageNum: res.data.pageNum,
-          isLast: res.data.isLastPage,
-        })
-
-      }
-    })
-  },
-  /**
-   * 模糊查询
-   */
-  searchMyArticle: function() {
-    var that = this;
-    if (this.data.search_title != null) {
-      wx.request({
-        url: urlPath + '/user/selectMyHealthArticle',
-        method: 'GET',
-        data: {
-          title: this.data.search_title,
-          userId: wx.getStorageSync('userId'),
-        },
-        success: function(res) {
-          console.log(res);
-          if (res.data.list.length == 0) {
-            wx.showToast({
-              title: '没有该内容哦',
-              icon: "success",
-              duration: 1500,
-            })
-          }
+        if(res.data.total==0){
+          wx.showToast({
+            title: '您还没有收藏任何文章哦',
+            icon:'none',
+          })
+        }else{
           that.setData({
             msgList: res.data.list,
+            total: res.data.total,
             isFirstPage: res.data.isFirstPage,
-            isLastPage: res.data.isLastPage,
             pages: res.data.pages,
             total: res.data.total,
             isFromSearch: true, //第一次加载，设置true
             searchLoading: true, //把"上拉加载"的变量设为true，显示
             pageNum: res.data.pageNum,
+            isLastArticle: res.data.isLastPage,
           })
         }
-      })
-    }
+      }
+    })
   },
   /**
    * 获取我收藏的问题
    */
   getMyHealthQuestion: function() {
+    wx.showToast({
+      title: '正在加载中',
+      icon: 'loading',
+    })
     var that = this;
     wx.request({
       url: urlPath + '/question/selectMyCollectionQuestion',
@@ -209,10 +183,18 @@ Page({
       },
       success: function(e) {
         console.log(e);
-        that.setData({
-          questionList: e.data.list,
-          isLast: e.data.isLastPage,
-        })
+        if(e.data.total==0){
+          wx.showToast({
+            title: '您还没有收藏任何问题哦',
+            icon:'none',
+          })
+        }else{
+          that.setData({
+            questionList: e.data.list,
+            isLastQuestion: e.data.isLastPage,
+          })
+        }
+
       }
     })
   },
