@@ -1,10 +1,12 @@
 /* pages/user/userInfo.wxss */
-.user_top{
+
+.user_top {
   width: 100%;
   height: auto;
   position: relative;
 }
-.user_head{
+
+.user_head {
   position: absolute;
   z-index: 1;
   top: 0rpx;
@@ -13,74 +15,84 @@
   height: auto;
   text-align: center;
 }
-.user_head image{
+
+.user_head image {
   width: 220rpx;
   height: 220rpx;
   margin-top: 100rpx;
 }
-.user_head text{
-  color: #ffffff;
+
+.user_head text {
+  color: #fff;
   text-align: center;
   margin-top: 30rpx;
   display: block;
 }
-.mt60{
+
+.mt60 {
   margin-top: 120rpx;
 }
-.user_list{
+
+.user_list {
   width: 100%;
-  border-top: 1px #cccccc solid;
+  border-top: 1px #ccc solid;
 }
-.clearfix::after{
+
+.clearfix::after {
   content: '';
   display: table;
   clear: both;
   zoom: 1;
 }
 
-.userinfo_user{
+.userinfo_user {
   display: block;
   width: 100%;
   padding: 30rpx 5%;
   border-top: 1px #ccc solid;
 }
+
 .userinfo_user text {
   display: inline-block;
   width: 30%;
- float: left;
- height: 60rpx;
- line-height: 60rpx;
-}
-.userinfo_user input{
-  display: inline-block;
-  width: 60%;
-  border: 1px #cccccc solid;
-   height: 60rpx;
- line-height: 60rpx;
+  float: left;
+  height: 60rpx;
+  line-height: 60rpx;
 }
 
-.user_list text:nth-child(2){
+.userinfo_user input {
+  display: inline-block;
+  width: 60%;
+  border: 1px #ccc solid;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.user_list text:nth-child(2) {
   float: right;
   display: block;
   width: 10%;
-  padding: 30rpx 0rpx ;
+  padding: 30rpx 0rpx;
 }
-.user_end{
+
+.user_end {
   background: green;
-  color: #ffffff;
-  margin: 0rpx 30% 120rpx;
+  color: #fff;
+  margin: 0rpx 10% 120rpx;
   border-radius: 30rpx;
   padding: 8rpx 0rpx;
-  width: 40%;
-  margin-top: 140rpx;
+  width: 80%;
+  margin-top: 40rpx;
 }
-.update{
+
+.update {
   text-align: center;
   margin-top: 120rpx;
 }
-.pageHead{
-   position: fixed;
-   width:100%;
-   background-color:#fff;
-	 z-index: 10;
+
+.pageHead {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  z-index: 10;
 }
