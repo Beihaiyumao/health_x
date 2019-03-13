@@ -2,7 +2,7 @@
 
 <view class="pageHead">
   <view class='user_top'>
-    <image class='user_image' src='/images/login/banner.jpg' style='width:100%;'></image>
+    <image class='user_image' src='/images/user/user_background.jpg' style='width:100%;'></image>
     <view class='user_head' style='' bindtap='changeUserPic'>
       <image src='{{headPhoto}}'></image>
     </view>
@@ -12,16 +12,16 @@
     </view>
     <view class='userinfo_user'>
       <text>性别</text>
-      <input placeholder='{{sex}}'></input>
       <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio" wx:for="{{sexs}}" wx:for-item='item' wx:key='key'>
-          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        <label class="radio">
+          <radio value="0" checked='{{sexCheckM}}' />男
+          <radio value='1' checked='{{sexCheckW}}'>女</radio>
         </label>
       </radio-group>
     </view>
     <view class='userinfo_user'>
       <text>电话号码</text>
-      <input placeholder='{{phone}}' bindinput='phone'></input>
+      <input type='number' placeholder='{{phone}}' bindinput='phone'></input>
     </view>
     <view class='userinfo_user' style='border-bottom:1px #ccc solid;'>
       <text>家庭住址</text>
