@@ -123,56 +123,58 @@ Page({
    */
   collectionQuestion: function() {
     var that = this;
-    if (wx.getStorageSync('userId') == null && wx.getStorageSync('userId') == "" && wx.getStorageSync('userId') == undefined) {
+    if (wx.getStorageSync('userId') == null || wx.getStorageSync('userId') == "" || wx.getStorageSync('userId') == undefined) {
       wx.showToast({
         title: '请先登陆哦',
         icon: 'none',
       })
-    }
-    that.userIsOrNotCollQuestion();
-    wx.request({
-      url: urlPath + '/question/collectionQuestion',
-      method: 'POST',
-      data: {
-        userId: wx.getStorageSync('userId'),
-        questionId: this.data.questionId,
-      },
-      success: function(e) {
-        if (e.data.code == 100) {
-          that.setData({
+    }else{
+      that.userIsOrNotCollQuestion();
+      wx.request({
+        url: urlPath + '/question/collectionQuestion',
+        method: 'POST',
+        data: {
+          userId: wx.getStorageSync('userId'),
+          questionId: this.data.questionId,
+        },
+        success: function (e) {
+          if (e.data.code == 100) {
+            that.setData({
               collectionPhoto: '/images/healthArticle/isCo.png'
             }),
-            wx.showToast({
-              title: '收藏成功!',
-              icon: 'success',
-            })
-        } else {
-          //取消收藏
-          wx.request({
-            url: urlPath + '/question/deleteCollectionQuestion?collectionQuestionId=' + that.data.collectionQuestionId,
-            method: 'GET',
-            success: function(e) {
-              console.log(that.data.collectionQuestionId);
-              if (e.data.code == 100) {
-                that.setData({
+              wx.showToast({
+                title: '收藏成功!',
+                icon: 'success',
+              })
+          } else {
+            //取消收藏
+            wx.request({
+              url: urlPath + '/question/deleteCollectionQuestion?collectionQuestionId=' + that.data.collectionQuestionId,
+              method: 'GET',
+              success: function (e) {
+                console.log(that.data.collectionQuestionId);
+                if (e.data.code == 100) {
+                  that.setData({
                     collectionPhoto: '/images/healthArticle/notCo.png',
                   }),
+                    wx.showToast({
+                      title: '取消收藏成功!',
+                      icon: 'success',
+                    })
+                } else {
                   wx.showToast({
-                    title: '取消收藏成功!',
-                    icon: 'success',
+                    title: e.data.msg,
+                    icon: 'none',
                   })
-              } else {
-                wx.showToast({
-                  title: e.data.msg,
-                  icon: 'none',
-                })
+                }
               }
-            }
-          })
-        }
+            })
+          }
 
-      }
-    })
+        }
+      })
+    }
+   
   },
   /**
    * 判断用户是否已经收藏该问题
