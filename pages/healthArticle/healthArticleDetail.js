@@ -30,6 +30,7 @@ Page({
     collectionArticleId: '', //收藏id
     likeArticle: '/images/healthArticle/notLike.png', //未点赞
     likeArticleId: '', //点赞id
+    userAllLike: '', //该文章所有的赞
   },
 
   //获取用户输入内容
@@ -63,6 +64,7 @@ Page({
     this.getUserCommentInfo();
     this.getUserIsCollection();
     this.userIsNotLike();
+    this.getUserAllLike();
   },
 
   /**
@@ -81,6 +83,7 @@ Page({
     this.getUserCommentInfo();
     this.getUserIsCollection();
     this.userIsNotLike();
+    this.getUserAllLike();
   },
 
   /**
@@ -394,6 +397,7 @@ Page({
               that.setData({
                 likeArticle: '/images/healthArticle/like.png',
               });
+              that.getUserAllLike();
               wx.showToast({
                 title: '已点赞',
                 icon: 'success',
@@ -417,7 +421,9 @@ Page({
             if (e.data.code == 100) {
               that.setData({
                 likeArticle: '/images/healthArticle/notLike.png',
+                likeArticleId:'',
               });
+              that.getUserAllLike();
               wx.showToast({
                 title: '已取消点赞',
                 icon: 'success',
@@ -432,5 +438,23 @@ Page({
         })
       }
     }
+  },
+  /**
+   * 获取该文章的全部赞
+   */
+  getUserAllLike: function() {
+    var that = this;
+    wx.request({
+      url: urlPath + '/healthyArticle/selectLikeArticleAll',
+      method: 'GET',
+      data: {
+        articleId: this.data.articleId,
+      },
+      success: function(e) {
+        that.setData({
+          userAllLike: e.data.object,
+        })
+      }
+    })
   },
 })
