@@ -9,6 +9,10 @@
         <image src="https://xiaoyc.com.cn/health/{{pic}}" mode='widthFix'></image>
       </view>
       <text class='content'>{{content}}</text>
+      <view class='userAllLike'>
+        <image src='{{likeArticle}}'></image>
+        <text class='likeAll'>{{userAllLike}}</text>
+      </view>
     </view>
 
 
@@ -55,7 +59,6 @@
         </block>
       </view>
     </view>
-
     <view class='none' wx:if="{{notComment}}">
       <text>该文章还没有评论...</text>
     </view>

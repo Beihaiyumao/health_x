@@ -306,4 +306,28 @@
 .shareButton::after{
 border: none;
 }
-
+.userAllLike{
+  margin-top: 20px;
+  border: 1px #ccc solid;
+  border-radius: 60rpx;
+  height: 40px;
+  width: 120px;
+  margin-left: 140px;
+}
+.userAllLike image{
+  height: 34px;
+  width: 34px;
+  margin-left: 30px;
+}
+.userAllLike text{
+  font-size: 14px;
+  font-weight: 200;
+  font-family: YouYuan;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.likeAll{
+text-align: center;
+margin-bottom: 20px;
+}
