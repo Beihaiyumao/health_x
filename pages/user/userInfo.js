@@ -205,7 +205,14 @@ Page({
         icon: 'none',
       })
       return false;
-    } else if (this.data.address.length >= 50) {
+    } else if (this.data.address == ""){
+      wx.showToast({
+        title: '请输入住址',
+        icon: 'none',
+      })
+      return false;
+    } 
+    else if (this.data.address.length >= 50) {
       wx.showToast({
         title: '住址请保持50个字符内',
         icon: 'none',

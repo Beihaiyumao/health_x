@@ -7,8 +7,11 @@
       <input class="email" bindinput='username' placeholder='用户名'></input>
       <input class='password' password='true' bindinput="password" placeholder='密码'></input>
       <input class='password' password='true' bindinput="tpassword" placeholder='确认密码'></input>
-      <input type='text' class='password' bindinput="identifying" placeholder='请输入验证码' />
-      <image src='{{img}}' style="width:500rpx; margin-top:58rpx; height:200rpx;" bindtap="newPhoto"></image>
+      <input type='number' class='password' bindinput="bindPhoneInput" placeholder='请输入手机号' />
+      <view class='row'>
+        <input type='number' class='password' bindinput="bindCodeInput" placeholder='请输验证码' />
+        <button class='codeBtn' bindtap='getCode' hidden='{{hidden}}' disabled='{{btnDisabled}}'>{{btnValue}}</button>
+      </view>
       <button class='login_btn' bindtap='register'>注册</button>
       <button class='resgin' bindtap='login'>登录</button>
 
