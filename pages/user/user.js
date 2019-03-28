@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-//   wx.setStorageSync("userId", '00854e05ccec');
+   wx.setStorageSync("userId", '00854e05ccec');
     if (wx.getStorageSync('userId') == "") {
       this.showErrorToastUtils();
     }else{

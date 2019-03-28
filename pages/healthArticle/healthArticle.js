@@ -23,6 +23,8 @@ Page({
     isLast: false, //判断是否是最后一页
     search_title: '',
     pageSize: 10,
+    articleGenreList:[], //文章分类
+    articleGenre:'',
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -35,6 +37,7 @@ Page({
    */
   onLoad: function(options) {
     this.searchQuestion();
+    this.getArticleGenre();
     wx.showToast({
       title: '加载中',
       icon: 'loading',
@@ -54,7 +57,8 @@ Page({
    */
   onShow: function() {
 
-    this.searchQuestion();
+    // this.searchQuestion();
+    // this.getArticleGenre();
   },
 
   /**
@@ -70,7 +74,33 @@ Page({
   onUnload: function() {
 
   },
-
+  /**
+   * 获取文章分类列表
+   */
+  getArticleGenre:function(){
+    var that=this;
+    wx.request({
+      url: urlPath + '/admin/selectAllArticleGenre?pageSize=' + 100,
+      method: "GET",
+      success:function(e){
+        console.log(e);
+        that.setData({
+          articleGenreList:e.data.list,
+        })
+      }
+    })
+  },
+  // 左侧点击事件
+  jumpIndex(e) {
+    var that=this;
+    this.articleGenre = e.currentTarget.dataset.menuindex
+    that.setData({
+      articleGenre:e.currentTarget.dataset.menuindex
+    })
+    console.log(this.articleGenre);
+    this.getHealthArticle();
+    this.getArticleGenre();
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -91,12 +121,11 @@ Page({
     setTimeout(function() {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
-      if (that.data.search_title != null || that.data.search_title != '') {
+      if (that.data.search_title != '') {
         that.searchQuestion();
       } else {
         that.getHealthArticle();
       }
-
     }, 1500);
   },
   /**
@@ -113,7 +142,7 @@ Page({
         duration: 1500,
       }),
       setTimeout(function() {
-        if (that.data.search_title != null || that.data.search_title != '') {
+        if (that.data.search_title != '') {
           that.searchQuestion();
         } else {
           that.getHealthArticle();
@@ -145,6 +174,7 @@ Page({
       },
       data: {
         pageSize: this.data.pageSize,
+        articleGenre: this.data.articleGenre,
       },
       method: "GET", //get为默认方法/POST
       success: function(res) {

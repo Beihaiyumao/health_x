@@ -190,7 +190,7 @@ Page({
         duration: 1500,
       }),
       setTimeout(function () {
-          if (that.data.search_title != null || that.data.search_title != '') {
+          if (that.data.search_title != '') {
             that.searchMyQuestion();
           } else {
             that.getMyHealthQuestion();          }
@@ -215,7 +215,7 @@ Page({
     setTimeout(function () {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
-      if (that.data.search_title != null || that.data.search_title != '') {
+      if (that.data.search_title != '') {
         that.searchMyQuestion();
       } else {
         that.getMyHealthQuestion();

@@ -1,7 +1,7 @@
 <!--pages/user/aboutUs.wxml-->
 <view>
   <view class='about_us_background'>
-    <image src='/images/user/about_us_background.png'></image>
+    <image src='/images/user/up-logo.png'></image>
   </view>
   <view class='last'>
     <text class='banben'>版本:V 1.0.0.1\n</text>
