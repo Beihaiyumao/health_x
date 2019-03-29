@@ -1,6 +1,5 @@
 // pages/healthQuestion/addHealthQuestion.js
 const urlPath = require('../common/config').url_microService;
-
 Page({
 
   /**
@@ -14,6 +13,13 @@ Page({
     question_title:'',
     question_detail:'',
     userId:'',
+    questionGenreList:[],
+    showLeft1: false,
+  },
+  toggleLeft1() {
+    this.setData({
+      showLeft1: !this.data.showLeft1
+    });
   },
   getWords(e) {
     let page = this;
@@ -33,11 +39,12 @@ Page({
       question_title:e.detail.value,
     })
   },
+ 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getQuestionGenre();
   },
 
   /**
@@ -81,7 +88,33 @@ Page({
   onReachBottom: function () {
 
   },
-
+  /**
+   * 获取问题分类
+   */
+  getQuestionGenre: function () {
+    var that = this;
+    wx.request({
+      url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100,
+      method: "GET",
+      success: function (e) {
+        console.log(e);
+        that.setData({
+          questionGenreList: e.data.list,
+        })
+      }
+    })
+  },
+  /**点击选择问题分类 */
+  handleChange({ detail = {} }) {
+    this.setData({
+      current: detail.value,
+      
+    });
+    console.log(detail)
+  },
+  testChange:function(e){
+    console.log(e.currentTarget.id)
+  },
   /**
    * 用户点击右上角分享
    */
@@ -149,7 +182,7 @@ Page({
       })
       return false;
     }
-    else if(this.data.question_detail.length<20){
+    else if(this.data.question_detail.length<30){
       wx.showToast({
         title: '问题详情不少于20个字符',
         icon: 'none',

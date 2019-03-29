@@ -1,3 +1,4 @@
+
 .last {
   font-size: 15px;
   display: flex;
@@ -85,11 +86,11 @@
 
 .list {
   width: 100%;
-  border-bottom: 1px #ccc solid;
-  margin-bottom: 20px;
+ 
 }
 .articleList{
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 200rpx;
+  margin-right: 20px; */
   margin-top: -4px;
+  height: 100%;
 }

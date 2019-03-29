@@ -1,5 +1,4 @@
 /* pages/user/healthArticle.wxss */
-
 .navBar {
   border: 1px solid #ccc;
   height: 50px;

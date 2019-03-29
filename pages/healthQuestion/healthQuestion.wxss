@@ -136,10 +136,9 @@
 
 .question {
   width: 100%;
-  border-bottom: 1px #ccc solid;
 }
 .healthQuestionList{
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
   margin-top: -4px;
 }

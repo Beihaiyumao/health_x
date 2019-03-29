@@ -1,4 +1,10 @@
 {
   "navigationBarTitleText": "发布问题",
-  "usingComponents": {}
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-input": "../../dist/input/index",
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index",
+    "i-drawer": "../../dist/drawer/index"
+  }
 }
