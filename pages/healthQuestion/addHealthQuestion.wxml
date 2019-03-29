@@ -1,7 +1,23 @@
-  <!--pages/healthQuestion/addHealthQuestion.wxml-->
-  <input class="title" type='text' bindinput="question_title" maxlength='15' placeholder='请输入标题'></input>
-  <view class='textarea-count'>
-    <textarea placeholder='请输入问题详情(不少于20个字符)' bindinput="getWords" maxlength='{{maxTextLen}}'></textarea>
-    <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
+<!--pages/healthQuestion/addHealthQuestion.wxml-->
+<input class="title" type='text' bindinput="question_title" maxlength='15' placeholder='请输入标题'></input>
+<!-- <i-panel>
+    <i-input bindinput="question_title" type='text' maxlength='15'placeholder="请输入问题标题" />
+</i-panel> -->
+<view class='textarea-count'>
+  <textarea placeholder='请输入问题详情(不少于30个字符)' bindinput="getWords" maxlength='{{maxTextLen}}'></textarea>
+  <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
+</view>
+<!-- <button bindtap='addHealthQuestion'>发布问题</button> -->
+<i-button bind:click="toggleLeft1" type="ghost">请选择问题分类</i-button>
+<i-drawer mode="left" visible="{{showLeft1}}" bind:close="toggleLeft1">
+  <view class="">
+    <i-panel title="请选择问题分类">
+      <i-radio-group current="{{current}}" bindchange="handleChange">
+        <i-radio wx:for="{{questionGenreList}}" position="right" bindtap='testChange' id="{{item.questionGenreCode}}"wx:key="{{item.questionGenreCode}}" value="{{item.questionGenreName}}">
+        </i-radio>
+      </i-radio-group>
+    </i-panel>
   </view>
-  <button bindtap='addHealthQuestion'>发布问题</button>
+</i-drawer>
+
+<i-button bindtap='addHealthQuestion' type="success" i-class="addButton" style=' margin-top: 400rpx;'>发布问题</i-button>

@@ -1,5 +1,15 @@
 {
   "navigationBarTitleText": "健康百科",
-  "usingComponents": {},
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-modal": "../../dist/modal/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-load-more": "../../dist/load-more/index",
+    "i-card": "../../dist/card/index",
+    "i-panel": "../../dist/panel/index",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index"
+  },
   "enablePullDownRefresh": true
 }

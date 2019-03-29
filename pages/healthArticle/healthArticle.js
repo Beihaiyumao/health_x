@@ -6,15 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msgList: [{
-      articleId: 1, //文章id
-      title: "", //标题
-      createTime: "", //创建时间
-      article: '', //导语
-      author: '', //作者
-      content: '', //内容
-      pic: "", //图片
-    }, ],
+    msgList: [ ],
     isFirstPage: '', //是否是第一页
     isLastPage: '', //是否是最后一页
     pages: '', //一共多少页
@@ -25,6 +17,8 @@ Page({
     pageSize: 10,
     articleGenreList:[], //文章分类
     articleGenre:'',
+    indexId: 0,
+    current_scroll:0,
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -36,7 +30,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.searchQuestion();
+    this.getHealthArticle();
     this.getArticleGenre();
     wx.showToast({
       title: '加载中',
@@ -90,16 +84,25 @@ Page({
       }
     })
   },
-  // 左侧点击事件
-  jumpIndex(e) {
-    var that=this;
-    this.articleGenre = e.currentTarget.dataset.menuindex
-    that.setData({
-      articleGenre:e.currentTarget.dataset.menuindex
-    })
-    console.log(this.articleGenre);
-    this.getHealthArticle();
-    this.getArticleGenre();
+  /**
+   * 点击文章分类
+   */
+  handleChangeScroll({ detail }) {
+    this.setData({
+      articleGenre: detail.key,
+      current_scroll: detail.key
+    });
+    if(detail.key!=0){
+      this.getHealthArticle();
+    }
+    else{
+      this.setData({
+        articleGenre: '',
+      });
+      this.getHealthArticle();
+    }
+
+    console.log(detail.key);
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -180,7 +183,8 @@ Page({
       success: function(res) {
         console.log(res);
         that.setData({
-          msgList: res.data.list,
+         
+          msgList:res.data.list,
           total: res.data.total,
           isFirstPage: res.data.isFirstPage,
           isLastPage: res.data.isLastPage,
@@ -190,6 +194,11 @@ Page({
         });
       }
     });
+  },
+  //时间转换
+  renderTime(date) {
+    var dateee = new Date(date).toJSON();
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   /**
    * 文章详情

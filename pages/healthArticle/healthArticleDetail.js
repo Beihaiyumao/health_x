@@ -211,7 +211,7 @@ Page({
             article: res.data.article,
             author: res.data.author,
             content: res.data.content,
-            createTime: res.data.createTime.substring(0, 10),
+            createTime:  that.renderTime(res.data.createTime),
             pic: res.data.pic,
             title: res.data.title
           })
@@ -224,6 +224,11 @@ Page({
         }
       }
     })
+  },
+  //时间转换
+  renderTime(date) {
+    var dateee = new Date(date).toJSON();
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   /**
    * 获取用户评论信息

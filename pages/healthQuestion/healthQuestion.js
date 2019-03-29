@@ -14,6 +14,9 @@ Page({
     search_title: '',
     isLast: false,
     pageSize: 10,
+    questionGenreList:[],
+    questionGenre:'',
+    current_scroll:0,
   },
   /**
    * 获取用户输入的题目
@@ -27,7 +30,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.searchQuestion();
+    this.getAllHealthQuestion();
+    this.getQuestionGenre();
     wx.showToast({
       title: '加载中',
       icon: 'loading',
@@ -46,7 +50,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.searchQuestion();
+    // this.searchQuestion();
   },
 
   /**
@@ -82,6 +86,42 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  /**
+ * 获取问题分类列表
+ */
+  getQuestionGenre: function () {
+    var that = this;
+    wx.request({
+      url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100,
+      method: "GET",
+      success: function (e) {
+        console.log(e);
+        that.setData({
+          questionGenreList: e.data.list,
+        })
+      }
+    })
+  },
+  /**
+   * 点击问题分类
+   */
+  handleChangeScroll({ detail }) {
+    this.setData({
+      questionGenre: detail.key,
+      current_scroll: detail.key
+    });
+    if (detail.key != 0) {
+      this.getAllHealthQuestion();
+    }
+    else {
+      this.setData({
+        questionGenre: '',
+      });
+      this.getAllHealthQuestion();
+    }
+
+    console.log(detail.key);
   },
   /**
    * 点击新增按钮
@@ -125,6 +165,7 @@ Page({
       method: 'GET',
       data: {
         pageSize: this.data.pageSize,
+        genre: this.data.questionGenre,
       },
       success: function(e) {
         console.log(e);
@@ -227,7 +268,7 @@ Page({
   /**
    * 问题详情
    */
-  gotoQuetionDetail: function(e) {
+  gotoQuetionDetail1: function(e) {
     console.log(e)
     wx.navigateTo({
       url: '/pages/healthQuestion/healthQuestionDetail?questionId=' + e.currentTarget.id,

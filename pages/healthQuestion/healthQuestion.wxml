@@ -19,23 +19,35 @@
 <text>\n</text>
 <text>\n</text>
 </view>
+  <view>
+    <i-tabs current="{{ current_scroll }}" scroll bindchange="handleChangeScroll">
+      <i-tab key="0" title="全部问题"></i-tab>
+      <block wx:for="{{questionGenreList}}" wx:for-item='item' wx:key='key'>
+        <i-tab key="{{item.questionGenreCode}}" title="{{item.questionGenreName}}"></i-tab>
+      </block>
+    </i-tabs>
+  </view>
 <view class='healthQuestionList'>
 <block wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
-  <view class='question'  bindtap='gotoQuetionDetail' id="{{item.questionId}}">
+<i-card  full="true" bindtap='gotoQuetionDetail1' id="{{item.questionId}}">
+        <view slot="content">{{item.title}}</view>
+        <view slot="footer">{{item.detail}}</view>
+      </i-card>
+  <!-- <view class='question'  bindtap='gotoQuetionDetail' id="{{item.questionId}}"> -->
     <!--<text class='nickname'>{{item.questionId}}\n</text>-->
     <!--<text class='nickname'>{{item.userId}}\n</text>-->
  
-  <text class='questionTitle'>{{item.title}}\n</text>
+  <!-- <text class='questionTitle'>{{item.title}}\n</text>
   <view class='questionDetail'>
   <text >{{item.detail}}\n</text>
-  </view>
+  </view> -->
   <!--<view class='time-heart'>
     <text class='comment-time'>{{item.createTime}}</text>
     <image class='heart-icon' src=''></image>
   </view>-->
-   </view>
+   <!-- </view> -->
 </block>
-<text class="last"  wx:if="{{isLast}}">我也是有底线的</text>
+<i-load-more wx:if="{{isLast}}" tip="我也是有底线的" loading="{{ false }}" />
 </view>
 
 <!--增加按钮-->
