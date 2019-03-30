@@ -1,5 +1,8 @@
 <!--index.wxml-->
 <div class="box">
+<i-notice-bar wx:if="{{noticeState}}" icon="systemprompt" loop speed='10000' style="position:fixed; top:0;width: 750rpx;">
+   {{msg}}
+</i-notice-bar>
   <div class="column">
     <span class="item">
       <view bindtap='turnBMI'>

@@ -87,7 +87,7 @@ Page({
    */
   checkUserInput: function() {
     var sz = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
-    if (!(sz.test(this.data.height)) || this.data.height <= 0.00 || this.data.height > 2.50) {
+    if (!(sz.test(this.data.height)) || this.data.height <= 50.00 || this.data.height > 250) {
       wx.showToast({
         title: '请输入正确的身高',
         icon: 'none',
