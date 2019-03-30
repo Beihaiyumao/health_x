@@ -7,12 +7,7 @@ Page({
    */
   data: {
     userId: '',
-    msgList: [{
-      title: "标题一", //标题
-      createTime: "2017-3-5 23:01:59", //创建时间
-      detail: '', //问题内容
-      questionId: '', //问题id
-    }, ],
+    msgList: [ ],
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏
     searchLoadingComplete: false, //“没有数据”的变量，默认false，隐藏
     isFirstPage: '', //是否是第一页
@@ -23,6 +18,81 @@ Page({
     search_title: '', //模糊查询
     pageSize:10,
     isLast:false,
+    visible2: false,
+    //小程序没有refs，所以只能用动态布尔值控制关闭
+    toggle: false,
+     actions2: [
+      {
+        name: '删除',
+        color: '#ed3f14'
+      }
+    ],
+    questionId:'',
+  },
+  /**
+   * 取消删除
+   */
+  handleCancel2() {
+    this.setData({
+      visible2: false,
+      toggle: this.data.toggle ? false : true
+    });
+  },
+  /**
+   * 确定删除
+   */
+  handleClickItem2() {
+    const action = [...this.data.actions2];
+    action[0].loading = true;
+
+    this.setData({
+      actions2: action
+    });
+
+    setTimeout(() => {
+      action[0].loading = false;
+      this.setData({
+        visible2: false,
+        actions2: action,
+        toggle: this.data.toggle ? false : true
+      });
+      this.deleteQuestion1();
+    }, 2000);
+   
+  },
+  /**
+   * 隐藏删除按钮
+   */
+  actionsTap(e) {
+    var that=this;
+    that.setData({
+      visible2: true,
+       questionId: e.currentTarget.id
+    });
+  },
+  /**
+   * 确定删除
+   */
+  deleteQuestion1:function(){
+    var that=this;
+    console.log(this.data.questionId)
+    wx.request({
+      url: urlPath + '/question/deleteQuestion',
+      method: 'GET',
+      data: {
+        questionId: this.data.questionId
+      },
+      success: function (e) {
+        console.log(e);
+        if (e.data.code == 100) {
+          wx.showToast({
+            title: e.data.msg,
+            icon: 'success',
+          });
+          that.getMyHealthQuestion();
+        }
+      }
+    })
   },
   //获取用户输入的值
   search_title: function(e) {

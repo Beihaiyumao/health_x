@@ -14,8 +14,9 @@ Page({
    * 获取用户反馈内容
    */
   getFeedback: function(e) {
+    console.log(e);
     this.setData({
-      feedback: e.detail.value
+      feedback: e.detail.detail.value
     })
   },
   /**
@@ -23,7 +24,7 @@ Page({
    */
   wechat: function(e) {
     this.setData({
-      wechat: e.detail.value
+      wechat: e.detail.detail.value
     })
   },
   /**
@@ -127,6 +128,7 @@ Page({
             wx.showToast({
                 title: '反馈成功',
                 icon: 'success',
+               duration:2500,
               }),
               wx.switchTab({
                 url: '../user/user'
@@ -135,6 +137,7 @@ Page({
             wx.showToast({
               title: '反馈失败,请重试',
               icon: 'loading',
+              duration:2500,
             })
           }
         }

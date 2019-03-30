@@ -27,25 +27,12 @@
       </block>
     </i-tabs>
   </view>
-<view class='healthQuestionList'>
+<view class=''>
 <block wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
 <i-card  full="true" bindtap='gotoQuetionDetail1' id="{{item.questionId}}">
         <view slot="content">{{item.title}}</view>
         <view slot="footer">{{item.detail}}</view>
       </i-card>
-  <!-- <view class='question'  bindtap='gotoQuetionDetail' id="{{item.questionId}}"> -->
-    <!--<text class='nickname'>{{item.questionId}}\n</text>-->
-    <!--<text class='nickname'>{{item.userId}}\n</text>-->
- 
-  <!-- <text class='questionTitle'>{{item.title}}\n</text>
-  <view class='questionDetail'>
-  <text >{{item.detail}}\n</text>
-  </view> -->
-  <!--<view class='time-heart'>
-    <text class='comment-time'>{{item.createTime}}</text>
-    <image class='heart-icon' src=''></image>
-  </view>-->
-   <!-- </view> -->
 </block>
 <i-load-more wx:if="{{isLast}}" tip="我也是有底线的" loading="{{ false }}" />
 </view>

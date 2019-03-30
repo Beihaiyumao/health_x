@@ -34,14 +34,6 @@
         <view slot="content">{{item.article}}</view>
         <view slot="footer">{{item.createTime}}</view>
       </i-card>
-      <!-- <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
-      <text class='title'>{{item.title}}\n</text>
-      <text class='author'>{{item.author}}</text>
-      <view class='photo'>
-        <image src="https://xiaoyc.com.cn/health/{{item.pic}}" mode="widthFix"></image>
-      </view>
-      <text class='article'>{{item.article}}\n</text>
-    </view> -->
     </view>
   </scroll-view>
   <i-load-more wx:if="{{isLast}}" tip="我也是有底线的" loading="{{ false }}" />
