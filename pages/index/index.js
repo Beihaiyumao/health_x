@@ -6,7 +6,40 @@ const app = getApp()
 
 Page({
   data: {
-    
+    msg:'',
+    noticeState:false,
+  },
+  /**
+ * 生命周期函数--监听页面显示
+ */
+  onShow: function () {
+    this.getMsg();
+  },
+  /**
+  * 生命周期函数--监听页面加载
+  */
+  onLoad: function (options) {
+    this.getMsg();
+  },
+
+  getMsg:function(){
+    var that=this;
+    wx.request({
+      url: urlPath +'/admin/selectIsYesNotice',
+      success:function(e){
+        console.log(e);
+        if(e.data.code==100){
+          that.setData({
+            msg : e.data.object.msg,
+            noticeState : true,
+          })
+        }else{
+          that.setData({
+            noticeState: false,
+          })
+        }
+      }
+    })
   },
   /**
    * bmi计算器跳转
