@@ -1,20 +1,4 @@
 /* pages/user/feedback.wxss */
-
-.textarea-count {
-  border: 1px solid #ccc;
-  margin-top: 25rpx;
-}
-
-.textarea-count textarea {
-  width: 99%;
-}
-
-.title {
-  border: 1px solid #ccc;
-  height: 40px;
-  margin-top: 20rpx;
-}
-
 button {
   color: white;
   background: green;
@@ -22,41 +6,7 @@ button {
   border-radius: 5px;
   width: 90%;
 }
-
-.feedback {
-  font-size: 15px;
-  font-weight: 200;
-  font-family: YouYuan;
-  margin-top: 20px;
-  margin-left: 20px;
+#page{
+  background-color: #f8f8f9;
 }
 
-.feedbackPh {
-  font-size: 15px;
-  font-weight: 200;
-  font-family: YouYuan;
-  margin-left: 20px;
-  padding-left: 20px;
-}
-
-textarea {
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
-}
-
-.wechat {
-  font-size: 15px;
-  font-weight: 200;
-  font-family: YouYuan;
-  margin-top: 40px;
-  margin-left: 20px;
-}
-
-.wechatPh {
-  font-size: 15px;
-  font-weight: 200;
-  font-family: YouYuan;
-  margin-left: 20px;
-  padding-left: 20px;
-}

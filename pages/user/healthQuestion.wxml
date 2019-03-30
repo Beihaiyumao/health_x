@@ -18,14 +18,34 @@
   <text>\n</text>
   <text>\n</text>
 </view>
-<view>
+<!-- <view>
   <block wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
     <view class='user_list mt60 clearfix'>
-      <text bindtap='gotoQuetionDetail'  id="{{item.questionId}}">{{item.title}}</text>
+      <text bindtap='gotoQuetionDetail' id="{{item.questionId}}">{{item.title}}</text>
       <text class='delete' bindtap='deleteQuestion' id="{{item.questionId}}">删除</text>
     </view>
   </block>
   <view>
     <text class="last" wx:if="{{isLast}}">真的没有了哦!</text>
   </view>
+</view> -->
+<view class="i-swipeout-demo">
+  <i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2" bind:click="handleClickItem2" mask-closable="{{ false }}">
+    <view slot="header" style="padding: 16px">
+      <view style="color: #444;font-size: 16px">确定吗？</view>
+      <text>删除后无法恢复哦</text>
+    </view>
+  </i-action-sheet>
+  <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{100}}" unclosable="{{true}}" toggle="{{toggle}}" wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
+    <view slot="content">
+      <view class="i-swipeout-des" bindtap='gotoQuetionDetail' id="{{item.questionId}}">
+        <view class="i-swipeout-des-h2">{{item.title}}</view>
+        <view class="i-swipeout-des-detail">{{item.detail}}</view>
+      </view>
+    </view>
+    <view slot="button" class="i-swipeout-demo-button-group">
+            <view class="i-swipeout-demo-button" bindtap="actionsTap" id="{{item.questionId}}"style="margin-top:30px;color:#ed3f14;">删除</view>
+        </view>
+  </i-swipeout>
+  <i-load-more wx:if="{{isLastPage}}" tip="我也是有底线的" loading="{{ false }}" />
 </view>

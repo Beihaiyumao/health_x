@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "欢迎反馈",
-  "usingComponents": {}
+  "usingComponents": {
+    "i-input": "../../dist/input/index",
+    "i-panel": "../../dist/panel/index"
+  }
 }

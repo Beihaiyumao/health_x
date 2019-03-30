@@ -1,7 +1,7 @@
 <!--pages/index/cdbw.wxml-->
 <view>
   <view>
-    <input type='digit' class='height' bindinput='height' placeholder='请输入您的身高(m)'></input>
+    <input type='digit' class='height' bindinput='height' placeholder='请输入您的身高(cm)'></input>
   </view>
   <view>
     <input type='digit' class='weight' bindinput='weight' placeholder='请输入您的体重(kg)'></input>

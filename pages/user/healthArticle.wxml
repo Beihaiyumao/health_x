@@ -1,4 +1,3 @@
-
 <view class="movie-container">
   <!-- 导航栏 -->
   <view class="navbar" style="position:fixed;top:0;">
@@ -15,32 +14,26 @@
       <swiper-item>
         <scroll-view scroll-y='true'>
           <view class='beautifule'>
-            <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key' class='list'>
-              <view bindtap='gotoProjectDetail' id="{{item.articleId}}">
-                <text class='title'>{{item.title}}\n</text>
-                <text class='author'>{{item.author}}</text>
-                <view class='photo'>
-                  <image src="https://xiaoyc.com.cn/health/{{item.pic}}" mode="widthFix"></image>
-                </view>
-                <text class='article'>{{item.article}}\n</text>
-              </view>
+            <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
+              <i-card title="{{item.title}}" extra="{{item.author}}" full="true" bindtap='gotoProjectDetail' id="{{item.articleId}}" thumb="https://xiaoyc.com.cn/health/{{item.pic}}">
+                <view slot="content">{{item.article}}</view>
+                <view slot="footer">{{item.createTime}}</view>
+              </i-card>
             </view>
-            <text class="last" wx:if="{{isLastArticle}}">我也是有底线的</text>
+            <i-load-more wx:if="{{isLastArticle}}" tip="我也是有底线的" loading="{{ false }}" />
           </view>
         </scroll-view>
       </swiper-item>
       <swiper-item>
         <scroll-view scroll-y='true'>
           <view class='beautifule'>
-            <view wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
-              <view class='question' bindtap='gotoQuetionDetail' id="{{item.questionId}}">
-                <text class='questionTitle'>{{item.title}}\n</text>
-                <view class='questionDetail'>
-                  <text>{{item.detail}}\n</text>
-                </view>
-              </view>
-            </view>
-            <text class="last" wx:if="{{isLastQuestion}}">我也是有底线的</text>
+            <block wx:for="{{questionList}}" wx:for-item='item' wx:key='key'>
+              <i-card full="true" bindtap='gotoQuetionDetail' id="{{item.questionId}}">
+                <view slot="content">{{item.title}}</view>
+                <view slot="footer">{{item.detail}}</view>
+              </i-card>
+            </block>
+            <i-load-more wx:if="{{isLastQuestion}}" tip="我也是有底线的" loading="{{ false }}" />
           </view>
         </scroll-view>
       </swiper-item>
