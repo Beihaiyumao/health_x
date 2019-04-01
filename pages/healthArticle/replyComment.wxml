@@ -5,6 +5,7 @@
     <view class='testLength'>{{textLen}}/{{maxTextLen}}</view>
   </view>
   <view class='outhor'>
-    <button bindtap='replyCommentAction'>回复</button>
+    <!-- <button bindtap='replyCommentAction'>回复</button> -->
+    <i-button type="success" bindtap='replyCommentAction'>回复</i-button>
   </view>
 </view>

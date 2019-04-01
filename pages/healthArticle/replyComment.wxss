@@ -4,13 +4,14 @@
   width: 100%;
   border-top: 1px #ccc solid;
 }
-
-.outhor {
-  height: 900rpx;
-  background-color: #ccc;
-}
-
 .outhor button {
-  margin-top: 60rpx;
   color: green;
+  margin-top: 380px;
+}
+.wai{
+   border:1px solid #ccc;
+
+}
+page{
+  background-color: #f8f8f9;
 }

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "回复评论",
-  "usingComponents": {}
+  "usingComponents": {
+    "i-button": "../../dist/button/index"
+  }
 }

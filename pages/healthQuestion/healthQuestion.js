@@ -17,6 +17,7 @@ Page({
     questionGenreList:[],
     questionGenre:'',
     current_scroll:0,
+    addState:false,
   },
   /**
    * 获取用户输入的题目
@@ -32,6 +33,7 @@ Page({
   onLoad: function(options) {
     this.getAllHealthQuestion();
     this.getQuestionGenre();
+    this.userIsTrue();
     wx.showToast({
       title: '加载中',
       icon: 'loading',
@@ -51,6 +53,7 @@ Page({
    */
   onShow: function() {
     // this.searchQuestion();
+    this.userIsTrue();
   },
 
   /**
@@ -86,6 +89,16 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  /**
+   * 判断用户是否登陆
+   */
+  userIsTrue:function(){
+    if (wx.getStorageSync('userId') != null && wx.getStorageSync('userId') != "" && wx.getStorageSync('userId') != undefined){
+      this.setData({
+        addState:true,
+      })
+    }
   },
   /**
  * 获取问题分类列表
