@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "文章详情",
-  "usingComponents": {}
+  "usingComponents": {
+    "i-badge": "../../dist/badge/index",
+    "i-icon": "../../dist/icon/index"
+  }
 }

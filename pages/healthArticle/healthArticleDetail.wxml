@@ -10,8 +10,10 @@
       </view>
       <text class='content'>{{content}}</text>
       <view class='userAllLike'>
-        <image src='{{likeArticle}}'></image>
-        <text class='likeAll'>{{userAllLike}}</text>
+        <!-- <image src='{{likeArticle}}'></image> -->
+       <i-icon type="praise_fill" size="28" color="{{like_icon_color}}" />
+        <i-badge count="{{userAllLike}}" i-class-alone="demo-badge-alone" />
+        <!-- <text class='likeAll'>{{userAllLike}}</text> -->
       </view>
     </view>
 
@@ -33,8 +35,10 @@
               <text class='nickname'>{{item.userName}}</text>
 
             </view>
-
-            <text class='commentDetail'>{{item.content}}</text>
+            <view  class='commentDetail'>
+             <textarea>{{item.content}}</textarea>
+            </view>
+           
 
             <view class='time-heart'>
               <text class='comment-time'>{{item.createTime}}</text>
@@ -71,10 +75,13 @@
     <textarea class="text" bindinput='comment' placeholder-class="weui-input" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="我也说两句..." />
     <view class="line" />
   </view>
-  <image bindtap='userCollect' class="emoji" src="{{collectionPhoto}}" />
-  <image class='likeArticle' bindtap='userClickLike' src='{{likeArticle}}'></image>
+  <!-- <image bindtap='userCollect' class="emoji" src="{{collectionPhoto}}" /> -->
+      <i-icon bindtap='userCollect' type="{{coll_icon_type}}" size="28" color="{{coll_icon_color}}" i-class="emoji"/>
+  <!-- <image class='likeArticle' bindtap='userClickLike' src='{{likeArticle}}'></image> -->
+  <i-icon type="{{like_icon_type}}" size="28" color="{{like_icon_color}}" i-class='likeArticle' bindtap='userClickLike' />
   <button open-type="share" class='shareButton'>
-    <image class='share' src='/images/healthArticle/share.png'></image>
+    <!-- <image class='share' src='/images/healthArticle/share.png'></image> -->
+    <i-icon type="share"  size="28" color="{{share_icon_color}}" i-class='share' />
   </button>
   <button form-type="submit" bindtap='releaseComment' class="submit">发送</button>
 </view>

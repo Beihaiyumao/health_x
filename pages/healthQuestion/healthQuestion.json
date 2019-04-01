@@ -9,7 +9,8 @@
     "i-card": "../../dist/card/index",
     "i-panel": "../../dist/panel/index",
     "i-tabs": "../../dist/tabs/index",
-    "i-tab": "../../dist/tab/index"
+    "i-tab": "../../dist/tab/index",
+    "i-icon": "../../dist/icon/index"
     },
   "enablePullDownRefresh": true
 }

@@ -38,6 +38,6 @@
 </view>
 
 <!--增加按钮-->
-<view bindtap='addHealthQuestion'>
+<view bindtap='addHealthQuestion' wx:if="{{addState}}">
   <image class="add_icon" src="/images/index/add.png"></image>
 </view>

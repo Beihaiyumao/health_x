@@ -296,7 +296,7 @@
 }
 .shareButton{
   background-color: white;
-  height: 24px;
+
   width: 24px;
   line-height: 27px;
   padding: 0;
@@ -308,8 +308,6 @@ border: none;
 }
 .userAllLike{
   margin-top: 20px;
-  border: 1px #ccc solid;
-  border-radius: 60rpx;
   height: 40px;
   width: 120px;
   margin-left: 140px;
@@ -331,3 +329,7 @@ border: none;
 text-align: center;
 margin-bottom: 20px;
 }
+.commentDetail textarea{
+  height:100%;
+}
+

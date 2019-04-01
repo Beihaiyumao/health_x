@@ -22,7 +22,6 @@ Page({
     // 默认长度
     textLen: 0,
     userId: "", //用户id
-    collectionPhoto: '/images/healthArticle/notCo.png', //未收藏图片
     commentId: '', //回答id
     toUserId: '', //回复评论者id
     replyComment: '', //回复内容
@@ -31,6 +30,12 @@ Page({
     likeArticle: '/images/healthArticle/notLike.png', //未点赞
     likeArticleId: '', //点赞id
     userAllLike: '', //该文章所有的赞
+    coll_icon_color:'#80848f',
+    coll_icon_type:'collection',
+    like_icon_color:'#80848f',
+    like_icon_type:'praise',
+    share_icon_color:'#80848f',
+    share_icon_type:'share',
   },
 
   //获取用户输入内容
@@ -152,7 +157,8 @@ Page({
           //100证明未收藏
           if (e.data.code == 100) {
             that.setData({
-              collectionPhoto: '/images/healthArticle/isCo.png'
+              coll_icon_color:'#19be6b',
+              coll_icon_type:'collection_fill',
             })
             wx.showToast({
               title: e.data.msg, //这里成功
@@ -170,7 +176,8 @@ Page({
               success: function(e) {
                 if (e.data.code == 100) {
                   that.setData({
-                    collectionPhoto: '/images/healthArticle/notCo.png',
+                    coll_icon_color: '#80848f',
+                    coll_icon_type: 'collection',
                   })
                   wx.showToast({
                     title: e.data.msg,
@@ -347,7 +354,8 @@ Page({
         console.log(e);
         if (e.data.code == 100) {
           that.setData({
-            collectionPhoto: '/images/healthArticle/isCo.png',
+            coll_icon_color:'#19be6b',
+            coll_icon_type:'collection_fill',
             collectionArticleId: e.data.object,
           })
         }
@@ -369,7 +377,8 @@ Page({
       success: function(e) {
         if (e.data.code == 200) {
           that.setData({
-            likeArticle: '/images/healthArticle/like.png',
+            like_icon_color:'#19be6b',
+            like_icon_type:'praise_fill',
             likeArticleId: e.data.object,
           })
         }
@@ -400,7 +409,8 @@ Page({
             console.log(e)
             if (e.data.code == 100) {
               that.setData({
-                likeArticle: '/images/healthArticle/like.png',
+                like_icon_color: '#19be6b',
+                like_icon_type: 'praise_fill',
               });
               that.getUserAllLike();
               wx.showToast({
@@ -425,7 +435,8 @@ Page({
           success: function(e) {
             if (e.data.code == 100) {
               that.setData({
-                likeArticle: '/images/healthArticle/notLike.png',
+                like_icon_color: '#80848f',
+                like_icon_type: 'praise',
                 likeArticleId:'',
               });
               that.getUserAllLike();

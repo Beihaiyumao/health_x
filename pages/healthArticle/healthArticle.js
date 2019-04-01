@@ -81,6 +81,13 @@ Page({
         that.setData({
           articleGenreList:e.data.list,
         })
+      },
+      fail:function(){
+        wx.showToast({
+          title: '请检查网络状态', 
+          icon: 'none',
+          duration: 1500,
+        })
       }
     })
   },
@@ -101,8 +108,6 @@ Page({
       });
       this.getHealthArticle();
     }
-
-    console.log(detail.key);
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
