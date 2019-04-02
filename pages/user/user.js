@@ -9,16 +9,18 @@ Page({
     headPage: '',
     userId: '',
     username: '',
+    errorState: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   wx.setStorageSync("userId", '00854e05ccec');
+  // wx.setStorageSync("userId", '00854e05ccec');
     if (wx.getStorageSync('userId') == "") {
       this.showErrorToastUtils();
     }else{
+      this.getUserInfo();
       wx.showToast({
         title: '正在加载中',
         icon:'loading',
@@ -72,8 +74,14 @@ Page({
           that.setData({
             headPage: e.data.object.pic,
             username: e.data.object.username,
+            errorState: false,
           })
         }
+      },
+      fail: function () {
+        that.setData({
+          errorState: true,
+        })
       }
     })
   },

@@ -17,8 +17,8 @@ Page({
     pageSize: 10,
     articleGenreList:[], //文章分类
     articleGenre:'',
-    indexId: 0,
-    current_scroll:0,
+    current_scroll: 999999999999,
+    errorState:false,
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -37,6 +37,7 @@ Page({
       icon: 'loading',
       duration: 1500,
     })
+   
 
   },
   /**
@@ -74,7 +75,7 @@ Page({
   getArticleGenre:function(){
     var that=this;
     wx.request({
-      url: urlPath + '/admin/selectAllArticleGenre?pageSize=' + 100,
+      url: urlPath + '/admin/selectAllArticleGenre?pageSize=' + 100 + '&all=' + 100,
       method: "GET",
       success:function(e){
         console.log(e);
@@ -83,10 +84,8 @@ Page({
         })
       },
       fail:function(){
-        wx.showToast({
-          title: '请检查网络状态', 
-          icon: 'none',
-          duration: 1500,
+        that.setData({
+          errorState:true,
         })
       }
     })
@@ -99,7 +98,7 @@ Page({
       articleGenre: detail.key,
       current_scroll: detail.key
     });
-    if(detail.key!=0){
+    if (detail.key != 999999999999){
       this.getHealthArticle();
     }
     else{
@@ -188,7 +187,6 @@ Page({
       success: function(res) {
         console.log(res);
         that.setData({
-         
           msgList:res.data.list,
           total: res.data.total,
           isFirstPage: res.data.isFirstPage,
@@ -196,7 +194,19 @@ Page({
           pages: res.data.pages,
           total: res.data.total,
           pageNum: res.data.pageNum,
+          errorState: false,
         });
+        for(var i=0;i<res.data.list.length;i++){
+          var createTime = "msgList[" + i +"].createTime";
+         that.setData({
+          [createTime]: that.renderTime(res.data.list[i].createTime),
+         })
+        }
+      },
+      fail: function () {
+        that.setData({
+          errorState: true,
+        })
       }
     });
   },
@@ -244,7 +254,13 @@ Page({
             isFromSearch: true, //第一次加载，设置true
             searchLoading: true, //把"上拉加载"的变量设为true，显示
             pageNum: res.data.pageNum,
-          })
+          });
+          for (var i = 0; i < res.data.list.length; i++) {
+            var createTime = "msgList[" + i + "].createTime";
+            that.setData({
+              [createTime]: that.renderTime(res.data.list[i].createTime),
+            })
+          }
         }
       })
     }

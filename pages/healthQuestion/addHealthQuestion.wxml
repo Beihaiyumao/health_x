@@ -1,23 +1,27 @@
 <!--pages/healthQuestion/addHealthQuestion.wxml-->
-<input class="title" type='text' bindinput="question_title" maxlength='15' placeholder='请输入标题'></input>
-<!-- <i-panel>
-    <i-input bindinput="question_title" type='text' maxlength='15'placeholder="请输入问题标题" />
-</i-panel> -->
+<!-- <input class="title" type='text' bindinput="question_title" maxlength='15' placeholder='请输入标题'></input>
+
 <view class='textarea-count'>
   <textarea placeholder='请输入问题详情(不少于30个字符)' bindinput="getWords" maxlength='{{maxTextLen}}'></textarea>
   <view class='text-count-display f f-end'>{{textLen}}/{{maxTextLen}}</view>
-</view>
-<!-- <button bindtap='addHealthQuestion'>发布问题</button> -->
-<i-button bind:click="toggleLeft1" type="ghost">请选择问题分类</i-button>
-<i-drawer mode="left" visible="{{showLeft1}}" bind:close="toggleLeft1">
-  <view class="">
-    <i-panel title="请选择问题分类">
-      <i-radio-group current="{{current}}" bindchange="handleChange">
-        <i-radio wx:for="{{questionGenreList}}" position="right" bindtap='testChange' id="{{item.questionGenreCode}}"wx:key="{{item.questionGenreCode}}" value="{{item.questionGenreName}}">
-        </i-radio>
-      </i-radio-group>
-    </i-panel>
+</view> -->
+<view>
+  <i-panel title="请输入标题">
+    <i-input  value="{{question_title}}" autofocus  placeholder="请填写问题标题" bind:change="question_title" maxlength='15'/>
+</i-panel>
+  <i-panel title="请输入问题详情">
+    <i-input type="textarea"  bind:change="getWords" value="{{question_detail}}" maxlength='{{maxTextLen}}' placeholder="请输入问题详情(不少于30个字符)" />
+</i-panel>
+<i-panel title="请选择问题分类">
+   <view>
+    <i-tabs current="{{ current_scroll }}" scroll bindchange="handleChangeScroll">
+      <block wx:for="{{questionGenreList}}" wx:for-item='item' wx:key='key'>
+        <i-tab key="{{item.questionGenreCode}}" title="{{item.questionGenreName}}"></i-tab>
+      </block>
+    </i-tabs>
   </view>
-</i-drawer>
-
-<i-button bindtap='addHealthQuestion' type="success" i-class="addButton" style=' margin-top: 400rpx;'>发布问题</i-button>
+</i-panel>
+  </view>
+  <view class="addButton">
+  <i-button bindtap='addHealthQuestion' type="success"  style=' margin-top: 400rpx;' i-class='fabubutton'>发布问题</i-button>
+  </view>

@@ -161,9 +161,20 @@ Page({
             pageNum: res.data.pageNum,
             isLastArticle: res.data.isLastPage,
           })
+          for (var i = 0; i < res.data.list.length; i++) {
+            var createTime = "msgList[" + i + "].createTime";
+            that.setData({
+              [createTime]: that.renderTime(res.data.list[i].createTime),
+            })
+          }
         }
       }
     })
+  },
+  //时间转换
+  renderTime(date) {
+    var dateee = new Date(date).toJSON();
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   /**
    * 获取我收藏的问题
