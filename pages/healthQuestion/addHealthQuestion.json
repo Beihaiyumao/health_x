@@ -3,8 +3,8 @@
   "usingComponents": {
     "i-button": "../../dist/button/index",
     "i-input": "../../dist/input/index",
-    "i-radio-group": "../../dist/radio-group/index",
-    "i-radio": "../../dist/radio/index",
-    "i-drawer": "../../dist/drawer/index"
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "i-panel": "../../dist/panel/index"
   }
 }

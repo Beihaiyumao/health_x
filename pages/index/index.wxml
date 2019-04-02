@@ -1,5 +1,9 @@
 <!--index.wxml-->
 <div class="box">
+<i-alert type="error" show-icon desc wx:if="{{errorState}}">
+    警告!
+    <view slot="desc">当前无网络链接,请检查您的网络链接!</view>
+</i-alert>
 <i-notice-bar wx:if="{{noticeState}}" icon="systemprompt" loop speed='1100' style="position:fixed; top:0;width: 750rpx;">
    {{msg}}
 </i-notice-bar>

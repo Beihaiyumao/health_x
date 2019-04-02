@@ -1,31 +1,4 @@
 /* pages/healthQuestion/addHealthQuestion.wxss */
-
-.f{
-  display: flex;
-}
-
-.f-end{
-  justify-content: flex-end;
-}
-
-.text-count-display{
-  padding: 2%;
-}
-
-.textarea-count {
-  border: 1px solid #ccc;
-  margin-top: 45rpx;
-}
-
-.textarea-count textarea{
-  width: 99%;
-}
-input {
-  border: 1px solid #ccc;
-  height: 40px;
-  width: 100%;
-  margin-top: 20px;
-}
 .addButton {
   margin-top: 400rpx;
 }

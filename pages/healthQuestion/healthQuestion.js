@@ -16,8 +16,9 @@ Page({
     pageSize: 10,
     questionGenreList:[],
     questionGenre:'',
-    current_scroll:0,
+    current_scroll: 999999999999,
     addState:false,
+    errorState: false,
   },
   /**
    * 获取用户输入的题目
@@ -106,7 +107,7 @@ Page({
   getQuestionGenre: function () {
     var that = this;
     wx.request({
-      url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100,
+      url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100 + '&all=' + 100,
       method: "GET",
       success: function (e) {
         console.log(e);
@@ -124,7 +125,7 @@ Page({
       questionGenre: detail.key,
       current_scroll: detail.key
     });
-    if (detail.key != 0) {
+    if (detail.key != 999999999999) {
       this.getAllHealthQuestion();
     }
     else {
@@ -188,7 +189,13 @@ Page({
           pageNum: e.data.pageNum,
           isFirstPage: e.data.isFirstPage,
           isLastPage: e.data.isLastPage,
+          errorState: false,
         })
+      },
+      fail:function(){
+       that.setData({
+         errorState:true,
+       })
       }
     })
   },

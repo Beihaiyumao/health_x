@@ -14,29 +14,18 @@ Page({
     question_detail:'',
     userId:'',
     questionGenreList:[],
-    showLeft1: false,
+    
   },
-  toggleLeft1() {
-    this.setData({
-      showLeft1: !this.data.showLeft1
-    });
-  },
+
   getWords(e) {
     let page = this;
-    // 设置最大字符串长度(为-1时,则不限制)
-    let maxTextLen = page.data.maxTextLen;
-    // 文本长度
-    let textLen = e.detail.value.length;
-
     page.setData({
-      maxTextLen: maxTextLen,
-      textLen: textLen,
-      question_detail:e.detail.value,
+      question_detail: e.detail.detail.value,
     });
   },
   question_title:function(e){
     this.setData({
-      question_title:e.detail.value,
+      question_title: e.detail.detail.value
     })
   },
  
@@ -45,6 +34,7 @@ Page({
    */
   onLoad: function (options) {
     this.getQuestionGenre();
+    console.log(this.data.questionGenreList)
   },
 
   /**
@@ -94,26 +84,22 @@ Page({
   getQuestionGenre: function () {
     var that = this;
     wx.request({
-      url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100,
+      url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100+'&all='+10,
       method: "GET",
       success: function (e) {
         console.log(e);
         that.setData({
-          questionGenreList: e.data.list,
-        })
+          questionGenreList: e.data.list,       
+        });
       }
     })
   },
   /**点击选择问题分类 */
-  handleChange({ detail = {} }) {
+  handleChangeScroll({ detail }) {
     this.setData({
-      current: detail.value,
-      
+      questionGenre: detail.key,
+      current_scroll: detail.key
     });
-    console.log(detail)
-  },
-  testChange:function(e){
-    console.log(e.currentTarget.id)
   },
   /**
    * 用户点击右上角分享
@@ -125,6 +111,7 @@ Page({
  * 新增问题
  */
   addHealthQuestion:function(){
+    console.log(this.data.questionGenre)
     var that=this;
     var userInputState = that.checkUserInput();
     if(userInputState){
@@ -135,6 +122,7 @@ Page({
         title:this.data.question_title,
         detail:this.data.question_detail,
         userId: wx.getStorageSync('userId'),
+        questionGenre:this.data.questionGenre,
       },
       success:function(e){
         console.log(e);
@@ -184,7 +172,13 @@ Page({
     }
     else if(this.data.question_detail.length<30){
       wx.showToast({
-        title: '问题详情不少于20个字符',
+        title: '问题详情不少于30个字符',
+        icon: 'none',
+      })
+      return false;
+    } else if (this.data.questionGenre==undefined){
+      wx.showToast({
+        title: '选择一个问题分类',
         icon: 'none',
       })
       return false;

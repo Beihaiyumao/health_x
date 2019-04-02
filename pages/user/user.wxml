@@ -1,5 +1,9 @@
 <!--pages/user/user.wxml-->
 <view class='user_top'>
+<i-alert type="error" show-icon desc wx:if="{{errorState}}">
+    警告!
+    <view slot="desc">当前无网络链接,请检查您的网络链接!</view>
+</i-alert>
   <image class='user_image' src='/images/user/user_background.jpg' style='width:100%;'></image>
   <view bindtap='userInfo' class='user_head' style=''>
     <image src='https://xiaoyc.com.cn/health/{{headPage}}'></image>

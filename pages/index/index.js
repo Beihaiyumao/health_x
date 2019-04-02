@@ -8,6 +8,7 @@ Page({
   data: {
     msg:'',
     noticeState:false,
+    errorState: false,
   },
   /**
  * 生命周期函数--监听页面显示
@@ -21,7 +22,9 @@ Page({
   onLoad: function (options) {
     this.getMsg();
   },
-
+  /**
+   * 获取通知消息
+   */
   getMsg:function(){
     var that=this;
     wx.request({
@@ -32,12 +35,19 @@ Page({
           that.setData({
             msg : e.data.object.msg,
             noticeState : true,
+            errorState: false,
           })
         }else{
           that.setData({
             noticeState: false,
+            errorState: false,
           })
         }
+      },
+      fail:function(){
+        that.setData({
+          errorState: true,
+        })
       }
     })
   },
