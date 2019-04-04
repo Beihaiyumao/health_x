@@ -120,7 +120,7 @@
   -webkit-box-orient: vertical;
   font-size: 15px;
   font-weight: 200;
-  font-family:YouYuan;
+  font-family: YouYuan;
 }
 
 .questionTitle {
@@ -137,7 +137,8 @@
 .question {
   width: 100%;
 }
-.healthQuestionList{
+
+.healthQuestionList {
   /* margin-left: 20px;
   margin-right: 20px; */
   margin-top: -4px;

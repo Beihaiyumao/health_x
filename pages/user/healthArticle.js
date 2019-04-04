@@ -23,6 +23,7 @@ Page({
     isLastArticle:false,//
     isLastQuestion:false,//
     pageSize: 10, //每页显示多少数据
+    loading:true,
   },
   /**
    * 点击导航栏
@@ -49,10 +50,12 @@ Page({
   }) {
     // 设置data属性中的navbarActiveIndex为当前点击的navbar
     this.setData({
-      navbarActiveIndex: detail.current
+      navbarActiveIndex: detail.current,
+      loading:true,
     })
     if (this.data.navbarActiveIndex == '0') {
       this.getMyHealthArticle();
+     
     } else {
       this.getMyHealthQuestion();
     }
@@ -130,10 +133,6 @@ Page({
    * 获取我收藏的文章列表
    */
   getMyHealthArticle: function() {
-    wx.showToast({
-      title: '正在加载中',
-      icon: 'loading',
-    })
     var that = this;
     wx.request({
       url: urlPath + '/user/myCollectionArticle',
@@ -160,6 +159,7 @@ Page({
             searchLoading: true, //把"上拉加载"的变量设为true，显示
             pageNum: res.data.pageNum,
             isLastArticle: res.data.isLastPage,
+            loading:false,
           })
           for (var i = 0; i < res.data.list.length; i++) {
             var createTime = "msgList[" + i + "].createTime";
@@ -180,10 +180,7 @@ Page({
    * 获取我收藏的问题
    */
   getMyHealthQuestion: function() {
-    wx.showToast({
-      title: '正在加载中',
-      icon: 'loading',
-    })
+
     var that = this;
     wx.request({
       url: urlPath + '/question/selectMyCollectionQuestion',
@@ -203,6 +200,7 @@ Page({
           that.setData({
             questionList: e.data.list,
             isLastQuestion: e.data.isLastPage,
+            loading:false,
           })
         }
 
