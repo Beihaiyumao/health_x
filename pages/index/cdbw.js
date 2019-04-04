@@ -131,6 +131,12 @@ Page({
               result:e.data.msg,
             })
           }
+        },
+        fail: function () {
+          wx.showToast({
+            title: "未知错误,请重试!",
+            icon: 'none',
+          })
         }
       })
     }

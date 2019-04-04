@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "个人中心",
   "usingComponents": {
-    "i-alert": "../../dist/alert/index"
+    "i-alert": "../../dist/alert/index",
+    "i-spin": "../../dist/spin/index",
+    "i-message": "../../dist/message/index",
+    "i-button": "../../dist/button/index"
   }
 }
