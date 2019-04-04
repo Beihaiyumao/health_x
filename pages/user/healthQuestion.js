@@ -28,6 +28,7 @@ Page({
       }
     ],
     questionId:'',
+    loading:true,
   },
   /**
    * 取消删除
@@ -104,10 +105,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.showToast({
-      title: '正在加载中',
-      icon: 'loading',
-    })
   },
 
   /**
@@ -166,7 +163,18 @@ Page({
           isFromSearch: true, //第一次加载，设置true
           searchLoading: true, //把"上拉加载"的变量设为true，显示
           pageNum: res.data.pageNum,
+          loading:false,
         })
+        if (res.data.total == 0) {
+          that.setData({
+            notOne: true,
+            isLastPage: false,
+          })
+        } else {
+          that.setData({
+            notOne: false,
+          })
+        }
       }
     })
   },
@@ -264,11 +272,6 @@ Page({
             that.searchMyQuestion();
           } else {
             that.getMyHealthQuestion();          }
-        if (that.data.isLastPage == true) {
-          that.setData({
-            isLast: true,
-          });
-        }
       }, 1500)
   },
   /**
@@ -289,11 +292,6 @@ Page({
         that.searchMyQuestion();
       } else {
         that.getMyHealthQuestion();
-      }
-      if (that.data.isLastPage == true) {
-        that.setData({
-          isLast: true,
-        });
       }
     }, 1500);
   },

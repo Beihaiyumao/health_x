@@ -205,7 +205,7 @@ Page({
       fail: function() {
         that.setData({
           errorState: true,
-          loading: true,
+          loading: false,
         })
       }
     })

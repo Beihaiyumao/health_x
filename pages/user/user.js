@@ -10,7 +10,7 @@ Page({
     userId: '',
     username: '',
     errorState: false,
-
+    loading:true,
   },
 
   /**
@@ -20,14 +20,7 @@ Page({
     // wx.setStorageSync("userId", '00854e05ccec');
     if (wx.getStorageSync('userId') == "") {
       this.showErrorToastUtils();
-    } else {
-      this.getUserInfo();
-      wx.showToast({
-        title: '正在加载中',
-        icon: 'loading',
-      })
-    }
-
+    } 
   },
   /**
    * 退出登录
@@ -76,12 +69,14 @@ Page({
               headPage: e.data.object.pic,
               username: e.data.object.username,
               errorState: false,
+              loading:false,
             })
           }
         },
         fail: function() {
           that.setData({
             errorState: true,
+            loading: false,
           })
         }
       })
