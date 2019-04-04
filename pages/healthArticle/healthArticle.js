@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msgList: [ ],
+    msgList: [],
     isFirstPage: '', //是否是第一页
     isLastPage: '', //是否是最后一页
     pages: '', //一共多少页
@@ -15,10 +15,12 @@ Page({
     isLast: false, //判断是否是最后一页
     search_title: '',
     pageSize: 10,
-    articleGenreList:[], //文章分类
-    articleGenre:'',
+    articleGenreList: [], //文章分类
+    articleGenre: '',
     current_scroll: 999999999999,
-    errorState:false,
+    errorState: false,
+    loading: true,
+    notOne: false,
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -32,13 +34,6 @@ Page({
   onLoad: function(options) {
     this.getHealthArticle();
     this.getArticleGenre();
-    wx.showToast({
-      title: '加载中',
-      icon: 'loading',
-      duration: 1500,
-    })
-   
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -50,11 +45,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
-    // this.searchQuestion();
-    // this.getArticleGenre();
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -72,20 +63,20 @@ Page({
   /**
    * 获取文章分类列表
    */
-  getArticleGenre:function(){
-    var that=this;
+  getArticleGenre: function() {
+    var that = this;
     wx.request({
       url: urlPath + '/admin/selectAllArticleGenre?pageSize=' + 100 + '&all=' + 100,
       method: "GET",
-      success:function(e){
+      success: function(e) {
         console.log(e);
         that.setData({
-          articleGenreList:e.data.list,
+          articleGenreList: e.data.list,
         })
       },
-      fail:function(){
+      fail: function() {
         that.setData({
-          errorState:true,
+          errorState: true,
         })
       }
     })
@@ -93,15 +84,17 @@ Page({
   /**
    * 点击文章分类
    */
-  handleChangeScroll({ detail }) {
+  handleChangeScroll({
+    detail
+  }) {
     this.setData({
       articleGenre: detail.key,
-      current_scroll: detail.key
+      current_scroll: detail.key,
+      loading: true,
     });
-    if (detail.key != 999999999999){
+    if (detail.key != 999999999999) {
       this.getHealthArticle();
-    }
-    else{
+    } else {
       this.setData({
         articleGenre: '',
       });
@@ -114,13 +107,13 @@ Page({
   onPullDownRefresh: function() {
     var that = this;
     that.setData({
-      pageSize: this.data.pageSize -10,
-      isLast: false,
+      pageSize: this.data.pageSize - 10,
+      isLastPage: false,
     })
-    if(this.data.pageSize<=0){
+    if (this.data.pageSize <= 0) {
       that.setData({
         pageSize: 10,
-        isLast: false,
+        isLastPage: false,
       })
     }
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -154,12 +147,6 @@ Page({
         } else {
           that.getHealthArticle();
         }
-
-        if (that.data.isLastPage == true) {
-          that.setData({
-            isLast: true,
-          });
-        }
       }, 1500)
   },
 
@@ -187,7 +174,7 @@ Page({
       success: function(res) {
         console.log(res);
         that.setData({
-          msgList:res.data.list,
+          msgList: res.data.list,
           total: res.data.total,
           isFirstPage: res.data.isFirstPage,
           isLastPage: res.data.isLastPage,
@@ -195,17 +182,29 @@ Page({
           total: res.data.total,
           pageNum: res.data.pageNum,
           errorState: false,
+          loading: false,
         });
-        for(var i=0;i<res.data.list.length;i++){
-          var createTime = "msgList[" + i +"].createTime";
-         that.setData({
-          [createTime]: that.renderTime(res.data.list[i].createTime),
-         })
+        for (var i = 0; i < res.data.list.length; i++) {
+          var createTime = "msgList[" + i + "].createTime";
+          that.setData({
+            [createTime]: that.renderTime(res.data.list[i].createTime),
+          })
+        };
+        if (res.data.total == 0) {
+          that.setData({
+            notOne: true,
+            isLastPage: false,
+          })
+        } else {
+          that.setData({
+            notOne: false,
+          })
         }
       },
-      fail: function () {
+      fail: function() {
         that.setData({
           errorState: true,
+          loading: true,
         })
       }
     });
@@ -244,17 +243,18 @@ Page({
               icon: "success",
               duration: 1500,
             })
+          } else {
+            that.setData({
+              msgList: res.data.list,
+              isFirstPage: res.data.isFirstPage,
+              isLastPage: res.data.isLastPage,
+              pages: res.data.pages,
+              total: res.data.total,
+              isFromSearch: true, //第一次加载，设置true
+              searchLoading: true, //把"上拉加载"的变量设为true，显示
+              pageNum: res.data.pageNum,
+            });
           }
-          that.setData({
-            msgList: res.data.list,
-            isFirstPage: res.data.isFirstPage,
-            isLastPage: res.data.isLastPage,
-            pages: res.data.pages,
-            total: res.data.total,
-            isFromSearch: true, //第一次加载，设置true
-            searchLoading: true, //把"上拉加载"的变量设为true，显示
-            pageNum: res.data.pageNum,
-          });
           for (var i = 0; i < res.data.list.length; i++) {
             var createTime = "msgList[" + i + "].createTime";
             that.setData({

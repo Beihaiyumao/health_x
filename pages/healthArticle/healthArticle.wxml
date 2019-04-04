@@ -1,5 +1,5 @@
 <!--pages/healthArticle/healthArticle.wxml-->
-<view >
+<view>
   <view>
     <view style="position:fixed; top:0;width: 750rpx;">
       <view class="weui-search-bar">
@@ -23,7 +23,10 @@
   <i-alert type="error" show-icon desc wx:if="{{errorState}}">
     警告!
     <view slot="desc">当前无网络链接,请检查您的网络链接!</view>
-</i-alert>
+  </i-alert>
+  <view class="container" wx:if="{{loading}}">
+    <i-spin fix></i-spin>
+  </view>
   <view>
     <i-tabs current="{{ current_scroll }}" scroll bindchange="handleChangeScroll">
       <block wx:for="{{articleGenreList}}" wx:for-item='item' wx:key='key'>
@@ -39,5 +42,8 @@
       </i-card>
     </view>
   </scroll-view>
-  <i-load-more wx:if="{{isLast}}" tip="我也是有底线的" loading="{{ false }}" />
+  <i-load-more wx:if="{{isLastPage}}" tip="我也是有底线的" loading="{{ false }}" />
+</view>
+<view wx:if="{{notOne}}" style="margin-top:200px">
+  <i-divider color="#ed3f14" lineColor="#ed3f14">没有相关内容哦</i-divider>
 </view>

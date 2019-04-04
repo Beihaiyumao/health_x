@@ -1,4 +1,5 @@
 /* pages/healthArticle/healthArticleDetail.wxss */
+
 .pinglun {
   width: 100%;
   height: 80rpx;
@@ -151,7 +152,6 @@
   color: #c9c9c9;
 }
 
-
 .aaa {
   height: 1150rpx;
 }
@@ -214,17 +214,19 @@
   margin-right: 5px;
   margin-left: -15px;
 }
+
 .comment_release .share {
   width: 24px;
   height: 24px;
-
 }
-.comment_release .likeArticle{
-    width: 24px;
+
+.comment_release .likeArticle {
+  width: 24px;
   height: 24px;
   box-sizing: border-box;
   margin-left: 10px;
 }
+
 /*发送按钮*/
 
 .comment_release .submit {
@@ -292,32 +294,35 @@
   margin-right: 20rpx;
   font-size: 25px;
   font-weight: 200;
-  font-family:YouYuan;
+  font-family: YouYuan;
 }
-.shareButton{
-  background-color: white;
 
+.shareButton {
+  background-color: white;
   width: 24px;
   line-height: 27px;
   padding: 0;
   box-sizing: border-box;
- 
 }
-.shareButton::after{
-border: none;
+
+.shareButton::after {
+  border: none;
 }
-.userAllLike{
+
+.userAllLike {
   margin-top: 20px;
   height: 40px;
   width: 120px;
   margin-left: 140px;
 }
-.userAllLike image{
+
+.userAllLike image {
   height: 34px;
   width: 34px;
   margin-left: 30px;
 }
-.userAllLike text{
+
+.userAllLike text {
   font-size: 14px;
   font-weight: 200;
   font-family: YouYuan;
@@ -325,11 +330,12 @@ border: none;
   padding-bottom: 20px;
   padding-top: 20px;
 }
-.likeAll{
-text-align: center;
-margin-bottom: 20px;
-}
-.commentDetail textarea{
-  height:100%;
+
+.likeAll {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
+.commentDetail textarea {
+  height: 100%;
+}

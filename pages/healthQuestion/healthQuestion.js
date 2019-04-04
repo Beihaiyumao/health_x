@@ -14,11 +14,13 @@ Page({
     search_title: '',
     isLast: false,
     pageSize: 10,
-    questionGenreList:[],
-    questionGenre:'',
+    questionGenreList: [],
+    questionGenre: '',
     current_scroll: 999999999999,
-    addState:false,
+    addState: false,
     errorState: false,
+    loading: true,
+    notOne: false,
   },
   /**
    * 获取用户输入的题目
@@ -35,11 +37,6 @@ Page({
     this.getAllHealthQuestion();
     this.getQuestionGenre();
     this.userIsTrue();
-    wx.showToast({
-      title: '加载中',
-      icon: 'loading',
-      duration: 1500,
-    })
   },
 
   /**
@@ -94,22 +91,22 @@ Page({
   /**
    * 判断用户是否登陆
    */
-  userIsTrue:function(){
-    if (wx.getStorageSync('userId') != null && wx.getStorageSync('userId') != "" && wx.getStorageSync('userId') != undefined){
+  userIsTrue: function() {
+    if (wx.getStorageSync('userId') != null && wx.getStorageSync('userId') != "" && wx.getStorageSync('userId') != undefined) {
       this.setData({
-        addState:true,
+        addState: true,
       })
     }
   },
   /**
- * 获取问题分类列表
- */
-  getQuestionGenre: function () {
+   * 获取问题分类列表
+   */
+  getQuestionGenre: function() {
     var that = this;
     wx.request({
       url: urlPath + '/admin/selectAllHealthQuestionGenre?pageSize=' + 100 + '&all=' + 100,
       method: "GET",
-      success: function (e) {
+      success: function(e) {
         console.log(e);
         that.setData({
           questionGenreList: e.data.list,
@@ -120,15 +117,17 @@ Page({
   /**
    * 点击问题分类
    */
-  handleChangeScroll({ detail }) {
+  handleChangeScroll({
+    detail
+  }) {
     this.setData({
       questionGenre: detail.key,
-      current_scroll: detail.key
+      current_scroll: detail.key,
+      loading: true,
     });
     if (detail.key != 999999999999) {
       this.getAllHealthQuestion();
-    }
-    else {
+    } else {
       this.setData({
         questionGenre: '',
       });
@@ -190,12 +189,24 @@ Page({
           isFirstPage: e.data.isFirstPage,
           isLastPage: e.data.isLastPage,
           errorState: false,
+          loading: false,
         })
+        if (e.data.total == 0) {
+          that.setData({
+            notOne: true,
+            isLastPage: false,
+          })
+        } else {
+          that.setData({
+            notOne: false,
+          })
+        }
       },
-      fail:function(){
-       that.setData({
-         errorState:true,
-       })
+      fail: function() {
+        that.setData({
+          errorState: true,
+          loading: true,
+        })
       }
     })
   },
@@ -219,14 +230,16 @@ Page({
             icon: "success",
             duration: 1500,
           })
+        } else {
+          that.setData({
+            questionList: e.data.list,
+            total: e.data.total,
+            pageNum: e.data.pageNum,
+            isFirstPage: e.data.isFirstPage,
+            isLastPage: e.data.isLastPage,
+          })
         }
-        that.setData({
-          questionList: e.data.list,
-          total: e.data.total,
-          pageNum: e.data.pageNum,
-          isFirstPage: e.data.isFirstPage,
-          isLastPage: e.data.isLastPage,
-        })
+
       }
     })
   },
@@ -239,7 +252,7 @@ Page({
       pageSize: this.data.pageSize - 10,
       isLast: false,
     })
-    if(this.data.pageSize<=0){
+    if (this.data.pageSize <= 0) {
       that.setData({
         pageSize: 10,
         isLast: false,
@@ -250,7 +263,7 @@ Page({
     setTimeout(function() {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
-      if ( that.data.search_title != '') {
+      if (that.data.search_title != '') {
         that.searchQuestion();
       } else {
         that.getAllHealthQuestion();
@@ -277,11 +290,6 @@ Page({
           that.searchQuestion();
         } else {
           that.getAllHealthQuestion();
-        }
-        if (that.data.isLastPage == true) {
-          that.setData({
-            isLast: true,
-          });
         }
       }, 1500)
   },

@@ -10,23 +10,24 @@ Page({
     userId: '',
     username: '',
     errorState: false,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-  // wx.setStorageSync("userId", '00854e05ccec');
+    // wx.setStorageSync("userId", '00854e05ccec');
     if (wx.getStorageSync('userId') == "") {
       this.showErrorToastUtils();
-    }else{
+    } else {
       this.getUserInfo();
       wx.showToast({
         title: '正在加载中',
-        icon:'loading',
+        icon: 'loading',
       })
     }
-    
+
   },
   /**
    * 退出登录
@@ -61,29 +62,31 @@ Page({
     if (wx.getStorageSync('userId') == "") {
 
       this.showErrorToastUtils();
-    }
-    wx.request({
-      url: urlPath + '/user/selectUserInfo',
-      method: 'GET',
-      data: {
-        userId: wx.getStorageSync('userId'),
-      },
-      success: function(e) {
-        console.log(e);
-        if (e.data.code == 100) {
+    } else {
+      wx.request({
+        url: urlPath + '/user/selectUserInfo',
+        method: 'GET',
+        data: {
+          userId: wx.getStorageSync('userId'),
+        },
+        success: function(e) {
+          console.log(e);
+          if (e.data.code == 100) {
+            that.setData({
+              headPage: e.data.object.pic,
+              username: e.data.object.username,
+              errorState: false,
+            })
+          }
+        },
+        fail: function() {
           that.setData({
-            headPage: e.data.object.pic,
-            username: e.data.object.username,
-            errorState: false,
+            errorState: true,
           })
         }
-      },
-      fail: function () {
-        that.setData({
-          errorState: true,
-        })
-      }
-    })
+      })
+    }
+
   },
   // 未登录提示
   showErrorToastUtils: function(e) {
@@ -173,7 +176,7 @@ Page({
   /**
    * 跳转用户反馈
    */
-  turnFeedBack:function(){
+  turnFeedBack: function() {
     wx.navigateTo({
       url: '../user/feedback',
     })
@@ -181,7 +184,7 @@ Page({
   /**
    * 跳转关于我们
    */
-  turnAboutUs:function(){
+  turnAboutUs: function() {
     wx.navigateTo({
       url: '../user/aboutUs',
     })
