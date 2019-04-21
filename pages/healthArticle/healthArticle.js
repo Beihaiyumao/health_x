@@ -21,6 +21,8 @@ Page({
     errorState: false,
     loading: true,
     notOne: false,
+    likeAll:0,
+    commentAll:0,
   },
   //获取用户输入的值
   search_title: function(e) {
@@ -183,6 +185,8 @@ Page({
           pageNum: res.data.pageNum,
           errorState: false,
           loading: false,
+          likeAll:res.data.likeAll,
+          commentAll:res.data.commentAll,
         });
         for (var i = 0; i < res.data.list.length; i++) {
           var createTime = "msgList[" + i + "].createTime";

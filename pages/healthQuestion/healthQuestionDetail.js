@@ -83,14 +83,14 @@ Page({
             that.setData({
               title: e.data.object.title,
               detail: e.data.object.detail,
-              createTime: e.data.object.createTime.substring(0, 10),
+            createTime: that.renderTime(e.data.object.createTime),
             })
         } else {
           wx.showToast({
             title: e.data.msg,
             icon: 'none',
           })
-        }
+        };
       }
     })
   },
@@ -114,7 +114,13 @@ Page({
           that.setData({
             notComment: true,
           })
-        }
+        };
+        for (var i = 0; i < e.data.list.length; i++) {
+          var createTime = "answerList[" + i + "].createTime";
+          that.setData({
+            [createTime]: that.renderTime(e.data.list[i].createTime),
+          })
+        };
       }
     })
   },
@@ -198,5 +204,10 @@ Page({
       }
     })
 
+  },
+  //时间转换
+  renderTime(date) {
+    var dateee = new Date(date).toJSON();
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
 })

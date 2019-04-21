@@ -6,7 +6,9 @@
   align-items: flex-end;
   margin-top: 60px;
 }
-
+.likeTime{
+  margin-right: 200px;
+}
 /**搜索框*/
 
 .weui-search-bar {
