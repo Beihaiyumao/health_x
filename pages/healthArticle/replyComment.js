@@ -36,7 +36,8 @@ Page({
     this.setData({
       commentId: options.id.substring(0, 12),
       toUserId: options.id.substring(13, 25),
-      username: options.id.substring(26, options.id.length),
+      articleId: options.id.substring(26, 38),
+      username: options.id.substring(39, options.id.length),
     });
     console.log(this.data.commentId);
     console.log(this.data.toUserId);

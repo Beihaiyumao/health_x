@@ -6,14 +6,20 @@
       <text class='createTime'>{{createTime}}\n</text>
       <text class='content'>{{detail}}</text>
       <view class='emoji'>
-        <image  src='{{collectionPhoto}}' bindtap='collectionQuestion'></image>
+        <image src='{{collectionPhoto}}' bindtap='collectionQuestion'></image>
       </view>
     </view>
     <view>
-      <view class='allComment'>
+     <text>\n</text>
+      <i-cell-group>
+        <i-cell title="全部医生回复({{commentTotal}})条"></i-cell>
+      </i-cell-group>
+    <view style=' margin-top:10px'></view>
+     
+      <!-- <view class='allComment'>
         <text class='allCommentText'>全部医生回复({{commentTotal}})条</text>
-      </view>
-      <view class='commentList'>
+      </view> -->
+      <!-- <view class='commentList'>
         <block wx:for="{{answerList}}" wx:for-item='item' wx:key='key'>
           <view class='user-nickname'>
             <text class='nickname'>{{item.doctorName}}</text>
@@ -27,7 +33,17 @@
 
           </view>
         </block>
-      </view>
+      </view> -->
+      <block wx:for="{{answerList}}" wx:for-item='item' wx:key='key'>
+        <!-- <i-cell-group >
+        <i-cell title="{{item.doctorName}}" label="{{item.answerDetail}}"  style="border-bottom:1px solid #000"></i-cell>
+      </i-cell-group> -->
+        <i-card full="true" title="{{item.doctorName}}" extra="{{item.createTime}}">
+          <view slot="content">{{item.answerDetail}}</view>
+          <!-- <view slot="footer">尾部内容</view> -->
+        </i-card>
+        <view style=' margin-top:6px'></view>
+      </block>
     </view>
     <view class='notComment' wx:if="{{notComment}}">
       <text>该问题还没有医生回复敬请等待...</text>
