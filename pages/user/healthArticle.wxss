@@ -4,7 +4,9 @@
   height: 50px;
   width: 100%;
 }
-
+.likeTime{
+  margin-right: 200px;
+}
 .healthArticle {
   margin-left: 70px;
 }

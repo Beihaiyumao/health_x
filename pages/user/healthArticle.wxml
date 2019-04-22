@@ -20,7 +20,7 @@
             <view wx:for="{{msgList}}" wx:for-item='item' wx:key='key'>
               <i-card title="{{item.title}}" extra="{{item.author}}" full="true" bindtap='gotoProjectDetail' id="{{item.articleId}}" thumb="https://xiaoyc.com.cn/health/{{item.pic}}">
                 <view slot="content">{{item.article}}</view>
-                <view slot="footer">{{item.createTime}}</view>
+                <view slot="footer"><i-icon type="like" /><text decode="{{true}}">{{item.likeAll}} &nbsp;</text><i-icon type="message" /><text class='likeTime'>{{item.commentAll}}</text>{{item.createTime}}</view>
               </i-card>
             </view>
             <i-load-more wx:if="{{isLastArticle}}" tip="我也是有底线的" loading="{{ false }}" />
