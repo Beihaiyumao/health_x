@@ -24,6 +24,8 @@ Page({
     isLastQuestion:false,//
     pageSize: 10, //每页显示多少数据
     loading:true,
+    likeAll: 0,
+    commentAll: 0,
   },
   /**
    * 点击导航栏
@@ -160,6 +162,8 @@ Page({
             pageNum: res.data.pageNum,
             isLastArticle: res.data.isLastPage,
             loading:false,
+            likeAll: res.data.likeAll,
+            commentAll: res.data.commentAll,
           })
           for (var i = 0; i < res.data.list.length; i++) {
             var createTime = "msgList[" + i + "].createTime";
