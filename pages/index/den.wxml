@@ -1,4 +1,9 @@
 <!--pages/index/den.wxml-->
+<canvas canvas-id="shareImg" style="width:545px;height:771px"></canvas>
+<view hidden='{{hidden}}' class='preview'>
+  <image src='{{prurl}}' mode='widthFix'></image>
+  <button type='primary' size='mini' bindtap='save'>保存分享图</button>
+</view>
 <view>
   <view>
     <input type='digit' class='height' bindinput='height' placeholder='请输入您的身高(cm)'></input>
@@ -20,4 +25,5 @@
   <view class='result'>
     <text wx:if="{{resultState}}"> {{result}}</text>
   </view>
+    <button class='share' type='primary' bindtap='share' hidden='{{share}}'>分享到朋友圈</button>
 </view>

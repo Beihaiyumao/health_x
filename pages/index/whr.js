@@ -21,6 +21,8 @@ Page({
     hip: '',
     resultState: false,
     result: '',
+    hidden: true,
+    share: true,
   },
   /**
    * 获取性别
@@ -101,6 +103,89 @@ Page({
   onShareAppMessage: function() {
 
   },
+  sharePic: function () {
+    let promise2 = new Promise(function (resolve, reject) {
+      wx.getImageInfo({
+        src: '/images/healthTool/share_whr.jpg',
+        success: function (res) {
+          resolve(res);
+        }
+      })
+    });
+    Promise.all([
+      promise2
+    ]).then(res => {
+      const ctx = wx.createCanvasContext('shareImg')
+      //主要就是计算好各个图文的位置
+      ctx.drawImage('../../' + res[0].path, 0, 0, 545, 771)
+      ctx.setTextAlign('center')
+      ctx.setFillStyle('black')
+      ctx.setFontSize(22)
+      ctx.fillText('腰臀比计算器', 545 / 2, 30)
+      ctx.fillText('您的腰围是:' + this.data.waist + 'cm', 545 / 2, 100)
+      ctx.fillText('您的臀围是:' + this.data.hip + 'cm', 545 / 2, 140)
+      ctx.fillText(this.data.result, 545 / 2, 170)
+      ctx.stroke()
+      ctx.draw()
+    });
+  },
+  /**
+    * 生成分享图
+   */
+  share: function () {
+    var that = this;
+    wx.showLoading({
+      title: '努力生成中...'
+    })
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 545,
+      height: 771,
+      destWidth: 545,
+      destHeight: 771,
+      canvasId: 'shareImg',
+      success: function (res) {
+        console.log(res.tempFilePath);
+        that.setData({
+          prurl: res.tempFilePath,
+          hidden: false
+        })
+        wx.hideLoading()
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+
+  /**
+   * 保存到相册
+  */
+  save: function () {
+    var that = this
+    //生产环境时 记得这里要加入获取相册授权的代码
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.prurl,
+      success(res) {
+        wx.showModal({
+          content: '图片已保存到相册，赶紧晒一下吧~',
+          showCancel: false,
+          confirmText: '好哒',
+          confirmColor: '#72B9C3',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              that.setData({
+                hidden: true
+              })
+            }
+          }
+        })
+      }
+    })
+
+  },
   /**
    * 检测用户输入
    */
@@ -153,7 +238,9 @@ Page({
             that.setData({
               resultState: true,
               result: e.data.msg,
+              share: false,
             })
+            that.sharePic();
           }
         },
         fail: function () {
